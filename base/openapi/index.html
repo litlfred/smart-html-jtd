@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script data-folio-saved-scheme>(function(){var d=document.documentElement,s=null,c="dark";try{s=localStorage.getItem("fa-color-scheme")}catch(e){}if(s!=="light"&&s!=="dark"){s="light";try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)s="dark"}catch(e){}}try{var n=document.getElementById("fa-site-scheme");if(n)c=JSON.parse(n.textContent).scheme==="light"?"light":"dark"}catch(e){}d.setAttribute("data-fa-scheme",s);var j=window.jtd;if(s!==c&&j&&typeof j.setTheme==="function"){try{j.setTheme(s)}catch(e){}}})();</script>
+
+    <title>OpenAPI Documentation - SMART Base</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css"
+          href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css">
+    <style>
+      body { margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif; }
+      /* Definition selector bar below the header */
+      #definition-selector-bar {
+        background-color: #0070a1;
+        color: #ffffff;
+        padding: 0.5rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+      }
+      #definition-selector-bar label {
+        font-weight: 600;
+        white-space: nowrap;
+      }
+      #definition-select {
+        font-size: 0.9rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 3px;
+        border: 1px solid rgba(255,255,255,0.6);
+        background-color: #ffffff;
+        color: #00477d;
+        min-width: 200px;
+        max-width: 100%;
+        flex: 1;
+      }
+      /* Hide Swagger UI topbar entirely */
+      .swagger-ui .topbar {
+        display: none;
+      }
+      .existing-api-content { padding: 1rem 2rem; }
+    </style>
+  <script type="application/json" id="fa-translation-meta">{"lang":"en","translationStatus":"","translationSource":"","supportedLocales":["ar","zh","en","fr","ru","es"],"availableLocales":[]}</script><link rel="stylesheet" href="../assets/page-layout.css" data-fa-page-layout><script src="../assets/page-layout.js" defer data-fa-page-layout></script><link rel="stylesheet" href="../assets/ig-artifact.css"><link rel="stylesheet" href="../assets/css/navbar.css"><script src="../assets/navbar/rail-1ilo1cb32ge.js" defer></script><script src="../assets/js/navbar.js" defer></script><script src="../assets/navbar/row-1r3vdcsflwy.js" defer></script><link rel="stylesheet" href="../assets/css/navbar-row.css"><script src="../assets/js/navbar-row.js" defer></script><meta name="fa-platform-base" content="https://litlfred.github.io/folio-assistant" data-fa-platform-ui><link rel="stylesheet" href="../assets/css/docs-ui.css" data-fa-platform-ui><script src="../assets/js/docs-ui.js" defer data-fa-platform-ui></script><meta name="fa-pinned-data" content=".."></head>
+  <body><script type="application/json" id="fa-navbar-row" data-fa-root=".." data-fa-row-src="row-1r3vdcsflwy"></script><script type="application/json" id="fa-rail" data-fa-root="https://litlfred.github.io/folio-assistant" data-fa-to-root="..">{"data":"rail-1ilo1cb32ge","here":"/openapi/"}</script><nav class="fa-nav" aria-label="folio-assistant" data-fa-rail="pending"><a href="../">SMART Base</a></nav>
+<header class="ig-search-top fa-page-bar"><a class="ig-search-home" href="../index.html">SMART Base</a><form class="ig-search" role="search" data-ig-search-index="../assets/ig-search.json"><label class="ig-search-label" for="search-input">Search SMART Base</label><input type="search" id="search-input" class="ig-search-input" placeholder="Search pages and artefacts" autocomplete="off" aria-controls="ig-search-results" aria-expanded="false"><ul id="ig-search-results" class="ig-search-results" hidden></ul></form><span class="ig-locale-slot" data-fa-slot="locale"></span></header>
+  <!-- No header of its own: the site gives every page the IG's one bar (owner, 2026-10-15, "consolidate behaviours/appearance"). -->
+
+  <div id="definition-selector-bar">
+    <label for="definition-select">Select a definition:</label>
+    <select id="definition-select" onchange="switchDefinition(this.value)">
+    </select>
+  </div>
+  <div id="swagger-ui"></div>
+  <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+  <script>
+  var swaggerUrls = [
+  {
+    "url": "../ValueSet-CDHIv2.1.openapi.json",
+    "name": "Digital Health Interventions for Persons Schema"
+  },
+  {
+    "url": "../ValueSet-KGIdentifierTypeVS.openapi.json",
+    "name": "Knowledge graph L1: identifier type Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv2.openapi.json",
+    "name": "Services and Application Types Schema"
+  },
+  {
+    "url": "../ValueSet-SGAuthoringSkillsVS.openapi.json",
+    "name": "SMART Guidelines Authoring Skills ValueSet Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv2.3.openapi.json",
+    "name": "Digital Health Interventions for Health Management and Support Personnel Schema"
+  },
+  {
+    "url": "../ValueSet-SGPersonaTypesVS.openapi.json",
+    "name": "Smart Guidelines Persona Types Value Set Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv2.C.openapi.json",
+    "name": "Services and Application Types: Registries and Directories Schema"
+  },
+  {
+    "url": "../ValueSet-KGRemarkTypeVS.openapi.json",
+    "name": "Knowledge graph L1: remark type Schema"
+  },
+  {
+    "url": "../ValueSet-KGCitationKindVS.openapi.json",
+    "name": "Knowledge graph L1: citation kind Schema"
+  },
+  {
+    "url": "../ValueSet-ISCO08ValueSet.openapi.json",
+    "name": "ISCO-08 Value Set Schema"
+  },
+  {
+    "url": "../ValueSet-KGL1LibraryClassesVS.openapi.json",
+    "name": "Knowledge graph L1Library: classes Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv2.A.openapi.json",
+    "name": "Services and Application Types: Point of Service Schema"
+  },
+  {
+    "url": "../ValueSet-KGRecommendationStatusVS.openapi.json",
+    "name": "Knowledge graph L1: recommendation status Schema"
+  },
+  {
+    "url": "../ValueSet-KGRecommendationDirectionVS.openapi.json",
+    "name": "Knowledge graph L1: recommendation direction Schema"
+  },
+  {
+    "url": "../ValueSet-KGEvidenceTypeVS.openapi.json",
+    "name": "Knowledge graph L1: evidence type Schema"
+  },
+  {
+    "url": "../ValueSet-KGElementTypeVS.openapi.json",
+    "name": "Knowledge graph L1: element type Schema"
+  },
+  {
+    "url": "../ValueSet-KGRowTypeVS.openapi.json",
+    "name": "Knowledge graph L1: row type Schema"
+  },
+  {
+    "url": "../ValueSet-DecisionTableActions.openapi.json",
+    "name": "Smart Guidelines Decision Table Actions Schema"
+  },
+  {
+    "url": "../ValueSet-KGL1PredicatesVS.openapi.json",
+    "name": "Knowledge graph L1: predicates Schema"
+  },
+  {
+    "url": "../ValueSet-KGL1LibraryPredicatesVS.openapi.json",
+    "name": "Knowledge graph L1Library: predicates Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv2.openapi.json",
+    "name": "Classification of Digital Health Interventions v2 Schema"
+  },
+  {
+    "url": "../ValueSet-KGPublicationTypeVS.openapi.json",
+    "name": "Knowledge graph L1: publication type Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv1.3.openapi.json",
+    "name": "Digital Health Interventions for Health System Managers Schema"
+  },
+  {
+    "url": "../ValueSet-KGRecommendationKindVS.openapi.json",
+    "name": "Knowledge graph L1: recommendation kind Schema"
+  },
+  {
+    "url": "../ValueSet-KGCertaintyVS.openapi.json",
+    "name": "Knowledge graph L1: certainty Schema"
+  },
+  {
+    "url": "../ValueSet-KGTerminologySystemVS.openapi.json",
+    "name": "Knowledge graph L1: terminology system Schema"
+  },
+  {
+    "url": "../ValueSet-KGDerivationVS.openapi.json",
+    "name": "Knowledge graph: derivation Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv2.4.openapi.json",
+    "name": "Digital Health Interventions: Data Services Schema"
+  },
+  {
+    "url": "../ValueSet-CoreDataElementTypeVS.openapi.json",
+    "name": "Core Data Element Type Value Set Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv2.D.openapi.json",
+    "name": "Services and Application Types: Data Management Services Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv2.E.openapi.json",
+    "name": "Services and Application Types: Surveillance and Response Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv1.4.openapi.json",
+    "name": "Digital Health Interventions: Data Services Schema"
+  },
+  {
+    "url": "../ValueSet-KGResolutionStatusVS.openapi.json",
+    "name": "Knowledge graph L1: resolution status Schema"
+  },
+  {
+    "url": "../ValueSet-KGChangeStatusVS.openapi.json",
+    "name": "Knowledge graph L1: change status Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv1.1.openapi.json",
+    "name": "Digital Health Interventions for Clients Schema"
+  },
+  {
+    "url": "../ValueSet-KGOutcomeImportanceVS.openapi.json",
+    "name": "Knowledge graph L1: outcome importance Schema"
+  },
+  {
+    "url": "../ValueSet-KGInterventionTypeVS.openapi.json",
+    "name": "Knowledge graph L1: intervention type Schema"
+  },
+  {
+    "url": "../ValueSet-KGL1ClassesVS.openapi.json",
+    "name": "Knowledge graph L1: classes Schema"
+  },
+  {
+    "url": "../ValueSet-KGRecommendationStrengthVS.openapi.json",
+    "name": "Knowledge graph L1: recommendation strength Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv1.openapi.json",
+    "name": "Health System Challenges Schema"
+  },
+  {
+    "url": "../ValueSet-CDSCv2.B.openapi.json",
+    "name": "Services and Application Types: Health System/Provider Administration Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv1.openapi.json",
+    "name": "Classification of Digital Health Interventions v1 Schema"
+  },
+  {
+    "url": "../ValueSet-SGAuthoringPersonaTypesVS.openapi.json",
+    "name": "SMART Guidelines Authoring Persona Types ValueSet Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv1.2.openapi.json",
+    "name": "Digital Health Interventions for Health Workers Schema"
+  },
+  {
+    "url": "../ValueSet-CDHIv2.2.openapi.json",
+    "name": "Digital Health Interventions for Healthcare Providers Schema"
+  },
+  {
+    "url": "../ValueSet-KGGrcStatusVS.openapi.json",
+    "name": "Knowledge graph L1: grc status Schema"
+  },
+  {
+    "url": "../StructureDefinition-GenericPersona.openapi.json",
+    "name": "Generic Persona (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-BusinessProcessWorkflow.openapi.json",
+    "name": "Business Process Workflow (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-CoreDataElement.openapi.json",
+    "name": "Core Data Element (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-KGImplementationPractice.openapi.json",
+    "name": "Knowledge graph L1-LIBRARY: Implementation practice"
+  },
+  {
+    "url": "../StructureDefinition-ProgramIndicatorSource.openapi.json",
+    "name": "Program Indicator Source"
+  },
+  {
+    "url": "../StructureDefinition-KGCitation.openapi.json",
+    "name": "Knowledge graph L1: Citation"
+  },
+  {
+    "url": "../StructureDefinition-KGEvidence.openapi.json",
+    "name": "Knowledge graph L1: Evidence"
+  },
+  {
+    "url": "../StructureDefinition-HealthInterventionsSource.openapi.json",
+    "name": "Health Interventions Source"
+  },
+  {
+    "url": "../StructureDefinition-DecisionSupportLogicSource.openapi.json",
+    "name": "Decision Support Logic Source"
+  },
+  {
+    "url": "../StructureDefinition-KGProvenanceSource.openapi.json",
+    "name": "Knowledge graph: provenance source"
+  },
+  {
+    "url": "../StructureDefinition-KGKeyQuestion.openapi.json",
+    "name": "Knowledge graph L1: Key question"
+  },
+  {
+    "url": "../StructureDefinition-KGIndicator.openapi.json",
+    "name": "Knowledge graph L1: Indicator"
+  },
+  {
+    "url": "../StructureDefinition-KGEvidenceLocation.openapi.json",
+    "name": "Knowledge graph: evidence location"
+  },
+  {
+    "url": "../StructureDefinition-KGRecommendation.openapi.json",
+    "name": "Knowledge graph L1: Recommendation"
+  },
+  {
+    "url": "../StructureDefinition-KGPublication.openapi.json",
+    "name": "Knowledge graph L1: Publication"
+  },
+  {
+    "url": "../StructureDefinition-Persona.openapi.json",
+    "name": "Persona (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-BusinessProcessWorkflowSource.openapi.json",
+    "name": "Business Process Workflow Source"
+  },
+  {
+    "url": "../StructureDefinition-KGTerminologyCode.openapi.json",
+    "name": "Knowledge graph L1: Terminology code"
+  },
+  {
+    "url": "../StructureDefinition-FunctionalRequirement.openapi.json",
+    "name": "Functional Requirement (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-KGReferenceEntry.openapi.json",
+    "name": "Knowledge graph L1: Reference entry"
+  },
+  {
+    "url": "../StructureDefinition-FHIRSchemaBase.openapi.json",
+    "name": "FHIR Schema Base (SMART Guidelines)"
+  },
+  {
+    "url": "../StructureDefinition-NonFunctionalRequirement.openapi.json",
+    "name": "Non-Functional Requirement (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-TestScenario.openapi.json",
+    "name": "Test Scenario (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-UserScenario.openapi.json",
+    "name": "User Scenario (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-DecisionSupportLogic.openapi.json",
+    "name": "Decision-Support Logic (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-UserScenarioSource.openapi.json",
+    "name": "User Scenario Source"
+  },
+  {
+    "url": "../StructureDefinition-KGPublicationSection.openapi.json",
+    "name": "Knowledge graph L1: Publication section"
+  },
+  {
+    "url": "../StructureDefinition-DAK.openapi.json",
+    "name": "Digital Adaptation Kit (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-KGNode.openapi.json",
+    "name": "Knowledge graph: node"
+  },
+  {
+    "url": "../StructureDefinition-ProgramIndicator.openapi.json",
+    "name": "Program Indicator (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-TestScenarioSource.openapi.json",
+    "name": "Test Scenario Source"
+  },
+  {
+    "url": "../StructureDefinition-KGEdge.openapi.json",
+    "name": "Knowledge graph: edge"
+  },
+  {
+    "url": "../StructureDefinition-GenericPersonaSource.openapi.json",
+    "name": "Generic Persona Source"
+  },
+  {
+    "url": "../StructureDefinition-KGOutcome.openapi.json",
+    "name": "Knowledge graph L1: Outcome"
+  },
+  {
+    "url": "../StructureDefinition-KGHealthIntervention.openapi.json",
+    "name": "Knowledge graph L1: Health intervention"
+  },
+  {
+    "url": "../StructureDefinition-RequirementsSource.openapi.json",
+    "name": "Requirements Source"
+  },
+  {
+    "url": "../StructureDefinition-KGRemark.openapi.json",
+    "name": "Knowledge graph L1: Remark"
+  },
+  {
+    "url": "../StructureDefinition-KGGraphDocument.openapi.json",
+    "name": "Knowledge graph L1: graph document"
+  },
+  {
+    "url": "../StructureDefinition-HealthInterventions.openapi.json",
+    "name": "Health Interventions and Recommendations (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-Requirements.openapi.json",
+    "name": "Functional and Non-Functional Requirements (DAK)"
+  },
+  {
+    "url": "../StructureDefinition-CoreDataElementSource.openapi.json",
+    "name": "Core Data Element Source"
+  },
+  {
+    "url": "../StructureDefinition-KGPublicationElement.openapi.json",
+    "name": "Knowledge graph L1: Publication element"
+  },
+  {
+    "url": "../StructureDefinition-SushiConfigLogicalModel.openapi.json",
+    "name": "SUSHI Configuration Logical Model"
+  },
+  {
+    "url": "../StructureDefinition-DublinCore.openapi.json",
+    "name": "Dublin Core Metadata Element Set"
+  },
+  {
+    "url": "../StructureDefinition-KGLibraryNode.openapi.json",
+    "name": "Knowledge graph L1-LIBRARY: Library node"
+  }
+];
+  var ui;
+  window.onload = function() {
+    var select = document.getElementById('definition-select');
+    swaggerUrls.forEach(function(item, idx) {
+      var opt = document.createElement('option');
+      opt.value = item.url;
+      opt.textContent = item.name;
+      select.appendChild(opt);
+    });
+    ui = SwaggerUIBundle({
+      url: "../ValueSet-CDHIv2.1.openapi.json",
+      dom_id: '#swagger-ui',
+      presets: [SwaggerUIBundle.presets.apis],
+      layout: "BaseLayout"
+    });
+  };
+  function switchDefinition(url) {
+    ui.specActions.updateUrl(url);
+    ui.specActions.download(url);
+  }
+  </script>
+
+  <script src="../assets/ig-search.js" defer></script>
+</body>
+</html>

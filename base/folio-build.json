@@ -1,0 +1,13 @@
+{
+  "$schema": "folio-site-build/v1",
+  "instance": "smart-base",
+  "platform": {
+    "commit": "71b289f79238493762d7e70376c8f5f07a38043c"
+  },
+  "source": {
+    "repo": "litlfred/smart-base",
+    "ref": "main",
+    "commit": "50f373bbdade5b04d594f9d209f3814ed4425506"
+  },
+  "builtAt": "2026-10-16T11:59:46.337Z"
+}

@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script data-folio-saved-scheme>(function(){var d=document.documentElement,s=null,c="dark";try{s=localStorage.getItem("fa-color-scheme")}catch(e){}if(s!=="light"&&s!=="dark"){s="light";try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)s="dark"}catch(e){}}try{var n=document.getElementById("fa-site-scheme");if(n)c=JSON.parse(n.textContent).scheme==="light"?"light":"dark"}catch(e){}d.setAttribute("data-fa-scheme",s);var j=window.jtd;if(s!==c&&j&&typeof j.setTheme==="function"){try{j.setTheme(s)}catch(e){}}})();</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Decision-support Logic — WHO Immunization Implementation Guide</title>
+<link rel="canonical" href="./decision-logic.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23276749'/%3E%3C/svg%3E">
+<meta name="folio-navbar" content="linked">
+<meta name="fa-visualiser-label" content="WHO Immunization Implementation Guide">
+<link rel="stylesheet" href="./assets/page-layout.css" data-fa-page-layout>
+<script src="./assets/page-layout.js" defer data-fa-page-layout></script>
+<link rel="stylesheet" href="./assets/ig-artifact.css">
+<link rel="stylesheet" href="./assets/css/docs-ui.css" data-fa-folio-mount>
+<script src="./assets/navbar/row-2acuhncsmbg.js" defer></script><script src="./assets/js/docs-ui.js" defer data-fa-folio-mount></script>
+<script type="application/json" id="fa-translation-meta">{"lang":"en","translationStatus":"","translationSource":"","supportedLocales":["ar","zh","en","fr","ru","es"],"availableLocales":[]}</script><link rel="stylesheet" href="./assets/css/navbar.css"><script src="./assets/navbar/rail-172oredv0ja.js" defer></script><script src="./assets/js/navbar.js" defer></script><link rel="stylesheet" href="./assets/css/navbar-row.css"><script src="./assets/js/navbar-row.js" defer></script><meta name="fa-pinned-data" content="."></head>
+<body><script type="application/json" id="fa-navbar-row" data-fa-root="." data-fa-row-src="row-2acuhncsmbg"></script><script type="application/json" id="fa-rail" data-fa-root="https://litlfred.github.io/folio-assistant" data-fa-to-root=".">{"data":"rail-172oredv0ja","here":"/decision-logic.html"}</script><nav class="fa-nav" aria-label="folio-assistant" data-fa-rail="pending"><a href="./">WHO Immunization Implementation Guide</a></nav>
+
+<div class="ig-topbar fa-page-bar" role="navigation" aria-label="WHO Immunization Implementation Guide menu"><a class="ig-topbar-home" href="./index.html">WHO Immunization Implementation Guide</a><details class="ig-topbar-group"><summary>Home</summary><ul><li><a href="./index.html">Summary</a></li><li><a href="./changes.html">Changes</a></li><li><a href="./dependencies.html">Dependencies</a></li><li><a href="./references.html">References</a></li><li><a href="./adapting.html">Adapting Guidelines for Country use</a></li></ul></details><details class="ig-topbar-group"><summary>Business Requirements</summary><ul><li><a href="./concepts.html">Concepts</a></li><li><a href="./personas.html">Generic Personas</a></li><li><a href="./scenarios.html">User Scenarios</a></li><li><a href="./business-processes.html">Business Processes</a></li><li><a href="./dictionary.html">Data Dictionary</a></li><li><a href="./decision-logic.html">Decision-support Logic</a></li><li><a href="./indicators.html">Indicator and Performance Metrics</a></li><li><a href="./functional-requirements.html">Functional Requirements</a></li><li><a href="./non-functional-requirements.html">Non-functional Requirements</a></li></ul></details><details class="ig-topbar-group"><summary>Data Models and Exchange</summary><ul><li><a href="./system-actors.html">System Actors</a></li><li><a href="./sequence-diagrams.html">Sequence Diagrams</a></li><li><a href="./transactions.html">Transactions</a></li><li><a href="./indicators-measures.html">Indicators and Measures</a></li><li><a href="./codings.html">Codings</a></li></ul></details><details class="ig-topbar-group"><summary>Deployment</summary><ul><li><a href="./security-privacy.html">Security and Privacy Considerations</a></li><li><a href="./testing.html">Testing</a></li><li><a href="./test-data.html">Test Data</a></li><li><a href="./reference-implementations.html">Reference Implementations</a></li><li><a href="./trust_domain.html">Trust Domains</a></li><li><a href="./downloads.html">Downloads</a></li></ul></details><details class="ig-topbar-group"><summary>Indices</summary><ul><li><a href="./artifacts.html">Artifact Index</a></li><li><a href="./maps.html">Mappings</a></li></ul></details><form class="ig-search" role="search" data-ig-search-index="./assets/ig-search.json"><label class="ig-search-label" for="search-input">Search WHO Immunization Implementation Guide</label><input type="search" id="search-input" class="ig-search-input" placeholder="Search pages and artefacts" autocomplete="off" aria-controls="ig-search-results" aria-expanded="false"><ul id="ig-search-results" class="ig-search-results" hidden></ul></form><span class="ig-locale-slot" data-fa-slot="locale"></span><script src="./assets/ig-search.js" defer></script></div>
+<main class="ig-main main-content fa-page-main" id="main-content">
+<p><span hidden="" data-fa-figure-images="ig"></span></p>
+
+<p>This page describes the decision support logic included in the <a href="https://iris.who.int/handle/10665/380303">WHO Digital Adaptation Kit for Immunizations</a>.</p>
+
+<p>The decision-support logic component provides the decision logic and
+algorithms, as well as the scheduling of services, in accordance with
+WHO guidelines. The decision logic and algorithms in this implementation
+guide deconstruct the recommendations within the Immunization guidelines
+and guidance into a machine readable format that clearly labels the
+inputs and outputs that would be operationalized in a digital
+decision-support system.</p>
+
+<h3 id="decision-support-logic-overview">Decision Support Logic Overview</h3>
+<p>The table below provides an overview of the decision-support tables and
+algorithms for the different business processes in an EIR. The structure
+of the decision-support tables is based on an adaptation of the Decision
+Model and Notation (DMN™), an industry standard for modelling and
+executing decision logic. These decision-support tables detail the
+business rules, data inputs and outputs to support EIR business
+processes.</p>
+
+<p>Immunization schedules vary by vaccine product, epidemiological situation, and national policies. The decision-support logic and scheduling logic in the DAK were curated based on the WHO recommended immunizations schedules and related position papers. Because of this, there are decision-support table “options” and scheduling-logic “options” based on the various immunization strategies outlined in the recommendations that countries can choose and adapt as relevant.</p>
+
+<p><strong>Overview of decision support tables</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Decision-support table (DT), contraindications table and scheduling-logic table (S) identification (ID)</strong></th>
+      <th>Table description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTBCG.html"><strong>IMMZ.D2.DT.BCG</strong></a></td>
+      <td>Recommended vaccinations for bacille Calmette-Guérin (BCG) as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTBCGContraindications.html"><strong>IMMZ.D5.DT.BCG contraindications</strong></a></td>
+      <td>Performing a contraindication check for BCG vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SBCG.html"><strong>IMMZ.D18.S.BCG schedule</strong></a></td>
+      <td>Recommended vaccination schedule for BCG as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisBBirthDose.html"><strong>IMMZ.D2.DT.Hepatitis B.Birth dose</strong></a></td>
+      <td>Recommended administration of the birth dose for hepatitis B as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisB3Doses.html"><strong>IMMZ.D2.DT.Hepatitis B.3 doses</strong></a></td>
+      <td>Recommended vaccinations for hepatitis B following the 3-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisB4Doses.html"><strong>IMMZ.D2.DT.Hepatitis B.4 doses</strong></a></td>
+      <td>Recommended vaccinations for hepatitis B following the 4-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisBDelayedStart.html"><strong>IMMZ.D2.DT.Hepatitis B.Delayed start</strong></a></td>
+      <td>Recommended vaccinations for hepatitis B following the delayed start schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTHepatitisBContraindications.html"><strong>IMMZ.D5.DT.Hepatitis B contraindications</strong></a></td>
+      <td>Performing a contraindication check for hepatitis B vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisBBirthDose.html"><strong>IMMZ.D18.S.Hepatitis B.Birth dose schedule</strong></a></td>
+      <td>Recommended birth dose vaccination schedule for hepatitis B as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisB3Doses.html"><strong>IMMZ.D18.S.Hepatitis B.3-dose schedule</strong></a></td>
+      <td>Recommended 3-dose vaccination schedule for hepatitis B as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisB4Doses.html"><strong>IMMZ.D18.S.Hepatitis B.4-dose schedule</strong></a></td>
+      <td>Recommended 4-dose vaccination schedule for hepatitis B as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisBDelayedStart.html"><strong>IMMZ.D18.S.Hepatitis B.Delayed start schedule</strong></a></td>
+      <td>Recommended delayed start vaccination schedule for hepatitis B as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTPolioBirthDose.html"><strong>IMMZ.D2.DT.Polio.Birth dose</strong></a></td>
+      <td>Recommended administration of the birth dose for poliomyelitis (polio) as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTPolioBOPVPlusIPV.html"><strong>IMMZ.D2.DT.Polio.bOPV plus IPV</strong></a></td>
+      <td>Recommended vaccinations for polio following the bivalent oral polio vaccine (bOPV) plus inactivated polio vaccine (IPV) schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTPolioSequentialIPVbOPV.html"><strong>IMMZ.D2.DT.Polio.Sequential IPV–bOPV</strong></a></td>
+      <td>Recommended vaccinations for polio following the sequential IPV–bOPV schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTPolioIPVOnly.html"><strong>IMMZ.D2.DT.Polio.IPV-only</strong></a></td>
+      <td>Recommended vaccinations for polio following the IPV-only schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTPolioContraindications.html"><strong>IMMZ.D5.DT.Polio contraindications</strong></a></td>
+      <td>Performing a contraindication check for poliovirus-containing vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SPolioBirthDose.html"><strong>IMMZ.D18.S.Polio.Birth dose schedule</strong></a></td>
+      <td>Recommended birth dose vaccination schedule for polio as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SPolioBOPVPlusIPV.html"><strong>IMMZ.D18.S.Polio.bOPV plus IPV schedule</strong></a></td>
+      <td>Recommended bOPV plus IPV vaccination schedule for polio as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SPolioSequentialIPVbOPV.html"><strong>IMMZ.D18.S.Polio.Sequential IPV–bOPV schedule</strong></a></td>
+      <td>Recommended sequential IPV–bOPV vaccination schedule for polio as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SPolioIPVOnly.html"><strong>IMMZ.D18.S.Polio.IPV-only schedule</strong></a></td>
+      <td>Recommended IPV-only vaccination schedule for polio as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDTPOnTimeStart.html"><strong>IMMZ.D2.DT.DTP.On-time start</strong></a></td>
+      <td>Recommended vaccinations for diphtheria–tetanus–pertussis (DTP) following the on-time start schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDTPDelayedOrInterruptedSeries.html"><strong>IMMZ.D2.DT.DTP.Delayed or interrupted series</strong></a></td>
+      <td>Recommended vaccinations for DTP following the delayed start or interrupted series schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDTPPregnancy.html"><strong>IMMZ.D2.DT.DTP.Pregnancy</strong></a></td>
+      <td>Determine whether DTP vaccinations are needed for pregnant women as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDTPPregnancyStartingWith3Doses.html"><strong>IMMZ.D2.DT.DTP.Pregnancy starting with 3 doses</strong></a></td>
+      <td>Recommended vaccinations for diphtheria and tetanus following the schedule outlined for pregnant women who have received three childhood DTP doses as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDTPPregnancyStartingWith4Doses.html"><strong>IMMZ.D2.DT.DTP.Pregnancy starting with 4 doses</strong></a></td>
+      <td>Recommended vaccinations for diphtheria and tetanus following the schedule outlined for pregnant women who have received four childhood DTP doses as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTDTPContraindications.html"><strong>IMMZ.D5.DT.DTP contraindications</strong></a></td>
+      <td>Performing a contraindication check for DTP vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SDTPOnTimeStart.html"><strong>IMMZ.D18.S.DTP.On-time start schedule</strong></a></td>
+      <td>Recommended on-time start (at ≤12 months of age) vaccination schedule for DTP as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SDTPDelayedOrInterruptedSeries.html"><strong>IMMZ.D18.S.DTP.Delayed or interrupted schedule</strong></a></td>
+      <td>Recommended delayed or interrupted series vaccination schedule for DTP as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SDTPPregnancyStartingWith3Doses.html"><strong>IMMZ.D18.S.DTP.Pregnancy starting with 3 doses schedule</strong></a></td>
+      <td>Recommended vaccination schedule for pregnant women who received 3 childhood DTP doses as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SDTPPregnancyStartingWith4Doses.html"><strong>IMMZ.D18.S.DTP.Pregnancy starting with 4 doses schedule</strong></a></td>
+      <td>Recommended vaccination schedule for pregnant women who received 4 childhood DTP doses as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHib3Doses.html"><strong>IMMZ.D2.DT.Hib.3 doses</strong></a></td>
+      <td>Recommended vaccinations for Haemophilus influenzae type b (Hib) following the 3 primary doses without a booster schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHib3DosesWithBoosterDose.html"><strong>IMMZ.D2.DT.Hib.3 doses with booster dose</strong></a></td>
+      <td>Recommended vaccinations for Hib following the 3 primary doses with a booster schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHib2DosesWithBoosterDose.html"><strong>IMMZ.D2.DT.Hib.2 doses with booster dose</strong></a></td>
+      <td>Recommended vaccinations for Hib following the 2 primary doses with a booster schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTHibContraindications.html"><strong>IMMZ.D5.DT.Hib contraindications</strong></a></td>
+      <td>Performing a contraindication check for Hib vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHib3Doses.html"><strong>IMMZ.D18.S.Hib.3 doses schedule</strong></a></td>
+      <td>Recommended 3 primary doses without a booster vaccination schedule for Hib as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHib3DosesWithBoosterDose.html"><strong>IMMZ.D18.S.Hib.3 doses with booster dose schedule</strong></a></td>
+      <td>Recommended 3 primary doses with a booster vaccination schedule for Hib as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHib2DosesWithBoosterDose.html"><strong>IMMZ.D18.S.Hib.2 doses with booster dose schedule</strong></a></td>
+      <td>Recommended 2 primary doses with a booster vaccination schedule for Hib as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTPneumococcal2DosesWithBoosterDose.html"><strong>IMMZ.D2.DT.Pneumococcal.2 doses with booster dose</strong></a></td>
+      <td>Recommended vaccinations for pneumococcal following the 2 primary doses with a booster schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTPneumococcal3Doses.html"><strong>IMMZ.D2.DT.Pneumococcal.3 doses</strong></a></td>
+      <td>Recommended vaccinations for pneumococcal following the 3 primary doses schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTPneumococcalContraindications.html"><strong>IMMZ.D5.DT.Pneumococcal contraindications</strong></a></td>
+      <td>Performing a contraindication check for pneumococcal vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SPneumococcal2DosesWithBoosterDose.html"><strong>IMMZ.D18.S.Pneumococcal.2 doses with booster dose schedule</strong></a></td>
+      <td>Recommended 2 primary doses with a booster vaccination schedule for pneumococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SPneumococcal3Doses.html"><strong>IMMZ.D18.S.Pneumococcal.3 doses schedule</strong></a></td>
+      <td>Recommended 3 primary doses vaccination schedule for pneumococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTRotavirus.html"><strong>IMMZ.D2.DT.Rotavirus</strong></a></td>
+      <td>Recommended vaccinations for rotavirus as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTRotavirusContraindications.html"><strong>IMMZ.D5.DT.Rotavirus contraindications</strong></a></td>
+      <td>Performing a contraindication check for rotavirus vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SRotavirus.html"><strong>IMMZ.D18.S.Rotavirus schedule</strong></a></td>
+      <td>Recommended vaccination schedule for rotavirus as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeaslesOngoingTransmission.html"><strong>IMMZ.D2.DT.Measles.Ongoing transmission</strong></a></td>
+      <td>Recommended vaccinations for measles following the ongoing transmission schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeaslesLowTransmission.html"><strong>IMMZ.D2.DT.Measles.Low transmission</strong></a></td>
+      <td>Recommended vaccinations for measles following the low levels of measles transmission schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeaslesMCVDose0.html"><strong>IMMZ.D2.DT.Measles.MCV dose 0</strong></a></td>
+      <td>Recommended administration of dose 0 for measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeaslesSupplementaryDose.html"><strong>IMMZ.D2.DT.Measles.Supplementary dose</strong></a></td>
+      <td>Recommended administration of supplementary dose for measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTMeaslesContraindications.html"><strong>IMMZ.D5.DT.Measles contraindications</strong></a></td>
+      <td>Performing a contraindication check for measles-containing vaccines (MCV) as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeaslesOngoingTransmission.html"><strong>IMMZ.D18.S.Measles.Ongoing transmission schedule</strong></a></td>
+      <td>Recommended ongoing transmission vaccination schedule for measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeaslesLowTransmission.html"><strong>IMMZ.D18.S.Measles.Low transmission schedule</strong></a></td>
+      <td>Recommended low levels of measles transmission vaccination schedule for measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeaslesMCVDose0.html"><strong>IMMZ.D18.S.Measles.MCV dose 0 schedule</strong></a></td>
+      <td>Recommended measles dose 0 vaccination schedule for measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeaslesSupplementaryDose.html"><strong>IMMZ.D18.S.Measles.Supplementary dose schedule</strong></a></td>
+      <td>Recommended measles supplementary dose vaccination schedule for measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTRubellaHighIncidence.html"><strong>IMMZ.D2.DT.Rubella.High incidence</strong></a></td>
+      <td>Recommended vaccinations for rubella following the high incidence of measles schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTRubellaLowIncidence.html"><strong>IMMZ.D2.DT.Rubella.Low incidence</strong></a></td>
+      <td>Recommended vaccinations for rubella following the low incidence of measles schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTRubellaContraindications.html"><strong>IMMZ.D5.DT.Rubella contraindications</strong></a></td>
+      <td>Performing a contraindication check for rubella vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SRubellaHighIncidence.html"><strong>IMMZ.D18.S.Rubella.High incidence schedule</strong></a></td>
+      <td>Recommended vaccination schedule for rubella for countries with high incidence of measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SRubellaLowIncidence.html"><strong>IMMZ.D18.S.Rubella.Low incidence schedule</strong></a></td>
+      <td>Recommended vaccination schedule for rubella for countries with low incidence of measles as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHPV2Doses.html"><strong>IMMZ.D2.DT.HPV.2 doses</strong></a></td>
+      <td>Recommended vaccinations for human papillomavirus (HPV) following the 2-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHPVSingleDose.html"><strong>IMMZ.D2.DT.HPV.Single dose</strong></a></td>
+      <td>Recommended vaccinations for HPV following the single-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTHPVContraindications.html"><strong>IMMZ.D5.DT.HPV contraindications</strong></a></td>
+      <td>Performing a contraindication check for HPV vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHPV2Doses.html"><strong>IMMZ.D18.S.HPV.2-dose schedule</strong></a></td>
+      <td>Recommended 2-dose vaccination schedule for HPV as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.HPV.Single-dose schedule</strong></td>
+      <td>Recommended single-dose vaccination schedule for HPV as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTJEInactivatedVeroCellDerivedVaccine.html"><strong>IMMZ.D2.DT.JE.Inactivated Vero cell-derived vaccine</strong></a></td>
+      <td>Recommended vaccinations for Japanese encephalitis (JE) following the inactivated Vero cell-derived vaccine schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTJELiveAttenuatedVaccine.html"><strong>IMMZ.D2.DT.JE.Live attenuated vaccine</strong></a></td>
+      <td>Recommended vaccinations for JE following the live attenuated vaccine schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTJELiveRecombinantVaccine.html"><strong>IMMZ.D2.DT.JE.Live recombinant vaccine</strong></a></td>
+      <td>Recommended vaccinations for JE following the live recombinant vaccine schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTJEContraindications.html"><strong>IMMZ.D5.DT.JE contraindications</strong></a></td>
+      <td>Performing a contraindication check for JE vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.JE.Inactivated Vero cell-derived vaccine schedule</strong></td>
+      <td>Recommended inactivated Vero cell-derived vaccination schedule for JE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.JE.Live attenuated vaccine schedule</strong></td>
+      <td>Recommended live attenuated vaccination schedule for JE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.JE.Live recombinant vaccine schedule</strong></td>
+      <td>Recommended live recombinant vaccination schedule for JE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTYellowfeverYellowFever.html"><strong>IMMZ.D2.DT.Yellow fever</strong></a></td>
+      <td>Recommended vaccinations for yellow fever as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTYellowFeverContraindications.html"><strong>IMMZ.D5.DT.Yellow fever contraindications</strong></a></td>
+      <td>Performing a contraindication check for yellow fever vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SYellowfeverYellowFever.html"><strong>IMMZ.D18.S.Yellow fever schedule</strong></a></td>
+      <td>Recommended vaccination schedule for yellow fever as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTBEFSMEImmun.html"><strong>IMMZ.D2.DT.TBE.FSME-Immun</strong></a></td>
+      <td>Recommended vaccinations for tick-borne encephalitis (TBE) following the FSME-Immun schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTBEEncepur.html"><strong>IMMZ.D2.DT.TBE.Encepur</strong></a></td>
+      <td>Recommended vaccinations for TBE following the Encepur schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTBETBEMoscow.html"><strong>IMMZ.D2.DT.TBE.TBE-Moscow</strong></a></td>
+      <td>Recommended vaccinations for TBE following the TBE-Moscow schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTBEEnceVir.html"><strong>IMMZ.D2.DT.TBE.EnceVir</strong></a></td>
+      <td>Recommended vaccinations for TBE following the EnceVir schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTTBEContraindications.html"><strong>IMMZ.D5.DT.TBE contraindications</strong></a></td>
+      <td>Performing a contraindication check for TBE vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STBEFSMEImmun.html"><strong>IMMZ.D18.S.TBE.FSME-Immun schedule</strong></a></td>
+      <td>Recommended FSME-Immun vaccination schedule for TBE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STBEEncepur.html"><strong>IMMZ.D18.S.TBE.Encepur schedule</strong></a></td>
+      <td>Recommended Encepur vaccination schedule for TBE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STBETBEMoscow.html"><strong>IMMZ.D18.S.TBE.TBE-Moscow schedule</strong></a></td>
+      <td>Recommended TBE-Moscow vaccination schedule for TBE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STBEEnceVir.html"><strong>IMMZ.D18.S.TBE.EnceVir</strong></a></td>
+      <td>Recommended EnceVir vaccination schedule for TBE as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTyphoidTCV.html"><strong>IMMZ.D2.DT.Typhoid.TCV</strong></a></td>
+      <td>Recommended vaccinations for typhoid following the typhoid conjugate vaccine (TCV) schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTyphoidViPS.html"><strong>IMMZ.D2.DT.Typhoid.ViPS</strong></a></td>
+      <td>Recommended vaccinations for typhoid following the unconjugated Vi polysaccharide (ViPS) schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTTyphoidTy21a.html"><strong>IMMZ.D2.DT.Typhoid.Ty21a</strong></a></td>
+      <td>Recommended vaccinations for typhoid following the live attenuated Ty21a vaccine schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTTyphoidContraindications.html"><strong>IMMZ.D5.DT.Typhoid contraindications</strong></a></td>
+      <td>Performing a contraindication check for typhoid vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STyphoidTCV.html"><strong>IMMZ.D18.S.Typhoid.TCV schedule</strong></a></td>
+      <td>Recommended TCV vaccination schedule for typhoid as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STyphoidViPS.html"><strong>IMMZ.D18.S.Typhoid.ViPS schedule</strong></a></td>
+      <td>Recommended unconjugated ViPS vaccination schedule for typhoid as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18STyphoidTy21a.html"><strong>IMMZ.D18.S.Typhoid.Ty21a schedule</strong></a></td>
+      <td>Recommended live attenuated Ty21a vaccination schedule for typhoid as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTCholeraWCVaccines.html"><strong>IMMZ.D2.DT.Cholera.WC vaccines</strong></a></td>
+      <td>Recommended vaccinations for cholera following the whole-cell (WC) vaccines schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTCholeraWCRBSVaccine3Doses.html"><strong>IMMZ.D2.DT.Cholera.WC-rBS vaccine 3 doses</strong></a></td>
+      <td>Recommended vaccinations for cholera following the WC-recombinant B subunit (WC-rBS) vaccine 3 doses schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTCholeraWCRBSVaccine2Doses.html"><strong>IMMZ.D2.DT.Cholera.WC-rBS vaccine 2 doses</strong></a></td>
+      <td>Recommended vaccinations for cholera following the WC-rBS vaccine 2 doses schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SCholeraWCVaccines.html"><strong>IMMZ.D18.S.Cholera.WC vaccines schedule</strong></a></td>
+      <td>Recommended WC vaccination schedule for cholera as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.Cholera.WC-rBS vaccine 3 dose schedule</strong></td>
+      <td>Recommended WC-rBS vaccine 3 doses vaccination schedule for cholera as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.Cholera.WC-rBS vaccine booster dose for children aged 2–5 years schedule</strong></td>
+      <td>Recommended WC-rBS vaccine booster dose for children aged 2–5 years vaccination schedule for cholera as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.Cholera.WC-rBS vaccine 2 dose schedule</strong></td>
+      <td>Recommended WC-rBS vaccine 2 dose vaccination schedule for cholera as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><strong>IMMZ.D18.S.Cholera.WC-rBS vaccine booster dose for children aged more than 6 years schedule</strong></td>
+      <td>Recommended WC-rBS vaccine booster dose for children aged more than 6 years vaccination schedule for cholera as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeningococcalMenAConjugateVaccine1Dose.html"><strong>IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 1 dose</strong></a></td>
+      <td>Recommended vaccinations for meningococcal following the MenA conjugate vaccine 1-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeningococcalMenAConjugateVaccine2Doses.html"><strong>IMMZ.D2.DT.Meningococcal.MenA conjugate vaccine 2 doses</strong></a></td>
+      <td>Recommended vaccinations for meningococcal following the MenA conjugate vaccine 2-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeningococcalMonovalentMenCConjugateVaccine.html"><strong>IMMZ.D2.DT.Meningococcal.Monovalent MenC conjugate vaccine</strong></a></td>
+      <td>Recommended vaccinations for meningococcal following the monovalent MenC conjugate vaccine schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeningococcalQuadrivalentConjugateVaccines1Dose.html"><strong>IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 1 dose</strong></a></td>
+      <td>Recommended vaccinations for meningococcal following the quadrivalent conjugate vaccines 1-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeningococcalQuadrivalentConjugateVaccines2Doses.html"><strong>IMMZ.D2.DT.Meningococcal.Quadrivalent conjugate vaccines 2 doses</strong></a></td>
+      <td>Recommended vaccinations for meningococcal following the quadrivalent conjugate vaccines 2-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMeningococcalPolysaccharideVaccines.html"><strong>IMMZ.D2.DT.Meningococcal.Polysaccharide vaccines</strong></a></td>
+      <td>Recommended vaccinations for meningococcal following the polysaccharide vaccines schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTMeningococcalContraindications.html"><strong>IMMZ.D5.DT.Meningococcal contraindications</strong></a></td>
+      <td>Performing a contraindication check for meningococcal vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeningococcalMenAConjugateVaccine1Dose.html"><strong>IMMZ.D18.S.Meningococcal.MenA conjugate vaccine 1-dose schedule</strong></a></td>
+      <td>Recommended MenA conjugate vaccine 1-dose vaccination schedule for meningococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeningococcalMenAConjugateVaccine2Doses.html"><strong>IMMZ.D18.S.Meningococcal.MenA conjugate vaccine 2-dose schedule</strong></a></td>
+      <td>Recommended MenA conjugate vaccine 2-dose vaccination schedule for meningococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeningococcalMonovalentMenCConjugateVaccine.html"><strong>IMMZ.D18.S.Meningococcal.Monovalent MenC conjugate vaccine schedule</strong></a></td>
+      <td>Recommended monovalent MenC conjugate vaccination schedule for meningococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeningococcalQuadrivalentConjugateVaccines1Dose.html"><strong>IMMZ.D18.S.Meningococcal.Quadrivalent conjugate vaccines 1-dose schedule</strong></a></td>
+      <td>Recommended quadrivalent conjugate vaccines 1-dose vaccination schedule for meningococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeningococcalQuadrivalentConjugateVaccines2Doses.html"><strong>IMMZ.D18.S.Meningococcal.Quadrivalent conjugate vaccines 2-dose schedule</strong></a></td>
+      <td>Recommended quadrivalent conjugate vaccines 2-dose vaccination schedule for meningococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMeningococcalPolysaccharideVaccines.html"><strong>IMMZ.D18.S.Meningococcal.Polysaccharide vaccines schedule</strong></a></td>
+      <td>Recommended polysaccharide vaccination schedule for meningococcal as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisAInactivatedHAV2Doses.html"><strong>IMMZ.D2.DT.Hepatitis A.Inactivated HAV 2 doses</strong></a></td>
+      <td>Recommended vaccinations for hepatitis A following the inactivated hepatitis A virus (HAV) 2-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisAInactivatedHAV1Dose.html"><strong>IMMZ.D2.DT.Hepatitis A.Inactivated HAV 1 dose</strong></a></td>
+      <td>Recommended vaccinations for hepatitis A following the inactivated HAV 1-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTHepatitisALiveAttenuatedHAV1Dose.html"><strong>IMMZ.D2.DT.Hepatitis A.Live attenuated HAV 1 dose</strong></a></td>
+      <td>Recommended vaccinations for hepatitis A following the live attenuated HAV 1-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTHepatitisAContraindications.html"><strong>IMMZ.D5.DT.Hepatitis A contraindications</strong></a></td>
+      <td>Performing a contraindication check for hepatitis A vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisAInactivatedHAV2Doses.html"><strong>IMMZ.D18.S.Hepatitis A.Inactivated HAV 2-dose schedule</strong></a></td>
+      <td>Recommended inactivated HAV 2-dose vaccination schedule for hepatitis A as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisAInactivatedHAV1Dose.html"><strong>IMMZ.D18.S.Hepatitis A.Inactivated HAV 1-dose schedule</strong></a></td>
+      <td>Recommended inactivated HAV 1-dose vaccination schedule for hepatitis A as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SHepatitisALiveAttenuatedHAV1Dose.html"><strong>IMMZ.D18.S.Hepatitis A.Live attenuated HAV 1-dose schedule</strong></a></td>
+      <td>Recommended live attenuated HAV 1-dose vaccination schedule for hepatitis A as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTRabies.html"><strong>IMMZ.D2.DT.Rabies</strong></a></td>
+      <td>Recommended vaccinations for rabies as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTRabiesContraindications.html"><strong>IMMZ.D5.DT.Rabies contraindications</strong></a></td>
+      <td>Performing a contraindication check for rabies vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SRabies.html"><strong>IMMZ.D18.S.Rabies schedule</strong></a></td>
+      <td>Recommended vaccination schedule for rabies as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDengue3DosesWithPreVaccinationScreening.html"><strong>IMMZ.D2.DT.Dengue.3 doses with pre-vaccination screening</strong></a></td>
+      <td>Recommended vaccinations for dengue following the 3-dose schedule with pre-vaccination screening as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTDengue3DosesWithoutPreVaccinationScreening.html"><strong>IMMZ.D2.DT.Dengue.3 doses without pre-vaccination screening</strong></a></td>
+      <td>Recommended vaccinations for dengue following the 3-dose schedule without pre-vaccination screening as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTDengueContraindications.html"><strong>IMMZ.D5.DT.Dengue contraindications</strong></a></td>
+      <td>Performing a contraindication check for dengue vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SDengue3DosesWithPreVaccinationScreening.html"><strong>IMMZ.D18.S.Dengue schedule</strong></a></td>
+      <td>Recommended vaccination schedule for dengue as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMalaria.html"><strong>IMMZ.D2.DT.Malaria</strong></a></td>
+      <td>Recommended vaccinations for malaria as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTMalariaContraindications.html"><strong>IMMZ.D5.DT.Malaria contraindications</strong></a></td>
+      <td>Performing a contraindication check for malaria vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMalaria.html"><strong>IMMZ.D18.S.Malaria schedule</strong></a></td>
+      <td>Recommended vaccination schedule for malaria as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTMumps.html"><strong>IMMZ.D2.DT.Mumps</strong></a></td>
+      <td>Recommended vaccinations for mumps as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTMumpsContraindications.html"><strong>IMMZ.D5.DT.Mumps contraindications</strong></a></td>
+      <td>Performing a contraindication check for mumps vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SMumps.html"><strong>IMMZ.D18.S.Mumps schedule</strong></a></td>
+      <td>Recommended vaccination schedule for mumps as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTSeasonalinfluenzaSeasonalInfluenza.html"><strong>IMMZ.D2.DT.Seasonal influenza</strong></a></td>
+      <td>Recommended vaccinations for seasonal influenza as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTSeasonalInfluenzaContraindications.html"><strong>IMMZ.D5.DT.Seasonal influenza contraindications</strong></a></td>
+      <td>Performing a contraindication check for seasonal influenza vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SSeasonalinfluenzaSeasonalInfluenza.html"><strong>IMMZ.D18.S.Seasonal influenza schedule</strong></a></td>
+      <td>Recommended vaccination schedule for seasonal influenza as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTVaricella1Dose.html"><strong>IMMZ.D2.DT.Varicella.1 dose</strong></a></td>
+      <td>Recommended vaccinations for varicella following the 1-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD2DTVaricella2Doses.html"><strong>IMMZ.D2.DT.Varicella.2 doses</strong></a></td>
+      <td>Recommended vaccinations for varicella following the 2-dose schedule as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD5DTVaricellaContraindications.html"><strong>IMMZ.D5.DT.Varicella contraindications</strong></a></td>
+      <td>Performing a contraindication check for varicella vaccines as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SVaricella1Dose.html"><strong>IMMZ.D18.S.Varicella.1-dose schedule</strong></a></td>
+      <td>Recommended 1-dose vaccination schedule for varicella as per WHO recommendations</td>
+    </tr>
+    <tr>
+      <td><a href="artifact/PlanDefinition-IMMZD18SVaricella2Doses.html"><strong>IMMZ.D18.S.Varicella.2-dose schedule</strong></a></td>
+      <td>Recommended 2-dose vaccination schedule for varicella as per WHO recommendations</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="ig-edit"><a data-fa-link="edit" data-src="input/pagecontent/decision-logic.md" data-repo="litlfred/smart-immunizations" href="https://github.com/litlfred/smart-immunizations/edit/main/input/pagecontent/decision-logic.md">Edit this page on GitHub</a></p>
+<script type="application/json" id="ig-source-lines">{"blob": "https://github.com/litlfred/smart-immunizations/blob/main/input/pagecontent/decision-logic.md", "repo": "litlfred/smart-immunizations", "branch": "main", "path": "input/pagecontent/decision-logic.md", "lines": [{"t":"Decision Support Logic Overview","l":11}]}</script>
+
+<script src="./assets/ig-source-links.js"></script>
+
+<link rel="stylesheet" href="assets/ig-pages.css" />
+
+<footer id="ig-footer">
+<p class="ig-footer-nav"><a href="dictionary.html">&lt;prev</a> | <a href="#">top</a> | <a href="indicators.html">next&gt;</a></p>
+<p class="ig-footer-band">IG © 2023+ <a href="http://who.int" rel="external">WHO</a>. Package <code>smart.who.int.immunizations#0.2.0</code> based on <a href="http://hl7.org/fhir/R4/" rel="external">FHIR 4.0.1</a>. </p>
+<p class="ig-footer-links">Links: <a href="toc.html">Table of Contents</a> | <a href="https://spdx.org/licenses/CC0-1.0.html" rel="external">License</a></p>
+</footer>
+
+
+</main>
+</body>
+</html>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/smart-base/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/smart-base/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+    .site-nav ul li a {
+      background-image: none;
+    }
+
+  </style>
+
+  
+
+  
+    <script src="/smart-base/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/smart-base/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.9.0 -->
+<title>Document kinds | SMART Base</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Document kinds" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Base SMART Guidelines implementation guide to be used as the base dependency for all SMART Guidelines IGs" />
+<meta name="twitter:description" property="og:description" content="Base SMART Guidelines implementation guide to be used as the base dependency for all SMART Guidelines IGs" />
+<link rel="canonical" href="https://litlfred.github.io/smart-base/en/cat-harness/document-kinds/" />
+<meta property="og:url" content="https://litlfred.github.io/smart-base/en/cat-harness/document-kinds/" />
+<meta property="og:site_name" content="SMART Base" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Document kinds" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"Base SMART Guidelines implementation guide to be used as the base dependency for all SMART Guidelines IGs","headline":"Document kinds","url":"https://litlfred.github.io/smart-base/en/cat-harness/document-kinds/"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!--
+  The configured colour scheme, published for site-chrome/assets/js/docs-ui.js.
+
+  just-the-docs' first stylesheet is `just-the-docs-default.css`, which is
+  whatever `color_scheme` in _config.yml compiled to -- so `jtd.getTheme()`
+  returns the string "default" on a fresh load, never "dark". The scheme
+  toggle needs to know what "default" MEANS here, and reading it from the
+  config is the one way that does not go stale when the config changes.
+
+  FIRST in this file since 2026-09-24, because the first-paint snippet below
+  reads it too, and a script can only read what the parser has already seen.
+-->
+<script type="application/json" id="fa-site-scheme">{"scheme": "dark"}</script>
+<!--
+  THE FIRST PAINT IS DARK — owner, 2026-09-24: *"when any
+  page/foio-asst/cat-harness first loads if flashes white before goignt o
+  dark mode. instead it should deafult dark mode then turn to light mode to
+  prevent light flash in dark."*
+
+  WHY IT FLASHED. The site is configured dark, so the theme's first
+  stylesheet already paints dark. But `docs-ui.js` is deferred, and on load
+  it applied a STORED choice with `jtd.setTheme(name)`, which swaps that
+  stylesheet's href -- to the dark file, when the default file already was
+  dark. The swap unloads the sheet that was painting the ground, and until
+  the new one arrives the browser's WHITE canvas shows. Every reader who had
+  ever pressed the light/dark control got that on every page. And nothing
+  painted `html` at all, so any moment without the theme's sheet was white.
+
+  So, FIRST THING in this include, before every stylesheet it emits:
+
+  1. decide the scheme -- the reader's stored choice (`fa-color-scheme`, the
+     key `docs-ui.js` writes), else the OS, else LIGHT -- and put it on
+     `<html data-fa-scheme>` before the body is parsed, so no rule keyed on
+     it ever paints the wrong way first;
+  2. if that is not the configured scheme, switch the theme's sheet NOW,
+     while the parser is still in the head. The link is parser-created, so
+     the browser holds first paint for its new file: a light reader is light
+     from the first frame, with no dark flash either;
+  3. paint `html` itself, dark unless the scheme is light, so a sheet in
+     flight shows the page's ground rather than white.
+
+  The theme's own stylesheet link is ABOVE this include (just-the-docs emits
+  `head_custom.html` last in its head), which is why step 2 exists: there is
+  no hook before it, and none is needed -- nothing paints until the head is
+  parsed, and this runs while it is being parsed.
+
+  INLINE, which the rest of this file avoids so that no `script-src`
+  relaxation is ever needed. This is the one exception, and it is the only
+  way to run before first paint: a `src` script here is a network round-trip
+  on the critical path of every page. It interpolates nothing into markup,
+  and a CSP added later needs this block's hash.
+
+  ELSE LIGHT -- owner, 2026-10-15, "follow os else light". The declared
+  `color_scheme` only names the sheet shipped first. The ONE source: tools'
+  `scheme-css.ts` lifts this script; `docs-ui.js` reads its attribute.
+
+  NO LIQUID between the markers. `first-paint-scheme.e2e.ts` lifts these
+  exact bytes into a replica page, so the spec tests what ships.
+
+  The generated dashboards that write their OWN head (`state-visualizer.ts`,
+  `gen-translation-status.ts`) do not carry this. They switch nothing with
+  script, so they cannot flash: their first CSS paints dark, and the same spec
+  holds them to that. Giving them this snippet would switch ON their
+  `data-fa-scheme="light"` rules for the first time -- and those were never
+  finished (axe, 2026-09-24: 3 to 6 contrast failures per dashboard in light,
+  dark-scheme tag colours on a light ground). A light palette for them is its
+  own piece of work, not a side effect of this one.
+-->
+<!-- fa-first-paint:begin -->
+<script>(function(){var d=document.documentElement,s=null,c="dark";try{s=localStorage.getItem("fa-color-scheme")}catch(e){}if(s!=="light"&&s!=="dark"){s="light";try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)s="dark"}catch(e){}}try{var n=document.getElementById("fa-site-scheme");if(n)c=JSON.parse(n.textContent).scheme==="light"?"light":"dark"}catch(e){}d.setAttribute("data-fa-scheme",s);var j=window.jtd;if(s!==c&&j&&typeof j.setTheme==="function"){try{j.setTheme(s)}catch(e){}}})();</script>
+<style>html{background-color:#27262b}html[data-fa-scheme="light"]{background-color:#ffffff}</style>
+<!-- fa-first-paint:end -->
+<!-- PROSE HERE IS NOT FREE: these are HTML comments, so every byte ships on
+     every page (2356 of them). A comment in this file is a POINTER; the
+     reasoning goes in the artefact. Measured, with the cost this change paid
+     before measuring, in assets/harness/site.json's front matter. -->
+<!-- THE RENDER STATE. pending here; ready/failed from assets/js/kg-render.js,
+     which carries the contract. No attribute = no dynamic region on this page.
+     The number is a MINIMUM cross-checking registrations, not a count. -->
+<meta name="fa-render-regions" content="1">
+<script>document.documentElement.setAttribute("data-fa-render","pending");</script>
+<!--
+  The browser-tab icon, from the same declared mark the sidebar title
+  (`title.html`) renders — reused rather than looked up by its own
+  `browser-icon` role. There WAS a second role for exactly that, on
+  `mark-small` in `harness.json`, and it went unread: nothing in this
+  repo ever emitted a favicon at all, `rel="icon"` included. It also could
+  not have driven this lookup as declared — `imagesForRole()`
+  (`schemas/kg-node.ts`) requires an image's `layout` field, which neither
+  mark entry carries, so a `browser-icon`-role lookup returns nothing. Reusing
+  the already-resolved `icon` (the same field `title.html` reads) sidesteps
+  that and, more importantly, is what was asked for: the sidebar mark and the
+  tab icon are meant to be the SAME glyph, so one declaration driving both is
+  correct, not just convenient — flip `icon` in `harness.json` and both
+  follow in one edit, no template change needed.
+
+  SVG-only. No PNG/ICO fallback exists in the repo and none is generated
+  here — every browser this matters for (evergreen Chrome/Firefox/Edge, and
+  Safari since 16) reads `type="image/svg+xml"` directly; a raster fallback
+  would need generating actual image files, which is out of scope for this
+  change.
+
+  `relative_url`, same as `title.html` and `landing.html` — a bare
+  `/assets/...` 404s on the same baseurl this file's landing-panel fix exists
+  for.
+--><!--
+  Site-wide styling for the BPMN workflow figures.
+
+  just-the-docs pulls this file into <head> on every page. The diagrams are wide
+  (a swimlane process does not shrink well), so the figure scrolls horizontally
+  inside its own container rather than forcing the page body to scroll.
+
+  The SVGs carry their own white backdrop — see scripts/render-bpmn.ts — so they
+  stay legible under the dark colour scheme even if this stylesheet is missing.
+-->
+<style>
+  .bpmn-figure {
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid rgba(128, 128, 128, 0.35);
+    border-radius: 6px;
+    margin: 1em 0 0.4em;
+  }
+  .bpmn-figure img {
+    display: block;
+    width: 100%;
+    min-width: 1200px;
+    max-width: none;
+  }
+  .bpmn-source {
+    margin-top: 0;
+    font-size: 0.75rem;
+  }
+</style>
+
+<!--
+  Site UI: a QR of the current page in the sidebar header, and zoom /
+  full-width controls on the figures.
+
+  Loaded as same-origin files with no inline script, so no script-src
+  relaxation is needed. The QR is generated in the browser from
+  window.location.href rather than baked per page at build time, so it is
+  right for anchors, query strings, and both the directory and .html forms of
+  the same page. The UTF-8 shim must come after the encoder: without it the
+  encoder's stringToBytes is single-byte and a non-ASCII character in a URL
+  silently encodes to mojibake.
+-->
+<!--
+  The TRANSLATION INDEX — which source page has a translation in which locale.
+
+  `mountNavLocale` in docs-ui.js reads this to decide what the left-hand navbar
+  shows: with the source language selected it does nothing, and with `fr`
+  selected it swaps each nav item that HAS a French page for that page, IN
+  PLACE OF the English one. An item with no translation is left exactly as it
+  is — that is the fallback, and it is the absence of a rewrite rather than a
+  code path of its own.
+
+  Generated into `docs/_data/translations.json` by
+  `content/pipeline/translation-index.ts`, from what each page DECLARES about
+  itself: `lang`, and `translation_source` naming the page it expresses. NOT
+  from a scan for directories whose names look like language subtags — see
+  that module's header for why that inference is wrong in both directions.
+
+  THREE STATES, and the third is the reason this is a JSON island rather than
+  a conditional. (The tag name is written inside {% raw %}
+  below because LIQUID PARSES TAGS INSIDE AN HTML COMMENT — the comment
+  wrapper means nothing to it — so naming a tag in prose is a syntax error at
+  build time, and the message points at the THEME's head.html because Liquid
+  attributes an include's line to the includer. This comment cost one red
+  deploy.
+
+  AND THEN IT COST A SECOND ONE, differently, which is why this paragraph now
+  describes the wrapper rather than spelling it. It used to SPELL both halves
+  as an example — and the closing half ENDED THIS COMMENT eighteen lines
+  early, so every line below it rendered as visible body text at the top of
+  EVERY PAGE on the site. Reported by the owner from the staging URL,
+  2026-09-19.
+
+  The asymmetry is the lesson: a Liquid tag has an escape, and the closing
+  comment delimiter has NONE. There is no way to write those three characters
+  inside a comment and have the comment survive them, because the parser is
+  not looking for an escape — it stops at the first match. So the rule is not
+  "escape it carefully", it is DO NOT WRITE IT: describe it, or name it one
+  character at a time. Guarded by
+  scripts/tests/html-comment-delimiters.test.ts, which fails on an opening
+  delimiter appearing inside an open comment — the one machine-detectable
+  signature of somebody trying.)
+  A {% if %} would have to choose between the second and
+  third rows below, and there is no expression that can:
+
+    1. the data file is there      -> `index` is an object; filter the nav.
+    2. it is there and EMPTY       -> `pages` is `{}`; there is nothing to
+                                      swap, so every item correctly falls back
+                                      to the source language.
+    3. the data file is ABSENT     -> `jsonify` emits `null`, and docs-ui.js
+                                      leaves the navbar EXACTLY as built.
+
+  A build that could not determine the translation set must never render as a
+  folio that has no translations. `null` is how that is said.
+
+  `baseurl` travels with it because the client has no other way to strip the
+  site prefix off a nav `href` before matching it.
+-->
+<!-- MOVED 2026-10-02 to assets/harness/site.json: fetched once instead of
+     inlined 2356x (9482 B/page, 22.34 MB, ONE payload). The three states above
+     are unchanged; a fourth — the file is unreachable — is data-fa-render. -->
+<!--
+  Translation metadata for this page, consumed by docs-ui.js to auto-render
+  language coverage and QA badges. The translation pipeline stamps front matter;
+  this block publishes it to the client. No manual editing needed.
+-->
+<script type="application/json" id="fa-translation-meta">{
+  "lang": "en",
+  "translationStatus": "",
+  "translationSource": "",
+  "supportedLocales": ["ar","zh","en","fr","ru","es"],
+  "availableLocales": null,
+  "translationQa":{
+    "key": "page.translation",
+    "slug": "en-cat-harness-document-kinds-index.html",
+    "src": "/smart-base/assets/qa/en-cat-harness-document-kinds-index.html/page.translation.json",
+    "index": "/smart-base/assets/qa/en-cat-harness-document-kinds-index.html/qa-index.json",
+    "list": "/smart-base/assets/qa/translation-qa-pages.json"
+  },
+  "sweep":{
+    "absent": "smart-base publishes no translation QA sweep on this site",
+    "run": false,
+    "sweptAt": "",
+    "totalPages": 0,
+    "pagesWithTranslations": 0,
+    "complete": false
+  }
+}</script>
+<!--
+  Where the action tiles point.
+
+  RESOLVED, not composed. `scripts/sync-docs-harness.ts` writes
+  `docs/_data/harness.json` from the instance's own `cat-harness.json`,
+  through `siteLinks` in `scripts/site-links.ts` -- which computes every path
+  with `artefactStub` and `renderingPath`, the same functions the knowledge
+  graph exporter and the Pages workflow use. The tile therefore cannot
+  disagree with what is published.
+
+  This block previously wrote `/smart-base/kg/` by hand. Nothing
+  has ever been published at `<base>/kg/` -- the renderings sit at the base,
+  named after the stub -- so the only entry point to the viewer anywhere on
+  this site was a 404 from the day it was added. See bean `udx8`, and the
+  identical defect AGENTS.md records against the README's chapter PDFs. A
+  path built by convention is a claim; `bun run cat site:links --site _site`
+  checks it against the tree that actually ships, and the Pages workflow runs
+  that check after the export.
+
+  `path` is site-ROOT-relative and gets `relative_url`, which is what makes it
+  right under this site's `/folio-assistant/` baseurl. `url` is off-site and
+  is printed as-is. `source` is no longer taken from `aux_links`: those were
+  removed so the forge link stops appearing as text at the top of the main
+  panel (the owner asked for it as an icon, not a header), and the URL is
+  resolved from the git remote instead of written down twice.
+-->
+<!--
+  THE NAVBAR ICON ROW — which icons this instance shows, and where each goes.
+
+  `null` when the instance has not decided, and that is NOT the same as an
+  empty list: `navbarIcons` absent means "inherit, and nothing up the chain has
+  said either", while `[]` means the instance chose to show none. docs-ui.js
+  reads the two apart, and `jsonify` emits `null` for the first exactly as the
+  translations block above relies on.
+
+  Resolved in `sync-docs-harness.ts`: the icon list walks `needs` with the site
+  owner as the floor, and the hrefs come from this instance's own declared
+  visualisations plus `siteLinks`. Nothing about the row is decided in Liquid
+  or in JavaScript.
+-->
+<script type="application/json" id="fa-navbar-row">{"icons":["close","todos","beans","fsh-guts","qr","launcher"],"hrefs":{"fsh-guts":"https://litlfred.github.io/folio-assistant/en/cat-harness/fsh-guts/"},"notes":{"todos":"smart-base declares no todos graph","beans":"smart-base declares no beans graph"},"folders":[{"kind":"block-kinds","label":"Block kinds","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/block-kinds/smart-base/"},{"kind":"code","label":"Code","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/code/smart-base/"},{"kind":"code-list","label":"Code lists","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/code-lists/smart-base/"},{"kind":"content-adapters","label":"Content adapters","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/content-adapters/smart-base/"},{"kind":"docs","label":"Docs","note":"no viewer yet"},{"kind":"document-kinds","label":"Document kinds","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/document-kinds/smart-base/"},{"kind":"external-schema","label":"External schemas","note":"no viewer yet"},{"kind":"fhir-artifact-index","label":"FHIR artefact index","note":"no viewer yet"},{"kind":"ig-pages","label":"IG pages","note":"no viewer yet"},{"kind":"l1-extraction","label":"L1 extraction","within":"library","note":"no viewer yet"},{"kind":"library","label":"Library","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/library/smart-base/"},{"kind":"methodology","label":"Methodologies","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/methodologies/"},{"kind":"processes","label":"Processes","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/processes/"},{"kind":"qa","label":"QA","note":"smart-base's qa graph is not published on this site"},{"kind":"qa-checkers","label":"QA checkers","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/qa-checkers/smart-base/"},{"kind":"scenarios","label":"Scenarios","note":"no viewer yet"},{"kind":"skills","label":"Skills","note":"no viewer yet"},{"kind":"themes","label":"Themes","note":"no viewer yet"},{"kind":"tools","label":"Tools","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/tools/smart-base/"},{"kind":"translation-sources","label":"Translation sources","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/translation-status/"},{"kind":"typologies","label":"Graph typologies","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/graph-typologies/smart-base/"},{"kind":"validators","label":"Validators","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/validators/smart-base/"},{"kind":"voices","label":"Voices","path":"https://litlfred.github.io/folio-assistant/en/cat-harness/voices/smart-base/"}],"whose":{"fsh-guts":"the platform's: smart-base declares no fsh-guts graph"}}</script><!-- NOT MOVED, deliberately. Measured, with the reason and the condition for
+     moving it, in assets/harness/site.json's front matter. -->
+<script type="application/json" id="fa-site-links">{"kg":"https://litlfred.github.io/folio-assistant/smart-base/","jsonld":"https://litlfred.github.io/folio-assistant/smart-base.jsonld","source":"https://github.com/litlfred/smart-base"}</script>
+
+<!--
+  The todo index — a PERSON's outstanding items, published by
+  `scripts/gen-docs-pages.ts` to `/assets/todos/index.json`.
+
+  `relative_url` for the same reason every other path here uses it: the site is
+  served from `/folio-assistant` on the canonical deploy and from
+  `/folio-assistant/STAGING/<branch>` on a preview, and an absolute literal
+  404s on every deploy but one.
+
+  A URL rather than inline JSON, unlike `fa-site-links` above, because the
+  index grows with the todo corpus and inlining it would put the whole set into
+  every page's <head> whether the reader opens the board or not. A missing file
+  is reported by the fetch and the board is simply not mounted — a board that
+  opens empty is indistinguishable from a person with nothing outstanding, and
+  those are opposite facts.
+
+  `<meta>` and not a `<div>`: this is `<head>`, where flow content is not
+  permitted. A browser hoists a stray `<div>` into `<body>` and the code still
+  works, which is exactly what makes the mistake survive review.
+-->
+<!-- THE SITE INDEX, published once. docs-ui.js reads an ISLAND FIRST where a
+     page has one and falls back to this. Rationale and measurement are in that
+     file's front matter, which is not served. -->
+<meta name="fa-site-index-src" content="/smart-base/assets/harness/site.json">
+<meta name="fa-todo-src" content="/smart-base/assets/todos/index.json">
+<!-- The todo GRAPH (#1941): the typed edges — node, person, bean — the board
+     filters and groups by, and each todo's own page. -->
+<meta name="fa-todo-graph" content="/smart-base/todos.jsonld">
+
+<!--
+  THE SEMANTIC-ZOOM DECLARATION — when the card stops rendering its words and
+  becomes its avatar.
+
+  R2 of issue #602: *"The threshold SHALL be declared data, not a literal in
+  the renderer."* `gen-docs-pages.ts` publishes the folio's own
+  `semantic-zoom.json`, and publishes NOTHING when the folio has not declared
+  one. So this `<meta>` may point at a 404, and that is a real state rather
+  than a defect: `docs-ui.js` reports it could not determine a threshold and
+  leaves every card's words in place. A default in either file would be the
+  literal R2 forbids, one layer further from where anybody looks for it.
+
+  The pointer is emitted UNCONDITIONALLY because Liquid cannot see whether the
+  generator wrote the file, and a conditional that guessed would make "this
+  folio declares no threshold" and "the build did not run" the same page.
+-->
+<meta name="fa-zoom-src" content="/smart-base/assets/semantic-zoom.json">
+
+<!--
+  THE DECLARED VISUALISATIONS, as tiles.
+
+  Owner, 2026-09-20: *"if harness declares visaluzers, those should have tile"*
+  — so the tile set is the `coverage.visualiser` obligation made reachable, not
+  a second registry. `graph-tiles.ts` derives it into `_data/harness.json`;
+  this hands it to `docs-ui.js` for BOTH surfaces, because a tile is declared
+  once and says where it shows.
+
+  INLINE rather than a second fetch, unlike the todo index above, and the two
+  are different for a reason worth stating: that index grows with the todo
+  corpus, while this one is bounded by the number of directories an instance
+  DECLARES — twelve here — and every page needs it before first paint or the
+  navbar would visibly grow tiles a moment after the reader arrives.
+
+  `jsonify` and not a hand-built string: a title carrying a quote would
+  otherwise close the attribute, and the quoting rule is Liquid's rather than
+  something this comment has to be right about.
+-->
+<meta name="fa-tiles" content="[{&quot;id&quot;:&quot;fsh-guts&quot;,&quot;directory&quot;:&quot;fsh-guts&quot;,&quot;title&quot;:&quot;FSH guts&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/fsh-guts/index.md&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;publish&quot;:&quot;staging-only&quot;,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/fsh-guts/&quot;},{&quot;id&quot;:&quot;issue-marks&quot;,&quot;directory&quot;:&quot;issue-marks&quot;,&quot;title&quot;:&quot;Issue marks&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/issue-marks/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false},{&quot;id&quot;:&quot;library&quot;,&quot;directory&quot;:&quot;library&quot;,&quot;title&quot;:&quot;Library&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/library/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;icon&quot;:&quot;library&quot;,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/library/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;methodologies&quot;,&quot;directory&quot;:&quot;methodologies&quot;,&quot;title&quot;:&quot;Methodologies&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/methodologies/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/methodologies/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;processes&quot;,&quot;directory&quot;:&quot;processes&quot;,&quot;title&quot;:&quot;Processes&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/processes/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;icon&quot;:&quot;processes&quot;,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/processes/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;qa&quot;,&quot;directory&quot;:&quot;qa&quot;,&quot;title&quot;:&quot;QA&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/qa/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false},{&quot;id&quot;:&quot;smart-base-block-kinds&quot;,&quot;directory&quot;:&quot;smart-base-block-kinds&quot;,&quot;title&quot;:&quot;Block kinds&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/block-kinds/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/block-kinds/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-code-lists&quot;,&quot;directory&quot;:&quot;smart-base-code-lists&quot;,&quot;title&quot;:&quot;Code lists&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/code-lists/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/code-lists/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-content-adapters&quot;,&quot;directory&quot;:&quot;smart-base-content-adapters&quot;,&quot;title&quot;:&quot;Content adapters&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/content-adapters/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/content-adapters/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-document-kinds&quot;,&quot;directory&quot;:&quot;smart-base-document-kinds&quot;,&quot;title&quot;:&quot;Document kinds&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/document-kinds/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/document-kinds/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-kg&quot;,&quot;directory&quot;:&quot;smart-base-kg&quot;,&quot;title&quot;:&quot;Code&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/code/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/code/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-qa-checkers&quot;,&quot;directory&quot;:&quot;smart-base-qa-checkers&quot;,&quot;title&quot;:&quot;QA checkers&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/qa-checkers/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/qa-checkers/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-translations&quot;,&quot;directory&quot;:&quot;smart-base-translations&quot;,&quot;title&quot;:&quot;Translation sources&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/translation-status/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/translation-status/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-typologies&quot;,&quot;directory&quot;:&quot;smart-base-typologies&quot;,&quot;title&quot;:&quot;Graph typologies&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/graph-typologies/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/graph-typologies/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;smart-base-validators&quot;,&quot;directory&quot;:&quot;smart-base-validators&quot;,&quot;title&quot;:&quot;Validators&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/validators/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/validators/smart-base/&quot;,&quot;showQualifier&quot;:true},{&quot;id&quot;:&quot;todos&quot;,&quot;directory&quot;:&quot;todos&quot;,&quot;title&quot;:&quot;Todos&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/todos/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false},{&quot;id&quot;:&quot;tools&quot;,&quot;directory&quot;:&quot;tools&quot;,&quot;title&quot;:&quot;Tools&quot;,&quot;qualifier&quot;:&quot;SMART Base&quot;,&quot;ref&quot;:&quot;cat-harness/docs/en/cat-harness/tools/smart-base/index.html&quot;,&quot;surfaces&quot;:[&quot;navbar&quot;,&quot;board&quot;,&quot;glass&quot;],&quot;hidden&quot;:false,&quot;icon&quot;:&quot;tools&quot;,&quot;href&quot;:&quot;https://litlfred.github.io/folio-assistant/en/cat-harness/tools/smart-base/&quot;,&quot;showQualifier&quot;:true}]">
+<!--
+  THE GLASS STRIP'S PINNED TILES, in order (owner, 2026-10-01, bean `ob3m`
+  finding 10: "Pinned tiles first, plus '+N more'"). Resolved from the
+  instance's `glassStrip` declaration by `sync-docs-harness.ts`; absent when
+  nothing declared one. Replica pages read `assets/harness/glass-strip.json`.
+-->
+<meta name="fa-glass-strip" content="[&quot;glass-todos&quot;,&quot;glass-settings&quot;,&quot;library&quot;,&quot;processes&quot;,&quot;tools&quot;]">
+
+<!--
+  THE SITE'S BASEURL, for the tiles above.
+
+  Every other site-root path on this page is composed by Liquid: `relative_url`
+  prepends `site.baseurl`, which is `/folio-assistant` on the canonical deploy
+  and `/folio-assistant/STAGING/<branch>` on a preview. The tiles cannot use
+  it, because they reach the client as JSON and are composed in `docs-ui.js`
+  after Liquid has finished — so the base has to travel with them.
+
+  IT SHIPPED WITHOUT ONE AND EVERY TILE 404ed (issue #801). `graph-tiles.ts`
+  stores `/beans/`, which is correct as data and is what `harness.links[].path`
+  stores too; written into an `href` unprefixed, a browser resolves it against
+  the ORIGIN, so the beans tile pointed at `litlfred.github.io/beans/`. The
+  owner found it by going looking for the board and landing there.
+
+  A meta of its own rather than reading the site index, which also carries a
+  `baseurl`: that document reads as `null` when `_data/translations.json` was
+  not built, and since 2026-10-02 it is FETCHED, so it is also absent until a
+  request resolves and may never arrive. Composing links out of an optional
+  block means the day it goes missing every tile silently points at the origin
+  again — which is this defect, with a second way to reach it. Two reasons for
+  one answer now.
+-->
+<meta name="fa-baseurl" content="/smart-base">
+
+<!--
+  WHETHER THIS IS A PREVIEW, for the tiles above.
+
+  `feature-staging.yml` writes `staging_slug` into `_data/build.yml`;
+  `docs-site.yml` writes the same file WITHOUT it. So a non-empty value here
+  means "a STAGING/<slug>/ preview", an empty one means the canonical deploy
+  or a local build.
+
+  It exists so a tile can vanish with its page. `compose-docs.ts` withholds a
+  `publish: "staging-only"` page from the canonical tree; a tile still pointing
+  at it would be a link to a 404 — `pb04`, a dead link being worse than no
+  link, and worse than usual here because the tile ALSO advertises content the
+  declaration is deliberately not publishing.
+
+  The filtering is client-side rather than baked into `harness.json` because
+  that file is generated once and committed, so it cannot know which deploy
+  will serve it. The page can be withheld at compose time because compose runs
+  per deploy; the data file cannot.
+
+  EMPTY IS THE SAFE VALUE, and it is what an absent `_data/build.yml` yields:
+  a build that cannot say it is a preview is treated as canonical and hides
+  the tile. That matches `compose-docs.ts`, which withholds unless positively
+  told `--staging` — one direction in both places, so the page and its tile
+  cannot disagree about which deploy they are on.
+-->
+<meta name="fa-staging" content="">
+
+<!--
+  WHICH SEARCH INDEX THIS PAGE IS SERVING.
+
+  `feature-staging.yml` fetches the PUBLISHED index before the build and
+  stamps what happened; `docs-site.yml` writes no such key, so the canonical
+  deploy leaves this empty and draws no warning. Bean `eof6`, on the owner's
+  ruling of 2026-09-22: *"staging uses last published index (w/ wanrnig)"*.
+
+  Three values, and the empty one is a real state rather than a fallback:
+
+    published    the preview serves the last published index. Results are
+                 about the MAIN SITE, not about this branch.
+    unavailable  the fetch failed; an empty index is served.
+    (empty)      not a staging build. No warning.
+
+  The bean this implements had first concluded that staging must disable
+  search outright, because a stale hit is "a wrong PASS, BELIEVED". The ruling
+  keeps search and attacks the belief instead — which is why the value is
+  emitted at all. An index swapped in with nothing on the page saying so would
+  be the unmarked staleness the bean was right to refuse.
+-->
+<meta name="fa-search-index" content="">
+
+<!--
+  A page left out of the search index ON PURPOSE (`search_exclude: true`)
+  says so in what is built, so `publish:verify`'s search-index check can tell
+  a deliberate exclusion from a truncated index (#2233). Front matter is gone
+  once Jekyll has run; without this marker the ~2,800 IG artefact pages that
+  #2194 excluded read as "4,189 pages offer a search box, 1,003 indexed".
+-->
+
+
+
+
+<!--
+  The bean index — the AGENT work plan, published by the same generator beside
+  the todo index above, for the same reason and read the same way. Separate
+  files rather than one combined document because the two stores are separate
+  graphs with separate declarations, and a consumer that wants only the human
+  half should not fetch 239 beans to get three todos.
+-->
+<meta name="fa-beans-src" content="/smart-base/assets/beans/index.json">
+<!--
+  The process index's entry point — the REPOSITORY's named-subgraph index,
+  whose children are the harness roots this site frames (`bun run
+  subgraph:jsonld`; bean `ax6r`, owner 2026-10-03: "Move to JSON-LD").
+  Read by assets/js/process-index.js on the page carrying
+  `[data-fa-process-index]` (the publication-workflow page), which walks it
+  down to every `processes` subgraph's `index.hydrated.jsonld`.
+-->
+<meta name="fa-processes-src" content="/smart-base/subgraph/index.jsonld">
+<!--
+  The deploy's stamp — when it was built and from which commit — which the
+  work-plan dashboard turns into "generated … · N commits behind main".
+  `build.json` on the main site, `staging.json` on a preview; written by the
+  deploy, never committed, because a committed timestamp is a merge conflict
+  on every pair of concurrent changes (bean `y7b3`).
+-->
+<meta name="fa-build-src" content="/smart-base/build.json">
+
+<!--
+  The discarded-items document — `fsh-guts.jsonld`, published at the base by
+  `docs-site.yml`. A URL and not inline JSON, for the todo index's reason and
+  then some: it carries every node's BODY, which is 64 KB against a 5 KB
+  document without them. Inlining that into every page's <head> would be
+  absurd for content reached through one control inside Settings.
+
+  `.json` rather than `.jsonld`. Both are published and they are the same
+  bytes; Pages has no media type for `.jsonld` and serves it as
+  octet-stream. `fetch().json()` would parse it anyway, but every other
+  rendering here uses the alias and one that did not would be the odd case a
+  later reader has to work out.
+
+  The viewer fetches this WHEN SETTINGS OPENS, never on page load, and a
+  fetch that fails is reported rather than shown as an empty trashcan —
+  "nothing discarded" and "could not read the document" are opposite facts.
+-->
+<!--
+  NOT on a folio's site that does not link its OWN fsh-guts (#2263 follow-up):
+  there this path is the folio's, where no document is published, and the
+  fetch's 404 painted "?" -- an error -- on the fish. With no meta the count is
+  ABSENT, and the row's fish is a link or an inert icon saying why
+  (`foreignSite.absent.fshGuts`, `lib/foreign-site-scope.ts`).
+-->
+<!--
+  ?v=<build time> ON EVERY FIRST-PARTY ASSET — and the reason is a REVIEW
+  failure, not a performance one.
+
+  These five are served from stable paths with no hash in the name, so a
+  browser that has the page cached keeps the old CSS and JS until its
+  `max-age` runs out. On the live site that is invisible. On a STAGING
+  preview it is the whole point of the deployment: the reviewer opens the URL
+  they opened an hour ago, gets yesterday's stylesheet, and reports "i dont
+  see changes" — which is indistinguishable from a deploy that never
+  happened, and sends the next hour after the wrong cause. Measured
+  2026-09-21 on this branch: every byte of the change was verified present in
+  the publish ref while the page rendered the previous build.
+
+  `site.time` is the BUILD's timestamp, so the query changes exactly when the
+  bytes might have, and never between two readers of the same build. A
+  content hash would be tighter and needs a pipeline step; this needs none
+  and closes the case that costs review time.
+
+  NOT a cache-busting strategy for third-party assets, and not applied to
+  them: those are versioned in their own URLs already.
+-->
+<!-- The harness icon row's own style, which railed pages load without docs-ui.css (beans `lhvt`, `9rq1`). -->
+<link rel="stylesheet" href="/smart-base/assets/css/navbar-row.css?v=1792151968">
+<link rel="stylesheet" href="/smart-base/assets/css/docs-ui.css?v=1792151968">
+<!-- Narrow viewports: wide content scrolls in its own box, never the page
+     (bean `2r2n`). The standalone viewers inline the same file through
+     `withViewerNav`, so both kinds of page read one set of rules. -->
+<link rel="stylesheet" href="/smart-base/assets/css/narrow-viewport.css?v=1792151968">
+
+<!--
+  The work-plan dashboard's styles, split from docs-ui.css so that
+  `state-visualizer.ts` can inline exactly these bytes into the generated
+  `<base>/<stub>/state-visualizer/` pages. One rule, two surfaces.
+-->
+<link rel="stylesheet" href="/smart-base/assets/css/work-plan.css?v=1792151968">
+<!-- Sticky themes. GENERATED from the theme nodes in `schemas/themes.ts` by
+     `bun run cat themes:css`; `themes:css:check` fails the build when it is stale.
+     Loaded AFTER docs-ui.css deliberately: it supplies the `--fa-sticky-*`
+     roles that docs-ui.css consumes, and a custom property has to be set on a
+     matching element before the rule reading it takes effect. -->
+<link rel="stylesheet" href="/smart-base/assets/css/themes.css?v=1792151968">
+<!-- UML overview colours: one class per graph typology, set on the Mermaid nodes
+     that `scripts/gen-uml-overview.ts` writes into docs/uml/overview/. -->
+<link rel="stylesheet" href="/smart-base/assets/css/uml.css?v=1792151968">
+<!-- Kind avatars. GENERATED from `schemas/avatars.ts` by `bun run cat avatars:css`;
+     `avatars:css:check` fails the build when it is stale. One stylesheet
+     rather than 68 assets: the glyph is a mask and the colour is a property,
+     so a scheme swap is a custom property and the trash state is a selector. -->
+<link rel="stylesheet" href="/smart-base/assets/css/avatars.css?v=1792151968">
+
+<!--
+  The kinds THIS INSTANCE DECLARES, for the avatar fan.
+
+  Owner: "shows the DECLared kinds for that instance, not inheritance." Written
+  by `sync-docs-harness.ts` from the instance's own `harness.json`, BEFORE
+  `resolveDirectories` overlays a dependency's. The effective set is strictly
+  larger, and showing it would name kinds this repository never claimed.
+
+  Inline rather than a fetched URL, unlike the todo index and the discarded
+  document: this is a dozen short strings, it is needed to render the fan at
+  all, and a fetch for that would put a spinner in front of a badge.
+-->
+<!-- NOT MOVED: same reason as fa-site-links above. -->
+<script type="application/json" id="fa-declared-kinds">["beans","block-kinds","code","code-list","content-adapters","docs","document-kinds","external-schema","fhir-artifact-index","fsh-guts","ig-pages","issue-marks","l1-extraction","library","methodology","processes","qa","qa-checkers","scenarios","skills","themes","todos","tools","translation-sources","typologies","uploads","validators"]</script>
+<script src="/smart-base/assets/js/vendor/qrcode.js" defer></script>
+<script src="/smart-base/assets/js/vendor/qrcode_UTF8.js" defer></script>
+<!-- BEFORE docs-ui.js and work-plan.js: both read window.faRender. -->
+<script src="/smart-base/assets/js/kg-render.js" defer></script>
+<!-- BEFORE docs-ui.js, which calls it: the one drawing of the harness icon row (beans `lhvt`, `9rq1`). -->
+<script src="/smart-base/assets/js/navbar-row.js?v=1792151968" defer></script>
+<script src="/smart-base/assets/js/docs-ui.js?v=1792151968" defer></script>
+<!-- The edit, source and feedback links of every page, from the platform's one
+  recipe (cat-harness-tools/src/core/edit-links.ts, bean v433): links carry their
+  facts and this builds the hrefs. -->
+<script src="/smart-base/assets/js/edit-links.js?v=1792151968" defer></script>
+
+<!--
+  The work-plan dashboard. SELF-MOUNTING on any page carrying
+  `[data-fa-workplan]`, so docs-ui.js neither calls it nor knows it exists; a
+  page without that container pays one failed querySelector. The same file is
+  inlined verbatim into the generated state-visualiser pages.
+-->
+<script src="/smart-base/assets/js/work-plan.js" defer></script>
+<!--
+  The process index, self-mounting on `[data-fa-process-index]` the same way.
+  Its rows are the diagrams' own documentation, from the published subgraph JSON-LD.
+-->
+<script src="/smart-base/assets/js/process-index.js" defer></script>
+
+<!--
+  The landing panel — the instance's declared description drawn inside the
+  quiet part of its declared backdrop. Markup: `_includes/landing.html`.
+
+  The region comes in as custom properties (`--fl-x` …) set per instance from
+  `harness.json`, so this stylesheet knows nothing about where any
+  particular picture is quiet. That is the whole design: a downstream folio
+  swaps the art and the numbers and needs no CSS.
+-->
+<style>
+  .folio-landing { position: relative; margin: 0 0 2rem; }
+
+  /* WHAT IS LEFT HERE, AND WHY IT IS SO LITTLE.
+     `landing.html` emits exactly one folio-landing class —
+     `folio-landing folio-landing--plain` — the no-stickies fallback, which
+     renders the description and no art. The art path moved to the sticky
+     board (`fa-sticky--backdrop` in docs-ui.css), which composites text into
+     the picture through a declared `textRegion` and a scrim.
+
+     So this block used to carry fourteen selectors of which ELEVEN matched
+     nothing: every rule reaching for `folio-landing__art`,
+     `folio-landing__text` or `folio-landing--no-region`. Measured before they
+     were cut — those three classes appear in no markup in this repository and
+     on none of the 331 published pages that were inlining the CSS for them.
+     CSS has no error for a selector that matches nothing, which is the same
+     silence that let `.fa-sticky--backdrop > .fa-sticky-art` ship wrong.
+
+     The reasoning did not go with them. The blend-direction argument for the
+     fade is now at `.fa-sticky--backdrop::before`, where a scrim replaces it;
+     the region, overflow and breakpoint-parity lessons were already
+     re-derived and better stated on `.fa-landing-sticky--fixed`. What is NOT
+     carried over is the `cqw` container-query sizing: the successor scales
+     through `--fa-text-scale` rather than container queries, so a note about
+     `container-type` not being its own query container would be advice about
+     a mechanism nothing here uses. Bean `alox`, issue #873. */
+  .folio-landing--plain {
+    position: static; width: auto; height: auto; color: inherit;
+  }
+  .folio-landing--plain p { font-size: inherit; font-weight: inherit; }
+</style>
+
+<!--
+  AN INSTANCE'S OWN WEBPAGE THEME, scoped to its pages.
+
+  Bean `7h3u`, on the owner's 2026-09-30 ruling to wire this at the PLATFORM
+  layer so every ingested IG gets it, rather than in one instance's page
+  generator.
+
+  WHY LIQUID AND NOT CSS. A webpage theme dresses one instance's pages, so it
+  has to be scoped by URL — and CSS cannot select on a URL. Jekyll is what
+  knows which page is rendering, so the scope is applied here and the VALUES
+  come from `_data/instance-themes.json`, written by `gen-themes-css.ts` from
+  each instance's declared `themes/`. That is the `site.data` pass-through bean
+  `kott` settled, and the owner's own instruction for this work: "reuse all
+  existing justthedocs infra".
+
+  WHY INLINE AND NOT A LINKED STYLESHEET. The same first-paint reasoning this
+  file already carries for the colour scheme: a sheet arriving after first
+  paint flashes the unthemed colours, which is the defect this file was
+  rewritten to remove.
+
+  WHAT IT RETHEMES, AND WHAT IT CANNOT. These three names are read by
+  `docs-ui.css` at 29 of its 33 `var(--x, #literal)` sites and DEFINED by
+  nothing — just-the-docs is Sass, so its own chrome compiles to literals and
+  no custom property can reach it. So this dresses the surfaces the site owns,
+  the left-hand nav among them, and leaves just-the-docs' compiled chrome
+  alone. Stated here because the alternative is a reader concluding the theme
+  is broken when it is doing exactly what it can.
+-->
+
+<link rel="stylesheet" href="../../../assets/css/navbar.css"><script src="../../../assets/navbar/rail-1ilo1cb32ge.js" defer></script><script src="../../../assets/js/navbar.js" defer></script><link rel="stylesheet" href="../../../assets/page-layout.css" data-fa-page-layout><script src="../../../assets/page-layout.js" defer data-fa-page-layout></script><meta name="fa-platform-base" content="https://litlfred.github.io/folio-assistant" data-fa-platform-ui><link rel="stylesheet" href="../../../assets/css/docs-ui.css" data-fa-platform-ui><script src="../../../assets/js/docs-ui.js" defer data-fa-platform-ui></script><meta name="fa-pinned-data" content="../../.."></head>
+
+<body><script type="application/json" id="fa-rail" data-fa-root="https://litlfred.github.io/folio-assistant" data-fa-to-root="../../..">{"data":"rail-1ilo1cb32ge","here":"/en/cat-harness/document-kinds/"}</script><nav class="fa-nav" aria-label="folio-assistant" data-fa-rail="pending"><a href="../../../">SMART Base</a></nav>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header fa-site-bar fa-page-bar"><a class="fa-page-bar-home" href="../../../">SMART Base</a>
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search SMART Base" autocomplete="off">
+    <label for="search-input" class="search-label">
+      <span class="sr-only">Search SMART Base</span>
+      <svg viewBox="0 0 24 24" class="search-icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+    </label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+<span class="fa-page-bar-locale" data-fa-slot="locale"></span></div>
+
+    <div class="main-content-wrap">
+      
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <!--
+  GENERATED by cat-harness-tools/scripts/gen-document-kinds-viz.ts: the next run of
+  bun run document-kinds:viz overwrites it, and its --check fails on the
+  difference. A hand-edit here is a change nothing else in the tree knows about.
+-->
+
+<style>
+.dk-page { min-width:0; overflow-wrap:anywhere; --muted:#bcbab3; }
+:root[data-fa-scheme="light"] .dk-page { --muted:#5b6168; }
+.dk-page h1 { margin:0 0 .4rem; }
+.dk-page h2 { margin:1.5rem 0 .4rem; }
+.dk-page h3 { margin:1.1rem 0 .25rem; }
+.dk-page .m { color:var(--muted); font-size:.88rem; }
+.dk-page .kind { border-top:1px solid rgba(127,127,127,.4); padding-top:4px; }
+.dk-page .clip { width:100%; overflow-x:auto; }
+.dk-page table { display:table; width:100%; border-collapse:collapse; font-size:.9rem; }
+.dk-page th, .dk-page td { text-align:left; vertical-align:top; padding:6px 8px; border:0; border-bottom:1px solid rgba(127,127,127,.4); background:transparent; }
+.dk-page th { background:rgba(127,127,127,.12); }
+.dk-page code { font-size:.85em; overflow-wrap:anywhere; }
+/* "overflow-wrap:anywhere" above is for long codes and paths; it also broke the
+   narrow number and required/optional cells mid-word ("1 0", "o pt io n al")
+   once a kind's source column grew long — dth's does. Those cells never wrap,
+   and the section title keeps a width it can be read at. */
+.dk-page .sec td:nth-child(1), .dk-page .sec td:nth-child(3) { white-space:nowrap; overflow-wrap:normal; }
+.dk-page .sec td:nth-child(2) { min-width:11rem; overflow-wrap:normal; }
+/* On a phone a five-column table cannot fit: each section becomes a stacked
+   card instead, header row hidden, nothing scrolls sideways. */
+@media (max-width: 640px) {
+  .dk-page .sec thead { display:none; }
+  .dk-page .sec, .dk-page .sec tbody, .dk-page .sec tr, .dk-page .sec td { display:block; width:100%; min-width:0; }
+  .dk-page .sec tr { border-bottom:1px solid rgba(127,127,127,.4); padding:6px 0; }
+  .dk-page .sec td { border:0; padding:2px 0; }
+}
+.dk-page .cov td, .dk-page .cov th { white-space:normal; overflow-wrap:normal; }
+.dk-page .cov td:first-child { min-width:9rem; width:30%; }
+.dk-page .cov ul { margin:4px 0 0 1em; padding:0; font-size:.85rem; }
+.dk-page .dk-page-subjects ul { list-style:none; display:flex; flex-wrap:wrap; gap:.25rem 1rem; margin:0 0 1rem; padding:0; font-size:.9rem; }
+.dk-page .dk-page-subjects li { margin:0; padding:0; }
+.dk-page .dk-page-subjects li::before { content:none; }
+.dk-page .dk-page-subjects [aria-current] { font-weight:600; }
+</style>
+<div class="dk-page">
+<h1 id="dk-title">
+  
+  
+    <a href="#dk-title" class="anchor-heading" aria-labelledby="dk-title"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Document kinds
+  
+  
+</h1>
+    
+<nav class="dk-page-subjects" aria-label="Instances"><ul><li><span aria-current="page">All instances</span></li><li><a href="smart-base/">smart-base</a></li></ul></nav>
+<p class="m">A document kind is a named structure of sections that a document authored with a harness follows: <b>fixed</b> (exactly these sections) or <b>semi-fixed</b> (these required, others allowed). Every kind and section names its sources.</p>
+<section class="kind" id="smart-base-dak">
+<h2>
+  
+  
+    <a href="#dk-title" class="anchor-heading" aria-labelledby="dk-title"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Digital Adaptation Kit (DAK) <code>dak</code>
+  
+  
+</h2>
+    
+<p>The L2 layer of a WHO SMART Guideline: the ten components that make a guideline's recommendations operational, ahead of the L3 FHIR IG that implements them. Fixed: a DAK has exactly these components, in this order.</p>
+<p class="m"><b>fixed</b> structure · 10 section(s) · declared by <b>smart-base</b> in <code>smart-base/document-kinds/dak.json</code> · generated by <code>smart-base/scripts/gen-document-kinds.ts</code></p>
+<div class="clip"><div class="table-wrapper"><table class="sec">
+<thead><tr><th>#</th><th>Section</th><th></th><th>What it holds</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Health Interventions &amp; Recommendations</b><br><code>health-interventions-and-recommendations</code></td><td>required</td><td>Relevant health interventions and recommendations from the WHO guideline and guidance. To inform DAK scope.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>2</td><td><b>Generic Personas</b><br><code>generic-personas</code></td><td>required</td><td>Roles, responsibilities, and essential interventions performed by targeted personas. Example for human centered design.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>3</td><td><b>User Scenarios</b><br><code>user-scenarios</code></td><td>required</td><td>Brief narrative description of how the targeted personas may engage with the digital system. Example for human centered design.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>4</td><td><b>Business Processes &amp; Workflows</b><br><code>generic-business-processes-and-workflows</code></td><td>required</td><td>Generic workflows representing clinical and non-clinical processes. To inform when data is collected and used &amp; required features.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>5</td><td><b>Core Data Elements</b><br><code>core-data-elements</code></td><td>required</td><td>Data elements, used for clinical decision-making, indicators, and other data needs. To inform data collection forms and L3 interoperability requirements.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>6</td><td><b>Decision Support Logic</b><br><code>decision-support-logic</code></td><td>required</td><td>Decision tables representing counselling and treatment algorithms, and any other logic used to determine workflow paths or clinical actions.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>7</td><td><b>Scheduling Logic</b><br><code>scheduling-logic</code></td><td>required</td><td>Decision tables representing scheduling logic according to care plans. Previously combined with decision support logic. Not yet a field of its own in WHO's DAK logical model.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>8</td><td><b>Indicators &amp; Monitoring</b><br><code>programme-indicators</code></td><td>required</td><td>Indicators for reporting &amp; monitoring with numerator, denominator of data elements. Linking person centered data to aggregate.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>9</td><td><b>Functional &amp; Non-functional Requirements</b><br><code>functional-and-non-functional-requirements</code></td><td>required</td><td>A non-exhaustive list of key functions and non-functional requirements for a digital tracking and decision support system. To inform system features.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+<tr><td>10</td><td><b>Test Scenarios</b><br><code>test-scenarios</code></td><td>required</td><td>Test data and scenarios to check a system against the other nine components. A test harness to run them.</td><td><span class="m">the kind&#39;s sources</span></td></tr>
+</tbody></table></div></div>
+<p class="m">Sources: <a href="https://www.who.int/publications/i/item/9789240099456">https://www.who.int/publications/i/item/9789240099456</a> — WHO DAK guidance; <a href="https://www.who.int/publications/i/item/9789240085138">https://www.who.int/publications/i/item/9789240085138</a> — WHO DAK guidance; <a href="https://github.com/litlfred/folio-assistant/issues/1614">https://github.com/litlfred/folio-assistant/issues/1614</a> — owner ruling 2026-09-30: ten components</p>
+<h3>
+  
+  
+    <a href="#dk-title" class="anchor-heading" aria-labelledby="dk-title"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> How each subject realises it
+  
+  
+</h3>
+    
+<p class="m">Computed from each artefact's FHIR resource type (owner, 2026-10-01): ActorDefinition → personas; Requirements → requirements; a StructureDefinition the IG files under 'Structures: Logical Models' → core data elements; PlanDefinition and Library → decision-support logic; Measure → indicators. Anything else is listed as unplaced.</p>
+<div class="clip"><div class="table-wrapper"><table class="cov">
+<thead><tr><th>Section</th><th>smart-base</th><th>smart-immunizations</th><th>smart-trust</th></tr></thead>
+<tbody>
+<tr><td>Health Interventions &amp; Recommendations</td><td class="m">—</td><td class="m">—</td><td class="m">—</td></tr>
+<tr><td>Generic Personas</td><td><details><summary>22</summary><ul><li>Community Health Worker</li><li>Health Data Manager and Analyst</li><li>Healthcare Provider</li><li>Health System Manager</li><li>Person (Health Service User)</li><li>Client Registry / Master Patient Index</li><li>Electronic Medical Record (EMR) System</li><li>Health Management Information System (HMIS)</li><li>Health Information Exchange / Interoperability Platform</li><li>Laboratory Information System (LIS)</li><li>Logistics Management Information System (LMIS)</li><li>Public Health and Disease Surveillance System</li><li class="m">…and 10 more</li></ul></details></td><td class="m">—</td><td><details><summary>5</summary><ul><li>Holder</li><li>Issuer</li><li>Receiver</li><li>Trust Network Anchor</li><li>Trust Network Participant</li></ul></details></td></tr>
+<tr><td>User Scenarios</td><td class="m">—</td><td class="m">—</td><td class="m">—</td></tr>
+<tr><td>Business Processes &amp; Workflows</td><td class="m">—</td><td class="m">—</td><td class="m">—</td></tr>
+<tr><td>Core Data Elements</td><td><details><summary>25</summary><ul><li>Business Process Workflow (DAK)</li><li>Business Process Workflow Source</li><li>Core Data Element (DAK)</li><li>Core Data Element Source</li><li>Digital Adaptation Kit (DAK)</li><li>Decision-Support Logic (DAK)</li><li>Decision Support Logic Source</li><li>Dublin Core Metadata Element Set</li><li>FHIR Schema Base (SMART Guidelines)</li><li>Functional Requirement (DAK)</li><li>Generic Persona (DAK)</li><li>Generic Persona Source</li><li class="m">…and 13 more</li></ul></details></td><td><details><summary>10</summary><ul><li>IMMZ.C4.Create client record</li><li>IMMZ.D1.Capture or update client history</li><li>IMMZ.D13.Update client record</li><li>IMMZ.D17.Report AEFI</li><li>IMMZ.D18.Determine time for next visit</li><li>IMMZ.D2.Determine required vaccination(s)</li><li>IMMZ.D20.Does client require a verifiable digital certificate</li><li>IMMZ.D21.Generate verifiable digital certificate</li><li>IMMZ.D5.Determine vaccine(s) to be administered based on contraindications</li><li>IMMZ.D7.Counsel client</li></ul></details></td><td><details><summary>5</summary><ul><li>COSE Headers (DRAFT)</li><li>CBOR Web Token (CWT) Claim</li><li>CBOR Web Token (CWT) Payload (Common)</li><li>Health Certificate</li><li>Scheme Information</li></ul></details></td></tr>
+<tr><td>Decision Support Logic</td><td class="m">—</td><td><details><summary>417</summary><ul><li>IMMZAgeConcepts</li><li>IMMZCommon</li><li>IMMZConcepts</li><li>IMMZD18SBCGLogic</li><li>IMMZD18SCholeraWCRBSVaccine2DosesLogic</li><li>IMMZD18SCholeraWCRBSVaccine3DosesLogic</li><li>IMMZD18SCholeraWCVaccinesLogic</li><li>IMMZD18SDengue3DosesWithPreVaccinationScreeningLogic</li><li>IMMZD18SDTPDelayedOrInterruptedSeriesLogic</li><li>IMMZD18SDTPOnTimeStartLogic</li><li>IMMZD18SDTPPregnancyStartingWith3DosesLogic</li><li>IMMZD18SDTPPregnancyStartingWith4DosesLogic</li><li class="m">…and 405 more</li></ul></details></td><td class="m">—</td></tr>
+<tr><td>Scheduling Logic</td><td class="m">—</td><td class="m">—</td><td class="m">—</td></tr>
+<tr><td>Indicators &amp; Monitoring</td><td class="m">—</td><td><details><summary>41</summary><ul><li>IMMZIND01</li><li>IMMZIND02</li><li>IMMZIND03</li><li>IMMZIND04</li><li>IMMZIND05</li><li>IMMZIND06</li><li>IMMZIND07</li><li>IMMZIND08</li><li>IMMZIND09</li><li>IMMZIND10</li><li>IMMZIND11</li><li>IMMZIND12</li><li class="m">…and 29 more</li></ul></details></td><td class="m">—</td></tr>
+<tr><td>Functional &amp; Non-functional Requirements</td><td><details><summary>41</summary><ul><li>Can author actor definitions</li><li>Can author business processes</li><li>Can author code systems</li><li>Can author concept maps</li><li>Can author CQL</li><li>Can author data dictionary</li><li>Can author decision-support logic</li><li>Can author example scenarios</li><li>Can author FHIR profiles</li><li>Can author FHIR requirements</li><li>Can author functional requirements</li><li>Can author indicators</li><li class="m">…and 29 more</li></ul></details></td><td class="m">—</td><td><details><summary>29</summary><ul><li>Distribute business rules</li><li>Distribute CertLogic business rules</li><li>Distribute FHIR business rules</li><li>Distribute PKI material</li><li>Distribute PKI material via API</li><li>Distribute PKI material as DID</li><li>Issue Verifiable Digital Health Certificate</li><li>Provide Verifiable Digital Health Certificate</li><li>Publish business rules</li><li>Publish Cert Logic business rules</li><li>Publish HL7 FHIR business rules</li><li>Publish PKI material</li><li class="m">…and 17 more</li></ul></details></td></tr>
+<tr><td>Test Scenarios</td><td class="m">—</td><td class="m">—</td><td class="m">—</td></tr>
+<tr><td><b>Unplaced</b></td><td>Basic 63, StructureDefinition 31, ValueSet 24, CodeSystem 12, ConceptMap 4, ActivityDefinition 1, ImplementationGuide 1, Questionnaire 1</td><td>ValueSet 192, QuestionnaireResponse 33, StructureMap 16, StructureDefinition 13, Questionnaire 10, CodeSystem 6, ActivityDefinition 3, ConceptMap 3, Patient 2, ImplementationGuide 1, RelatedPerson 1</td><td>Endpoint 456, Organization 152, CodeSystem 15, ValueSet 14, ConceptMap 1, ImplementationGuide 1</td></tr>
+<tr><td><b>Artefacts classified</b></td><td>225</td><td>748</td><td>678</td></tr>
+</tbody></table></div></div>
+</section>
+<section class="kind" id="smart-base-dth">
+<h2>
+  
+  
+    <a href="#dk-title" class="anchor-heading" aria-labelledby="dk-title"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Digital Transformation Handbook (DTH) <code>dth</code>
+  
+  
+</h2>
+    
+<p>A WHO guidance publication on digitalising one area of a health system — an L1 publication whose body is a planning method rather than recommendations. It sits within the DIIG process and should use the DPI-H Reference Architecture (owner, 2026-10-01). Its domain sections map onto smart-kg L2 (DAK) classes: a DTH states for a health-system area what a DAK states for a guideline. Structure read from the three DTHs ingested in smart-base/library; a section is required only where all three have it. The Reference Architecture for DPI-H calls itself &quot;A Digital Transformation Handbook for DPI-H&quot; and is cited here as the architecture the others should reference.</p>
+<p class="m"><b>semi-fixed</b> structure · 22 section(s) · extends <a href="#smart-base-l1"><code>l1</code></a> · declared by <b>smart-base</b> in <code>smart-base/document-kinds/dth.json</code></p>
+<div class="clip"><div class="table-wrapper"><table class="sec">
+<thead><tr><th>#</th><th>Section</th><th></th><th>What it holds</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Audience and how to use this handbook</b><br><code>audience-and-how-to-use</code></td><td>required</td><td>Target users/roles per chapter and the stepwise reading path through the handbook.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 2. How to use this handbook &gt; 2.2 Targeted users, p.11 (pdf 23) — this handbook is written for those who will fill the business analyst role on the team<br><code>smart-base/library/9789240101197-eng</code>, Introduction &gt; Who this handbook is for (Table 1), p.8 (pdf 18) — This handbook is for countries, organizations and teams that want to plan and implement digital transformation of the public health supply chain.<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; How to use this handbook, p.8 (pdf 17) — This handbook provides a stepwise approach to implementing standardized NPC and product master data management processes.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 1.1.4 Who can benefit from this guidance, pdf p.23 — Enterprise Architects and Technical Teams: This reference architecture provides TOGAF-based methodology, formal architecture patterns, and systematic requirements frameworks</td></tr>
+<tr><td>2</td><td><b>Position in the DIIG process and SMART Guidelines layers</b><br><code>diig-and-smart-alignment</code></td><td>required</td><td>Which phase of the DIIG's &quot;planning and implementing a digital health enterprise&quot; process the handbook supports, and its alignment to the SMART Guidelines layers. The seven phases have ONE source, DIIG §1.1 Fig. 1.1.1 (owner, 2026-10-03, #1984: &quot;use one DIIG seven phase figure as source&quot;); a DTH cites that figure for them, and the copies the handbooks print (PHC Fig. 6, SC Fig 5, PC Fig. 4) are reproductions of it, not further sources. The primary health care DTH places itself in Phase 5, determining health content requirements; the Reference Architecture's Figure 1, which adapts the DIIG figure, places the supply chain and product catalogue handbooks in Phase 7, and the Reference Architecture itself across Phases 1-4. Its SVG rendering, drawn from the DIIG PDF's own vector layer with its provenance inside the file, is smart-base/library/9789240010567-eng/figures/vfig-p017.svg (bean 70zt); the reproductions are listed on smart-base/findings/dth-terms.md.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240010567-eng</code>, §1.1 The Guide's role in planning and implementing a digital health enterprise, Fig. 1.1.1, PDF pp.16-17; sections/page-016.md — The process of planning and implementing an appropriate digital health enterprise within the broader ecosystem includes several phases:<br><code>smart-base/library/9789240093362-eng</code>, 2.3 Before using this resource, p.12-13 (pdf 24-25) — This handbook is intended to support Phase 5, Determining health content requirements.<br><code>smart-base/library/9789240101197-eng</code>, Introduction &gt; Alignment with the DIIG, p.5 (pdf 15) — This handbook uses the framework and approaches set forth in the DIIG<br><code>smart-base/library/9789240101197-eng</code>, Introduction &gt; Alignment with WHO's SMART Guidelines, p.7 (pdf 17) — This handbook aligns with the L1 Narrative layer by providing guidelines for digital transformation of health supply chains.<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; Digital implementation investment guide (DIIG), p.3 (pdf 12) — It has been developed using the framework and approaches from the Digital implementation investment guide (DIIG).<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; SMART Guidelines, p.6 (pdf 15) — This handbook complements the digital capabilities supported by SMART Guidelines by providing guidance on L1 adaptations<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, Executive Summary, pdf p.12 (Figure 1) — The Reference Architecture within planning and implementing a digital health enterprise<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.2.2 A Phased Implementation Approach, pdf p.101 — This phased approach is consistent with, and complements, the WHO Digital Implementation Investment Guide (DIIG)</td></tr>
+<tr><td>3</td><td><b>Health programme and business context</b><br><code>health-domain-context</code></td><td>required</td><td>The health-system domain the handbook digitalises (point-of-service care, supply chain processes, product master data), its actors and why it matters to health outcomes.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 1.1 Person-centred point of service systems, p.6 (pdf 18) — PCPOSS combines the functionality of community-based information systems, decision support systems, electronic medical record or health record systems<br><code>smart-base/library/9789240101197-eng</code>, Introduction (Fig. 1 partners and processes), p.1 (pdf 11) — Supply chain processes such as forecasting and planning, sourcing, procurement, order management, warehouse management and dispensing must operate in harmony<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; What is Product Master Data?, p.1 (pdf 10) — Product master data consists of standardized information that accurately describes a health product's characteristics.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, Executive Summary, pdf p.11 (goals detailed in 1.5, pdf p.32-35) — anchored on seven priority health goals ... optimising supply chain management; strengthening health financing</td></tr>
+<tr><td>4</td><td><b>Vision, strategic goals and objectives</b><br><code>strategy-and-goals</code></td><td>optional</td><td>Vision and measurable strategic goals aligned to national health, digital health and sector strategies. PHC and PC treat this as a prerequisite rather than a chapter.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240101197-eng</code>, Chapter 1, Step 3. Define the DHSC vision and strategic goals and objectives, p.14 (pdf 24) — Strategic goals guide the country's actions and decisions to achieve the vision.<br><code>smart-base/library/9789240093362-eng</code>, 2.3 Before using this resource, p.12 (pdf 24) [prerequisite only] — comprehensive high-level needs assessment and strategic planning has already been conducted<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; When to use this handbook, p.10 (pdf 19) [pointer only] — When developing a holistic DHSC strategy<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.3 The reference architecture in practice (Figure 3.2), pdf p.59; goals in 1.5, pdf p.32 — Reading from the top, the health goals and the governance that frames them sit above the capabilities they depend on<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 2.4 Methodology: Mapping Health Goals to DPI-H, pdf p.48 — Each goal is mapped systematically to the shared capabilities and application components required to achieve it</td></tr>
+<tr><td>5</td><td><b>Stakeholders, roles and governance</b><br><code>stakeholders-and-governance</code></td><td>optional</td><td>Stakeholder identification and engagement, decision-making bodies (TWG, steering committee, data governance group), roles and responsibilities.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240101197-eng</code>, Chapter 1, Step 1. Identify and engage all relevant stakeholders, p.12 (pdf 22) — Establish a technical working group (TWG) and a steering committee<br><code>smart-base/library/9789240116191-eng</code>, 02, Institutionalise product master data governance, p.23 (pdf 32) — Establish a master data governance group composed of all relevant stakeholders<br><code>smart-base/library/9789240093362-eng</code>, 3. Understand user requirements (chapter opener), p.16 (pdf 28) [stakeholders only, no governance section] — Stakeholders include, but are not limited to, end-users of the system<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.4.1 Purpose and framing, pdf p.64 (3.4.3 strategic p.66; 3.4.4 operational p.67) — Governance is the set of arrangements through which decision authority is distributed, exercised and accounted for<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 1.3.3 Value Across Stakeholders, pdf p.30 — The value of DPI-H is also distributed across a broad range of stakeholders</td></tr>
+<tr><td>6</td><td><b>Current-state assessment</b><br><code>current-state-assessment</code></td><td>required</td><td>Inventory and maturity assessment of existing systems, data and regulations, as the baseline for the target state.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 2.1 Targeted scenarios of digital readiness, p.11 (pdf 23); 3.3.3 As-is and to-be analysis, p.23ff — Starting with some parts of the system already digitized<br><code>smart-base/library/9789240101197-eng</code>, Chapter 2, Step 1. Assess the current state of HSCISs, p.20 (pdf 30) — Assessing the current state of HSCISs involves a thorough evaluation of their capabilities, utilization, technical challenges and overall system maturity.<br><code>smart-base/library/9789240116191-eng</code>, 02, Define product master data management procedures, p.16 (pdf 25) — Begin by identifying and analyzing the existing challenges in master data management<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.1.2 Assessing Where You Are, pdf p.99 — A national digital health architecture assessment should answer four questions.</td></tr>
+<tr><td>7</td><td><b>Personas, actors and roles</b><br><code>personas</code></td><td>optional</td><td>Generic user personas (PHC) or operational roles (PC data owner/custodian/steward; Annex 2 roles). SC has only target user teams per chapter.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#persona</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 3.2.1 Create user personas, p.21 (pdf 33); Annex 4 User persona worksheet, p.70 — A user persona is a generic depiction of a relevant stakeholder<br><code>smart-base/library/9789240116191-eng</code>, 02, Define product master data management procedures, p.17 (pdf 26) [roles, not personas] — Data steward: responsible for the day-to-day management, maintenance, and quality control of the product master data.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.3.2 Actors and Roles: Defining Who Participates, pdf p.106 — The operational layer — the digital adaptation kit — defines a set of generic personas</td></tr>
+<tr><td>8</td><td><b>Use cases, user scenarios and user stories</b><br><code>user-scenarios</code></td><td>optional</td><td>How each persona will interact with the system; user stories as the source of functional requirements.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#user-scenario</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 3.2.2 Gather use cases; 3.2.3 Gather user stories, p.21-22 (pdf 33-34); Annex 5 — Use cases highlight the various points of interaction between the users and the system<br><code>smart-base/library/9789240101197-eng</code>, Chapter 2, Illustrative architectural approaches (SCISMM L4 to L5), p.27 (pdf 37) [mention only] — A critical step is defining and prioritizing the use cases that are expected to be supported within the health system and supply chain.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.3 The reference architecture in practice, pdf p.59-63 — The clearest way to understand the reference architecture is to follow a single health goal through it.</td></tr>
+<tr><td>9</td><td><b>Business processes and workflows</b><br><code>business-processes</code></td><td>optional</td><td>As-is/to-be process maps. A dedicated section only in PHC; SC and PC carry process overviews and the ANC DAK workflow figure in their introductions.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#business-process</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 3.3 Map business processes and workflows, p.23 (pdf 35); Annex 6 — These workflows also represent the functional requirements<br><code>smart-base/library/9789240101197-eng</code>, Introduction &gt; Alignment with WHO's SMART Guidelines (Fig. 7), p.7 (pdf 17) — they define recommended public health and clinical business processes that use structured, task-based workflows<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; SMART Guidelines (Fig. 6), p.6 (pdf 15) — Fig. 6: Example of an Antenatal Care Business clinical workflow with highlighted connections to supply chain<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.1 The architecture description approach, pdf p.52 — organised across business, application, and technology layers</td></tr>
+<tr><td>10</td><td><b>Data elements, data dictionary and data model</b><br><code>data-elements-and-dictionary</code></td><td>optional</td><td>Data elements, definitions, coding schemes and mappings to standard terminologies and FHIR.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#data-element</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 3.5 Create a data dictionary, p.30 (pdf 42); 3.4 Streamline data collection, p.27 — Data dictionaries should utilize interoperability standards.<br><code>smart-base/library/9789240116191-eng</code>, 02, Define coding scheme, data definitions and structures, p.18 (pdf 27) — Map country product identifiers to open standard and global standard structures such as Health Level Seven® (HL7) Fast Healthcare Interoperability Resources® (FHIR)<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.3.1 Design Data Structures and Data Models First, pdf p.105 — Countries should define and standardise a minimum set of data models for each DPI-H component before implementation begins<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.5.3.1 The foundational shared data layer, pdf p.78-81 (see also 3.4.5 p.68; App. C Terminology Service p.175, LIMR p.183) — The shared data layer also includes two components that give data its meaning and structure.</td></tr>
+<tr><td>11</td><td><b>Decision-support logic, schedules and indicators</b><br><code>decision-logic-and-indicators</code></td><td>optional</td><td>Clinical decision logic, service schedules and indicator calculations (PHC only; SC's KPIs are programme-performance indicators, see monitoring).<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#decision-support-logic</code>, <code>sgkg-l2#scheduling-logic</code>, <code>sgkg-l2#program-indicator</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 3.6 Determine decision-support logic, p.32 (pdf 44); 3.7 Map health service schedules, p.35; 3.4.3 Compile aggregate indicators — Documented decision logic algorithms<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.5.3.2 The business services layer, pdf p.81; App. C Computable Decision Support Engine p.192; HMIS p.221 — Computable Decision Support Engine — delivers computable clinical guidance to point-of-care systems</td></tr>
+<tr><td>12</td><td><b>Functional and non-functional requirements</b><br><code>requirements</code></td><td>optional</td><td>Prioritized functional and non-functional requirements. SC defers to SCISMM / TSS v2 rather than stating them.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#functional-requirement</code>, <code>sgkg-l2#non-functional-requirement</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 3.8 Gather and prioritize requirements, p.35 (pdf 47); 4.2 Validate functional requirements; Annex 13 — Prioritized functional and non-functional requirements<br><code>smart-base/library/9789240116191-eng</code>, 03, Define system requirements for the NPC tool, p.26 (pdf 35) — Define functional and non-functional systems requirements for a NPC tool<br><code>smart-base/library/9789240101197-eng</code>, Chapter 2, DHSC architecture framework (key components), p.25 (pdf 35) [by reference] — provide details on the functional and nonfunctional requirements of various HSCISs<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, App. C Product Registry, pdf p.156-166 (structure per 3.5.2, pdf p.76) — The functional and data requirements in this articulation should be interpreted in that context</td></tr>
+<tr><td>13</td><td><b>Architecture: placement in the enterprise architecture, current and target</b><br><code>architecture</code></td><td>required</td><td>Where the handbook's systems sit in the national digital health enterprise architecture and which shared components they rely on, cited against the DPI-H Reference Architecture: its layered view (Figure 3.2) and the layer each component belongs to. The three DTHs ingested so far predate the draft Reference Architecture and cite the 2020 DIIG architecture figure, OpenHIE or TOGAF instead; the owner's rule is that a DTH should reference it.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240101197-eng</code>, Chapter 2, Step 2. Define a target DHSC architecture, p.22 (pdf 32) — Draw the current-state architecture of the HSCISs by mapping existing systems against the DHSC architecture framework.<br><code>smart-base/library/9789240093362-eng</code>, 4.4 Design system architecture, p.44 (pdf 56) — the system architecture of a PCPOSS would need to function within an Enterprise Architecture (EA)<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; Digital health supply chain (DHSC) architectural components, p.7 (pdf 16) — The primary focus of this handbook is to offer guidance on the implementation and management of the foundational product registry component.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.3 The reference architecture in practice, Figure 3.2, pdf p.59 — A single layered view brings the whole picture together.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.5.3 How the components are organised, Figure 3.5, pdf p.77 — The components are organised across two layers of the reference architecture</td></tr>
+<tr><td>14</td><td><b>Standards and interoperability</b><br><code>standards-and-interoperability</code></td><td>required</td><td>Interoperability layer or dimensions, terminology/content/exchange standards (FHIR, ICD-11, SNOMED GPS, GS1, IDMP).<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 4.4.2 Types of interoperability in health; 4.4.3 Types of standards, p.45-47 (pdf 57-59); Annex 14 — Interoperability is commonly split into four broad areas<br><code>smart-base/library/9789240101197-eng</code>, Chapter 2, DHSC architecture framework, Interoperability layer, p.25 (pdf 35) — The use of an interoperability layer eliminates the need for point-to-point integrations of systems<br><code>smart-base/library/9789240116191-eng</code>, 02, Define coding scheme, data definitions and structures, p.18 (pdf 27) — identification of medicinal products (IDMP), and GS1's global trade item numbers<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.6 Interoperability Architecture within DPI-H, pdf p.82 — Interoperability, therefore, is a cross-cutting capability of the reference architecture as a whole<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.3.3 Services and Transactions: FHIR as the Recommended Framework, pdf p.107 (see also 3.6.2, pdf p.84) — The reference architecture recommends HL7 FHIR as the framework for specifying and implementing health data exchange services and transactions.</td></tr>
+<tr><td>15</td><td><b>Technology selection, design, build and deployment</b><br><code>technology-selection-and-implementation</code></td><td>required</td><td>Choosing/sourcing software, design, build, testing and deployment of the system.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 4.1 Finalize software and vendor selection, p.40 (pdf 52); 4.5 Build and QA; 5.3 Deploy the system — Finalize software and vendor selection<br><code>smart-base/library/9789240101197-eng</code>, Chapter 3, Step 4. Implement each DHSC intervention, p.41 (pdf 51) — DHSC implementation materials such as requirements, specifications, test scripts and job aids<br><code>smart-base/library/9789240116191-eng</code>, 03, Design, develop and deploy the NPC tool, p.28 (pdf 37) — Deploy the validated NPC tool, load the available product master data and roll out.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.3 Profiles and Specifications for Implementation, pdf p.105 — the minimum level of specification that countries should establish regardless of the technology choices<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 3.7.1 Purpose, pdf p.89 — The reference architecture offers a common benchmark against which such architectures — and the systems that realise them — can be assessed</td></tr>
+<tr><td>16</td><td><b>Roadmap, budget, scale-up and legacy phase-out</b><br><code>roadmap-budget-and-scale</code></td><td>optional</td><td>Sequencing, costing, operational planning and scale-up. PC gives phased regulatory roll-out timelines but no roadmap or budget.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240101197-eng</code>, Chapter 3, Step 3. Develop a budget for each DHSC intervention, p.39 (pdf 49); Ch.1 Step 4 roadmap — A strategic roadmap for DHSC sets out timelines and milestones for achieving goals<br><code>smart-base/library/9789240093362-eng</code>, 6. Prepare for scale-up, p.54 (pdf 66); 6.2 Plan for phase-out of legacy system(s) — Plan for phase-out of legacy system(s)<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.2.2 A Phased Implementation Approach, pdf p.101 (4.2.3 Navigating Legacy Systems, p.104) — implementation follows a broadly consistent phased progression<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.6 Financing and Partnerships, pdf p.113 — The Investment Case</td></tr>
+<tr><td>17</td><td><b>Capacity building, training and change management</b><br><code>capacity-and-change-management</code></td><td>required</td><td>Human resources, training, SOPs and change management for adoption.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 5.1 Develop and conduct training, p.52 (pdf 64); 6.5 Adopt change management practices, p.59 — Adopt change management practices<br><code>smart-base/library/9789240101197-eng</code>, Chapter 3, Step 1 (project management plan), p.37 (pdf 47) — change management plan (including training<br><code>smart-base/library/9789240116191-eng</code>, 05. Building capacity to sustainably manage NPC, p.33 (pdf 42); 04 change management, p.29 — Human resource capacity is a critical component for the successful implementation and adoption<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.5 Roles, Skills, and Capacity, pdf p.111 — The Roles and Skills Needed to Build and Govern the Architecture</td></tr>
+<tr><td>18</td><td><b>Monitoring, evaluation and performance indicators</b><br><code>monitoring-and-evaluation</code></td><td>optional</td><td>M&amp;E framework and KPIs with baselines. PC has only data-management monitoring inside its procedures.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l2#program-indicator</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, 6.3 Monitor and evaluate progress on objectives, p.59 (pdf 71) — it is crucial that the PCPOSS has a clear and robust monitoring and evaluation plan and methodology<br><code>smart-base/library/9789240101197-eng</code>, Chapter 1, Step 4. Define a strategic roadmap and performance indicators, p.15 (pdf 25) — Capture baseline performance for comparison with improvements after implementation<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.4.1 Assessing impact: Are goals being achieved?, pdf p.110 — Impact depends on baselines captured at the outset<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 4.4.1 Assessing impact, pdf p.110 (refers to 3.7.5, pdf p.96) — the goal-validation structure described in section 3.7</td></tr>
+<tr><td>19</td><td><b>Country implementation examples</b><br><code>country-examples</code></td><td>optional</td><td>Worked country experiences.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240101197-eng</code>, Chapter 5. Country examples, p.47 (pdf 57) — Ethiopia's DHSC initiative<br><code>smart-base/library/9789240116191-eng</code>, 08. Sharing implementation experiences, p.42 (pdf 51) — COUNTRY: RWANDA<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, Appendix D: Country and Regional Implementation Examples, pdf p.240 — D.2 Country implementation examples</td></tr>
+<tr><td>20</td><td><b>Annexes: templates and worksheets</b><br><code>templates-and-worksheets</code></td><td>required</td><td>Reusable templates (persona/user-story worksheets, process matrix, HSCIS listing, risk register, role descriptions).<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, Annexes 2-14, p.66-84 — User persona worksheet<br><code>smart-base/library/9789240101197-eng</code>, Annexes 2-7, p.57-62 — Template for listing health supply chain information systems<br><code>smart-base/library/9789240116191-eng</code>, Annex 2. Additional roles for NPC implementation, p.48 — Develop use cases or user stories</td></tr>
+<tr><td>21</td><td><b>Abbreviations and glossary</b><br><code>glossary</code></td><td>required</td><td>Abbreviations and defined terms.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, Abbreviations p.v; Glossary p.vi<br><code>smart-base/library/9789240101197-eng</code>, Abbreviations and acronyms p.v; Glossary p.vi<br><code>smart-base/library/9789240116191-eng</code>, Abbreviations p.v; Glossary p.vii</td></tr>
+<tr><td>22</td><td><b>Annex: Principles for Digital Development</b><br><code>principles-for-digital-development</code></td><td>required</td><td>All three DTHs carry the Principles for Digital Development as Annex 1.<br><span class="m">computed from: <code>library</code></span></td><td><code>smart-base/library/9789240093362-eng</code>, Annex 1: Principles for digital development, p.65 (pdf 77) — Principles for digital development<br><code>smart-base/library/9789240101197-eng</code>, Annex 1. Principles for digital development, p.56 (pdf 66) — The steps outlined in this handbook are informed by the Principles for Digital Development (Annex 1).<br><code>smart-base/library/9789240116191-eng</code>, Annex 1. Principles for Digital Development, p.47 (pdf 56) — Build on what works, improve what works, and share so that others can do the same.<br><code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, 1.4 DPI-H Principles, pdf p.31; 2.3 DPI-H Reference Architecture Design Principles, pdf p.42 — DPI-H Principles</td></tr>
+</tbody></table></div></div>
+<p class="m">Sources: <code>smart-base/library/9789240093362-eng</code> — DTH for primary health care; <code>smart-base/library/9789240101197-eng</code> — DTH for health supply chain architecture; <code>smart-base/library/9789240116191-eng</code> — DTH for health product catalogue; <code>smart-base/library/who-dpi-h-reference-architecture-draft-v1</code>, title page — A Digital Transformation Handbook for Digital Public Infrastructure for Health (DPI-H); <code>smart-base/library/9789240010567-eng</code> — Digital Implementation Investment Guide (DIIG), the process a DTH sits in</p>
+
+</section>
+<section class="kind" id="smart-base-l1-guideline">
+<h2>
+  
+  
+    <a href="#dk-title" class="anchor-heading" aria-labelledby="dk-title"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> WHO guideline (L1) <code>l1-guideline</code>
+  
+  
+</h2>
+    
+<p>An L1 publication containing recommendations for clinical practice or public health policy, structured as the WHO Handbook for Guideline Development (2nd ed.) §12.1 &quot;Guideline format&quot; requires, with the SMART additions Mehl 2021 names: uniquely identified recommendations and data recommendations. Sections modelled by smart-kg L1 classes are the ones a smart-kg L1 graph of the guideline holds (bean 8pzh).</p>
+<p class="m"><b>semi-fixed</b> structure · 16 section(s) · extends <a href="#smart-base-l1"><code>l1</code></a> · declared by <b>smart-base</b> in <code>smart-base/document-kinds/l1-guideline.json</code></p>
+<div class="clip"><div class="table-wrapper"><table class="sec">
+<thead><tr><th>#</th><th>Section</th><th></th><th>What it holds</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Executive summary</b><br><code>executive-summary</code></td><td>required</td><td>A stand-alone summary that states the key recommendations, each with its strength and the certainty of its evidence.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — All guidelines should have an executive summary, a main body and appendices. The executive summary should contain the key recommendations of the guideline.<br><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — the strength of the recommendation and the quality of the evidence for each recommendation should be specified in the executive summary</td></tr>
+<tr><td>2</td><td><b>Table of contents</b><br><code>table-of-contents</code></td><td>required</td><td>Navigational listing of the main-body sections.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — The main text of the guideline should include a table of contents, introduction, methods, recommendations and conclusions.</td></tr>
+<tr><td>3</td><td><b>Target audience and persons affected</b><br><code>target-audience</code></td><td>optional</td><td>Who will apply the recommendations (end-users), distinguished from the people who receive the interventions.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §2.2.3 Who is the target audience?, PDF p.29; sections/sec-030-223-who-is-the-target-audience.md — Guidelines must have a clearly defined target audience (end-user) which is identified early in the guideline development process<br><code>who-iris/library/9789241548960-eng</code>, §2.2.3 Who is the target audience?, PDF p.29; sections/sec-030-223-who-is-the-target-audience.md — the end-users are those who will apply the guidelines, not the recipients of the recommended interventions.<br><code>who-iris/library/9789241548960-eng</code>, §4.5 Table 4.1 Essential components of the planning proposal, PDF pp.53-55; sections/sec-075-44-when-should-the-planning-proposal-be-develope.md — 3. Target audience 3.1 The end-user(s) of the guideline</td></tr>
+<tr><td>4</td><td><b>Declarations of interest and their management</b><br><code>declarations-of-interest</code></td><td>required</td><td>Lists every participant with role and affiliation, and summarises how declarations of interest were collected, assessed and managed (stating explicitly if none were disclosed); acknowledges peer reviewers.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — All participants, roles and affiliations should be listed, with their conflicts of interests and how these were managed.<br><code>who-iris/library/9789241548960-eng</code>, §6.11 Reporting declarations of interest in the guideline, PDF pp.84-86; sections/sec-105-6102-minimizing-the-risk-posed-by-conflicts-of-i.md — A summary of how declarations of interest were collected, assessed and managed must be included in the main guideline document.<br><code>who-iris/library/9789241548960-eng</code>, §6.11, PDF pp.84-86; sections/sec-105-6102-minimizing-the-risk-posed-by-conflicts-of-i.md — The GRC will not approve a guideline document that does not contain this information.<br><code>who-iris/library/9789241548960-eng</code>, §12.2 Peer review, PDF p.170; sections/sec-225-121-guideline-format.md — a copy of the published guideline (which includes an acknowledgement of their contribution)<br><code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Comment, p. e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — L1 also recognises the need for increased representation of health informaticians on guideline panels</td></tr>
+<tr><td>5</td><td><b>Funding sources</b><br><code>funding</code></td><td>required</td><td>Names every funder of the guideline and, where not evident, the type of entity.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §6.8 Table 6.2 Principles for declarations of interest, PDF pp.76-79; sections/sec-099-68-assessing-declarations-of-interests.md — All funding sources should be reported in the planning proposal and in the final guideline.<br><code>who-iris/library/9789241548960-eng</code>, §3.6 Funders of the guideline, PDF p.46; sections/sec-060-36-funders-of-the-guideline.md — The funder(s) of a guideline can play no role in the guideline development process and should not influence the recommendations.</td></tr>
+<tr><td>6</td><td><b>Key questions (PICO) and outcomes</b><br><code>key-questions</code></td><td>optional</td><td>The foreground questions in population-intervention-comparator-outcome form, the outcomes rated important or critical, and optionally an analytic framework. The PICO question sets themselves come from the guideline development group's scoping and the systematic reviews behind it, which smart-base has not ingested. So this section names no `computedFrom`: computing it needs an evidence graph that does not exist yet (owner, 2026-10-04, bean qvxh, option 1). Ingesting that evidence is bean folio-assistant-0lde.<br><span class="m">modelled by: <code>sgkg-l1#population</code>, <code>sgkg-l1#intervention</code>, <code>sgkg-l1#comparator</code>, <code>sgkg-l1#outcome</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §10.6 Writing recommendations, PDF pp.142-143; sections/sec-180-106-writing-recommendations.md — Recommendations need to be clear and actionable, reflect the PICO format<br><code>who-iris/library/9789241548960-eng</code>, §7.8 Analytic frameworks, PDF pp.103-104; sections/sec-130-78-analytic-frameworks.md — The analytic framework may be included with the planning proposal or in the final guideline publication<br><code>who-iris/library/9789241548960-eng</code>, §4.5 Table 4.1, PDF pp.53-55; sections/sec-075-44-when-should-the-planning-proposal-be-develope.md — 10.2 Foreground (key/PICO) questions</td></tr>
+<tr><td>7</td><td><b>Evidence retrieval and synthesis</b><br><code>evidence-retrieval-and-synthesis</code></td><td>optional</td><td>Search strategy, study selection and synthesis of the systematic reviews informing each key question; full reviews may sit in annexes. The systematic reviews it summarises (for WHO guidelines, typically Cochrane or WHO-commissioned reviews) are external evidence that smart-base has not ingested. So this section names no `computedFrom`: computing it needs an evidence graph that does not exist yet (owner, 2026-10-04, bean qvxh, option 1). Ingesting that evidence is bean folio-assistant-0lde.<br><span class="m">modelled by: <code>sgkg-l1#evidence</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — The systematic reviews need to be reported in compliance with the Preferred Reporting Items for Systematic Reviews and Meta-Analyses (PRISMA)<br><code>who-iris/library/9789241548960-eng</code>, §8.3 Step 2 Identify information sources, PDF pp.111-113; sections/sec-140-step-2-identify-information-sources-and-search-f.md — The development and finalization of the strategies for searching for evidence that meets the established inclusion criteria is a fundamental step</td></tr>
+<tr><td>8</td><td><b>Certainty of the evidence (GRADE)</b><br><code>certainty-of-evidence</code></td><td>optional</td><td>GRADE assessment of the body of evidence per outcome and key question, summarised in evidence profiles. The GRADE evidence profiles it summarises are built from external systematic reviews (typically Cochrane) that smart-base has not ingested. So this section names no `computedFrom`: computing it needs an evidence graph that does not exist yet (owner, 2026-10-04, bean qvxh, option 1). Ingesting that evidence is bean folio-assistant-0lde.<br><span class="m">modelled by: <code>sgkg-l1#evidence</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §9.2 What are GRADE evidence profiles?, PDF p.122; sections/sec-154-92-what-are-grade-evidence-profiles.md — GRADE evidence profiles contain the assessment of the quality of the evidence and a summary of findings across studies<br><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — GRADE evidence profiles, evidence-to-decision frameworks and tables, and any other relevant documentation can be supplied in appendices</td></tr>
+<tr><td>9</td><td><b>Evidence to decision</b><br><code>evidence-to-decision</code></td><td>optional</td><td>Records the judgements on benefits and harms, values and preferences, resources, equity, acceptability and feasibility that shaped each recommendation's direction and strength. Its judgements rest on the GRADE evidence profiles and the systematic reviews behind them, which smart-base has not ingested. So this section names no `computedFrom`: computing it needs an evidence graph that does not exist yet (owner, 2026-10-04, bean qvxh, option 1). Ingesting that evidence is bean folio-assistant-0lde.</td><td><code>who-iris/library/9789241548960-eng</code>, §10.3 Evidence-to-recommendation tables, PDF p.140; sections/sec-174-103-evidence-to-recommendation-tables.md — These tables enhance the transparency of the process, focus the discussions of the GDG and permit recording of the judgements made<br><code>who-iris/library/9789241548960-eng</code>, §10.3, PDF p.140; sections/sec-174-103-evidence-to-recommendation-tables.md — the GDG should, at a minimum, document its judgements on the four main factors.</td></tr>
+<tr><td>10</td><td><b>Recommendations</b><br><code>recommendations</code></td><td>required</td><td>Each recommendation stated actionably, with its direction, strength, certainty of evidence, justification and remarks on applicability, linked to its evidence. For SMART use, each is uniquely identified so digital systems can cite it, and data recommendations may be included.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#recommendation</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — The main text of the guideline should include a table of contents, introduction, methods, recommendations and conclusions.<br><code>who-iris/library/9789241548960-eng</code>, §10.6 Writing recommendations, PDF pp.142-143; sections/sec-180-106-writing-recommendations.md — contain an indication of their strength and of the quality of the evidence on which they are based.<br><code>who-iris/library/9789241548960-eng</code>, §10.6, PDF pp.142-143; sections/sec-180-106-writing-recommendations.md — A recommendation should include a justification as to why it is strong or conditional and why it is for or against a given intervention.<br><code>who-iris/library/9789241548960-eng</code>, §10.6, PDF pp.142-143; sections/sec-180-106-writing-recommendations.md — Each recommendation should be linked to a summary of the evidence<br><code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Comment, pp. e213-e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — uniquely identifying recommendations, which are updated as evidence improves over time (living guidelines)<br><code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Figure 1, p. e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — L1: Narrative Guideline and data recommendations: Enhanced guidelines</td></tr>
+<tr><td>11</td><td><b>Implementation and adaptation considerations</b><br><code>implementation-considerations</code></td><td>optional</td><td>Conditions, context, acceptability concerns and adaptation points relevant to applying the recommendations in a setting.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#remark</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §10.6, PDF pp.142-143; sections/sec-180-106-writing-recommendations.md — contain a set of remarks explaining the conditions and context in which the recommendation applies and the points to bear in mind regarding implementation.<br><code>who-iris/library/9789241548960-eng</code>, §10.2.7 Acceptability, PDF pp.139-140; sections/sec-172-1027-acceptability.md — a strategy to address concerns about acceptability during implementation will be included in the guideline with the recommendations.<br><code>who-iris/library/9789241548960-eng</code>, Ch.13 Adaptation, implementation and evaluation, PDF pp.177-178; sections/sec-246-13-adaptation-implementation-and-evaluation.md — Although implementation and evaluation plans do not need to be described in the guideline, they should be considered by the steering group<br><code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Comment, p. e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — The adaptation toolkit and monitoring framework aim to facilitate country adaptation and implementation of the recommendations.</td></tr>
+<tr><td>12</td><td><b>Equity, human rights and gender considerations</b><br><code>equity-human-rights-and-gender</code></td><td>optional</td><td>How the recommendations bear on equity, human rights, gender and social determinants, and how their equity impact should be evaluated.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §5.4.3.1 Producing and publishing the guideline, PDF pp.65-66; sections/sec-089-543-phase-3-publishing-and-updating.md — The final guideline and in its derivative products must convey clear messages with respect to equity, human rights, gender and social determinants.<br><code>who-iris/library/9789241548960-eng</code>, §5.4.2.3 Developing recommendations, PDF pp.64-65; sections/sec-088-542-phase-2-development.md — Evaluation and monitoring of the impact of recommendations that potentially affect inequities are also critically important and should be articulated in the guideline document.</td></tr>
+<tr><td>13</td><td><b>Monitoring and evaluation</b><br><code>monitoring-and-evaluation</code></td><td>required</td><td>Outcome or performance measures that can be monitored for the main recommendations.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#indicator</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §13.3 Monitoring and evaluation, PDF pp.178-179; sections/sec-247-133-monitoring-and-evaluation.md — The guideline should include outcome or performance measures that can be monitored for the main recommendations.<br><code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Comment, p. e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — WHO recommendations on antenatal care for a positive pregnancy experience,6 as well as the adaptation toolkit7 and monitoring framework8 are illustrative tools of ANC L1.</td></tr>
+<tr><td>14</td><td><b>Research gaps and future research</b><br><code>research-gaps</code></td><td>optional</td><td>Knowledge gaps that leave the balance of benefits and harms uncertain, with suggested questions (ideally in PICO form) and methods to close them.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §10.8 Future research, PDF p.144; sections/sec-182-108-future-research.md — such knowledge gaps should be described and questions and methods for addressing the gaps should be suggested.<br><code>who-iris/library/9789241548960-eng</code>, §10.8, PDF p.144; sections/sec-182-108-future-research.md — This section of the guideline document will inform future recommendations and guidelines.<br><code>who-iris/library/9789241548960-eng</code>, §5.4.2.3, PDF pp.64-65; sections/sec-088-542-phase-2-development.md — the guideline should outline the key gaps in knowledge and provide an agenda for future research.</td></tr>
+<tr><td>15</td><td><b>Conclusions</b><br><code>conclusions</code></td><td>required</td><td>Closing summary of the main body.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — The main text of the guideline should include a table of contents, introduction, methods, recommendations and conclusions.</td></tr>
+<tr><td>16</td><td><b>Validity and updating</b><br><code>updating</code></td><td>required</td><td>The review-by date and how the recommendations will be kept current; under SMART, recommendations are versioned as living guidance.<br><span class="m">computed from: <code>library</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.5.1 Review-by date, PDF p.175; sections/sec-241-1251-review-by-date.md — WHO guidelines should be issued with a “review-by” date to indicate how long the recommendations are expected to remain valid.<br><code>who-iris/library/9789241548960-eng</code>, §4.5 Table 4.1 (continued; extracted into the §4.6 file), PDF pp.55-56; sections/sec-076-46-what-if-there-are-major-changes-in-scope-or-a.md — 17. Updating 17.1 Plans for when and how to update<br><code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Comment, pp. e213-e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — uniquely identifying recommendations, which are updated as evidence improves over time (living guidelines)</td></tr>
+</tbody></table></div></div>
+<p class="m">Sources: <code>who-iris/library/9789241548960-eng</code>, §1.1 What is a WHO guideline?, PDF p.13; sections/sec-002-11-what-is-a-who-guideline.md — A WHO guideline is any document developed by the World Health Organization containing recommendations for clinical practice or public health policy.</p>
+
+</section>
+<section class="kind" id="smart-base-l1">
+<h2>
+  
+  
+    <a href="#dk-title" class="anchor-heading" aria-labelledby="dk-title"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> L1 narrative publication <code>l1</code>
+  
+  
+</h2>
+    
+<p>The narrative layer of the WHO SMART Guidelines: &quot;traditional guidelines and guidance&quot; (Mehl 2021). Only the frame a WHO guideline and a Digital Transformation Handbook BOTH carry is here; what each puts in its body is a sub-kind — l1-guideline (recommendations, evidence, GRADE) and dth (a digital transformation handbook). Semi-fixed: these sections are required, others are allowed.</p>
+<p class="m"><b>semi-fixed</b> structure · 5 section(s) · declared by <b>smart-base</b> in <code>smart-base/document-kinds/l1.json</code></p>
+<div class="clip"><div class="table-wrapper"><table class="sec">
+<thead><tr><th>#</th><th>Section</th><th></th><th>What it holds</th><th>Source</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><b>Introduction: background, scope and objectives</b><br><code>introduction</code></td><td>required</td><td>Why the publication is needed, what it covers and what it explicitly does not, and its objectives.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#publication-section</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — The main text of the guideline should include a table of contents, introduction, methods, recommendations and conclusions.<br><code>who-iris/library/9789241548960-eng</code>, §2.2.1 What will the guideline achieve?, PDF p.28; sections/sec-028-221-what-will-the-guideline-achieve.md — Resolving uncertainty should be the focus of most guidelines.<br><code>smart-base/library/9789240093362-eng</code>, 1. Introduction, p.1 (pdf 13) — This handbook not only discusses digitization of paper-based records, but also helps countries move towards digitalization<br><code>smart-base/library/9789240101197-eng</code>, Introduction &gt; What this handbook covers, p.3 (pdf 13) — It does not delve into the intricacies of supply chain processes or the specific functional specifications of various health supply chain information systems<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; When to use this handbook, p.10 (pdf 19) — When establishing standardized product master data management to support interoperability of health supply chain systems and processes.</td></tr>
+<tr><td>2</td><td><b>How it was developed</b><br><code>how-it-was-developed</code></td><td>required</td><td>The method the publication was developed by: for a guideline, the methods the Guideline Review Committee approves; for a handbook, the consultations, working groups, desk reviews and frameworks it was derived from.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#publication-section</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — The main text of the guideline should include a table of contents, introduction, methods, recommendations and conclusions.<br><code>who-iris/library/9789241548960-eng</code>, §1.10.1 Terms of reference of the GRC, PDF pp.24-25; sections/sec-020-1101-terms-of-reference-of-the-grc.md — ensures that the approved process has been followed and that the final guideline document meets WHO standards<br><code>smart-base/library/9789240093362-eng</code>, 1.3 How this handbook was developed, p.9 (pdf 21) — How this handbook was developed<br><code>smart-base/library/9789240101197-eng</code>, Introduction &gt; How this handbook was developed, p.7 (pdf 17) — Some methodologies and templates have been adapted from prominent sources such as the DIIG<br><code>smart-base/library/9789240116191-eng</code>, Introduction &gt; How this handbook was developed, p.8 (pdf 17) — DHSC Small Working Group (DHSC SWG): a subgroup under the Digital Health and Interoperability Working Group</td></tr>
+<tr><td>3</td><td><b>Contributors and acknowledgements</b><br><code>contributors</code></td><td>required</td><td>Everyone who contributed, with role and affiliation. A guideline adds declarations of interest and how they were managed (l1-guideline).<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#publication-section</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — All participants, roles and affiliations should be listed, with their conflicts of interests and how these were managed.<br><code>smart-base/library/9789240093362-eng</code>, Acknowledgements, p.iv<br><code>smart-base/library/9789240101197-eng</code>, Acknowledgements, p.iv<br><code>smart-base/library/9789240116191-eng</code>, Acknowledgements, p.iv</td></tr>
+<tr><td>4</td><td><b>References</b><br><code>references</code></td><td>required</td><td>Citations for the evidence and every supporting source.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#citation</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — All online material needs to be cited in the guideline itself and supplied to the GRC when final approval is sought.<br><code>who-iris/library/9789241548960-eng</code>, §8.3 Step 2, PDF pp.111-113; sections/sec-140-step-2-identify-information-sources-and-search-f.md — use it to formulate the reference lists in the final guideline document.<br><code>smart-base/library/9789240116191-eng</code>, References, p.46 (pdf 55)<br><code>smart-base/library/9789240093362-eng</code>, References, p.60</td></tr>
+<tr><td>5</td><td><b>Annexes</b><br><code>annexes</code></td><td>required</td><td>Supporting material too detailed for the main body.<br><span class="m">computed from: <code>library</code></span><br><span class="m">modelled by: <code>sgkg-l1#publication-section</code></span></td><td><code>who-iris/library/9789241548960-eng</code>, §12.1 Guideline format, PDF p.169; sections/sec-225-121-guideline-format.md — All guidelines should have an executive summary, a main body and appendices.<br><code>smart-base/library/9789240093362-eng</code>, Annex 1: Principles for digital development, p.65 (pdf 77) — Principles for digital development</td></tr>
+</tbody></table></div></div>
+<p class="m">Sources: <code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Comment, p. e214, para 'The first knowledge layer'; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — The first knowledge layer (L1: Narrative layer—enhanced guidelines) represents traditional guidelines and guidance; <code>smart-base/library/mehl-2021-who-smart-guidelines</code>, Figure 1 (WHO SMART guidelines), p. e214; sections/sec-000-who-smart-guidelines-optimising-country-level-us.md — L1: Narrative Guideline and data recommendations: Enhanced guidelines; <a href="https://github.com/litlfred/folio-assistant/issues/1767">https://github.com/litlfred/folio-assistant/issues/1767</a> — owner 2026-10-01: L1 sections from the SMART Guidelines paper, the WHO guideline handbook and the DTHs, each section citing its own</p>
+
+</section>
+</div>
+
+          
+
+          
+            
+          
+        </main>
+        
+<hr>
+<footer>
+  
+
+  <p class="text-small mb-0">SMART Base — built with <a href="https://litlfred.github.io/folio-assistant/">folio-assistant</a>.</p><p class="text-small mb-0 fa-build-stamp">
+  deployed
+  <a href="https://github.com/litlfred/folio-assistant/actions"><code>dev</code></a></p>
+
+
+  
+</footer>
+
+      </div>
+    </div>
+    
+      
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+    
+
+
+
+
+
+<script type="module">
+  
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.esm.min.mjs';
+  
+
+  var config = /* Mermaid configuration for this docs site.
+
+   just-the-docs interpolates this file's contents directly into
+   `var config = <here>; mermaid.initialize(config);`
+   — see that theme's `_includes/components/mermaid.html` — so this must be a
+   bare JavaScript object literal. No `export`, no statements, no semicolon.
+
+   DIAGRAMS ARE ALWAYS LIGHT, IN BOTH COLOUR SCHEMES. The site's stylesheet
+   follows the reader's choice; the drawings do not. They render in Mermaid's
+   light palette on a white card supplied by `.fa-figure-wrap`
+   (site-chrome/assets/css/docs-ui.css), exactly like the BPMN exports beside them,
+   which carry their own white backdrop and cannot follow a scheme at all.
+
+   This reverses a decision made an hour earlier in this session, and the
+   reversal is the whole point of the comment. Setting `theme: "dark"` did fix
+   the ORIGINAL complaint — pale nodes glaring on a dark page — and replaced it
+   with a worse one: dark-on-dark, the diagram's own near-black background
+   dissolving into the page and the text with it. Owner's call, and it is the
+   right one: a schematic is a figure, figures are printed on white, and one
+   consistent treatment across BPMN and Mermaid beats two that each look
+   correct only in one mode.
+
+   Consequence worth knowing: the palette no longer depends on the reader's
+   scheme, so the header's light/dark toggle does not need to re-render
+   anything and no longer reloads the page on diagram pages.
+
+   The PARENTHESES are load-bearing. A bare `{ "theme": ... }` at the start of
+   a statement parses as a BLOCK, not an object, so eslint rejects it with
+   "';' expected" — and eslint lints this file, which is free syntax checking
+   worth keeping. `var config = ({ ... });` is exactly as valid as without
+   them, so the wrapper costs nothing and buys the linter. */
+(({
+  "theme": "default",
+  "themeVariables": {
+    /* Match the card the diagram sits on, so its own backdrop and the
+       wrapper's are the same white rather than two near-whites with a seam. */
+    "background": "#ffffff"
+  },
+  /* Long swimlane labels wrap rather than forcing the diagram wider than the
+     zoom controls can usefully bring back. */
+  "flowchart": { "useMaxWidth": true }
+}))
+;
+  mermaid.initialize(config);
+  mermaid.run({
+    querySelector: '.language-mermaid',
+  });
+</script>
+
+
+
+  
+</body>
+</html>

@@ -1,0 +1,872 @@
+[
+  {
+    "id": "WER8207_51-60",
+    "type": "document",
+    "title": "Mumps virus vaccines = Vaccins anti-ourliens",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2007,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/240868",
+    "language": "en"
+  },
+  {
+    "id": "WER8647_521-539",
+    "type": "document",
+    "title": "Meningococcal vaccines : WHO position paper, November 2011 = Note de synthèse : position de l’OMS sur les vaccins antiméningococciques, novembre 2011",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/241846",
+    "language": "en"
+  },
+  {
+    "id": "WER8624_241-256",
+    "type": "document",
+    "title": "Vaccines against tick-borne encephalitis : WHO position paper = Note de synthèse : position de l'OMS sur les vaccins contre l'encéphalite à tiques",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/241769",
+    "language": "en"
+  },
+  {
+    "id": "WER8839_413-426",
+    "type": "document",
+    "title": "Haemophilus influenzae type b (Hib) Vaccination Position Paper — July 2013 : Introduction = Note de synthèse : Position de l’OMS sur la vaccination anti-Haemophilus influenzae type b (Hib) — Juillet 2013 : Introduction",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2013,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/242126",
+    "language": "en"
+  },
+  {
+    "id": "WER8827_269-283",
+    "type": "document",
+    "title": "Vaccines and vaccination against yellow fever : WHO Position Paper — June 2013 = Note de synthèse : position de l’OMS sur les vaccins et la vaccination contre la fièvre jaune, juin 2013",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2013,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/242089",
+    "language": "en"
+  },
+  {
+    "id": "WER8925_265-287",
+    "type": "document",
+    "title": "Varicella and herpes zoster vaccines : WHO position paper, June 2014 = Vaccins contre la varicelle et le zona : note de synthèse de l’OMS, juin 2014",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/242227",
+    "language": "en"
+  },
+  {
+    "id": "9789241548960-eng",
+    "type": "book",
+    "title": "WHO handbook for guideline development",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2014,
+          12,
+          18
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789241548960",
+    "URL": "https://iris.who.int/handle/10665/145714",
+    "language": "en",
+    "abstract": "This handbook provides comprehensive guidance on the planning, development, publication, implementation, adaptation and updating of WHO guidelines. Intended for WHO technical units, guideline developers, members of guideline development and external review groups, and other contributors, it describes the principles, methods and governance processes required to produce transparent, evidence-informed recommendations for clinical practice and public health policy that meet WHO standards."
+  },
+  {
+    "id": "WER9035_433-458",
+    "type": "document",
+    "title": "Pertussis vaccines : WHO position paper — August 2015 = Note de synthèse : Position de l’OMS concernant les vaccins anticoquelucheux — août 2015",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          12,
+          31
+        ]
+      ]
+    },
+    "URL": "https://iris.who.int/handle/10665/242413",
+    "language": "en"
+  },
+  {
+    "id": "9789241549684_eng",
+    "type": "book",
+    "title": "Consolidated guidelines on the use of antiretroviral drugs for treating and preventing HIV infection: recommendations for a public health approach",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          6,
+          6
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789241549684",
+    "URL": "https://iris.who.int/handle/10665/208825",
+    "language": "en",
+    "abstract": "This evidence-based guideline consolidates World Health Organization recommendations on the use of antiretroviral (ARV) drugs for treating and preventing HIV infection, providing a comprehensive public health framework for HIV diagnosis, prevention, treatment, service delivery, and monitoring and evaluation across all age groups and populations. Developed in response to advances in scientific evidence and evolving programmatic needs, the second edition updates the 2013 consolidated guidelines and incorporates new recommendations, including universal eligibility for antiretroviral therapy (ART) regardless of CD4 cell count, expanded use of pre-exposure prophylaxis, and optimized approaches to HIV testing, treatment monitoring and management of coinfections and comorbidities. The guideline also outlines the methods used for guideline development and the principles underpinning a public health approach.\n\nThe publication provides evidence-based recommendations on HIV testing services, antiretroviral therapy, prevention interventions, differentiated service delivery models, linkage to care, adherence, decentralization, task sharing, laboratory services and programme monitoring. It emphasizes integrated, people-centred and community-based approaches to improve access to high-quality HIV services, strengthen health systems and support implementation in diverse epidemiological settings. Intended primarily for national HIV programme managers, clinicians, policy-makers and implementing partners, the guideline aims to accelerate progress towards universal access to HIV services and the global goal of ending the HIV epidemic as a major public health threat by 2030."
+  },
+  {
+    "id": "9789241549912-eng",
+    "type": "book",
+    "title": "WHO recommendations on antenatal care for a positive pregnancy experience",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2016,
+          11,
+          7
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789241549912",
+    "URL": "https://iris.who.int/handle/10665/250796",
+    "language": "en",
+    "abstract": "This guideline presents the World Health Organization’s evidence-based recommendations on routine antenatal care to support a positive pregnancy experience for pregnant women and adolescent girls. It aims to provide a comprehensive, consolidated framework for antenatal care that complements existing WHO guidance on the management of specific pregnancy-related complications. The recommendations promote a person-centred, rights-based approach that extends beyond the prevention of maternal and perinatal morbidity and mortality to enhance women’s physical, psychological and sociocultural well-being, support healthy pregnancies, and improve the quality and utilization of antenatal care. Intended for policy-makers, programme managers and health professionals, the guideline informs the development of national policies, clinical protocols and service delivery models.\n\nDeveloped according to the WHO guideline development process, the document draws on systematic reviews and applies the GRADE and GRADE-CERQual approaches together with the DECIDE evidence-to-decision framework. It contains 49 recommendations covering nutritional interventions, maternal and fetal assessment, preventive measures, management of common physiological symptoms, and health system interventions to improve antenatal care utilization and quality. The guideline also introduces the 2016 WHO antenatal care model, recommending a minimum of eight contacts during pregnancy, and emphasizes implementation, dissemination and periodic updating as new evidence becomes available."
+  },
+  {
+    "id": "9789241515610-eng",
+    "type": "book",
+    "title": "Protecting all against tetanus: guide to sustaining maternal and neonatal tetanus elimination (MNTE) and broadening tetanus protection for all populations",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          11,
+          8
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789241515610",
+    "URL": "https://iris.who.int/handle/10665/329882",
+    "language": "en"
+  },
+  {
+    "id": "9789241550581-eng",
+    "type": "book",
+    "title": "Consolidated guidelines on HIV testing services, 2019",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          11,
+          3
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789241550581 (electronic version)",
+    "URL": "https://iris.who.int/handle/10665/336323",
+    "language": "en",
+    "abstract": "This guideline provides comprehensive, evidence-based recommendations to support countries in delivering high-quality, person-centred HIV testing services (HTS) across diverse populations and settings. Updating and consolidating previous WHO guidance issued in 2015 and 2016, it incorporates new evidence on HIV self-testing, social network-based HIV testing approaches, western blotting, and strategic service delivery to strengthen progress towards global HIV targets. Developed using the GRADE methodology and informed by systematic reviews, modelling studies and expert consultation, the guideline aims to improve the effectiveness, efficiency and quality of HIV testing while promoting timely linkage to prevention, treatment and care.\n\nThe publication addresses the full continuum of HIV testing services, including demand creation, pre- and post-test services, facility- and community-based testing, implementation considerations for priority populations, strategic planning, diagnostic testing strategies, quality assurance and programme monitoring. It provides updated recommendations on HIV self-testing, provider-assisted referral, social network-based approaches and the use of dual HIV/syphilis rapid diagnostic tests, while emphasizing the WHO 5Cs of HIV testing services: consent, confidentiality, counselling, correct results and connection. Intended for policy-makers, national programme managers, health-care providers and implementing partners, the guideline supports the expansion of equitable, evidence-informed HIV testing services to improve diagnosis and strengthen national HIV responses."
+  },
+  {
+    "id": "9789240031593-eng",
+    "type": "book",
+    "title": "Consolidated guidelines on HIV prevention, testing, treatment, service delivery and monitoring: recommendations for a public health approach",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          7,
+          16
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789240031593 (electronic version)",
+    "URL": "https://iris.who.int/handle/10665/342899",
+    "language": "en",
+    "abstract": "These consolidated guidelines provide comprehensive, evidence-based recommendations for HIV prevention, testing, treatment, service delivery and programme monitoring across the continuum of HIV care. Updating the 2016 WHO consolidated guidelines, this edition integrates guidance issued between 2016 and 2021 and reflects major advances in clinical practice, diagnostics and service delivery. Developed using the GRADE approach and informed by expert consultation and country experience, the guidelines aim to support countries in implementing high-quality, person-centred HIV services while advancing universal health coverage and progress towards ending AIDS as a public health threat by 2030.\n\nThe publication addresses HIV testing strategies, prevention interventions, antiretroviral therapy, management of advanced HIV disease, care for common coinfections and comorbidities, differentiated service delivery, procurement, laboratory services and programme monitoring. It incorporates updated recommendations on HIV self-testing, pre-exposure and post-exposure prophylaxis, dolutegravir-based treatment, rapid antiretroviral therapy initiation, viral load monitoring and community-based models of care. Intended primarily for national HIV programme managers, policy-makers and health-care providers, the guidelines also serve as a resource for technical partners, community organizations and people living with HIV to support the implementation of effective, equitable and people-centred HIV programmes."
+  },
+  {
+    "id": "WHO-2019-nCoV-Digital-certificates-vaccination-2021.1-eng",
+    "type": "report",
+    "title": "Digital documentation of COVID-19 certificates: vaccination status: technical specifications and implementation guidance, 27 August 2021",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          7,
+          28
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "URL": "https://iris.who.int/handle/10665/343361",
+    "language": "en"
+  },
+  {
+    "id": "9789240016514-eng",
+    "type": "book",
+    "title": "Leave no one behind: guidance for planning and implementing catch-up vaccination",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          4,
+          13
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789240016514 (electronic version)",
+    "URL": "https://iris.who.int/handle/10665/340749",
+    "language": "en"
+  },
+  {
+    "id": "9789240085138-eng",
+    "type": "book",
+    "title": "Digital adaptation kit for HIV: operational requirements for implementing WHO recommendations in digital systems",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2023,
+          12,
+          21
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789240085138 (electronic version)",
+    "URL": "https://iris.who.int/handle/10665/375230",
+    "language": "en",
+    "abstract": "This second edition of the digital adaptation kit for HIV provides operational, software-neutral requirements to support the incorporation of WHO clinical, public health and data use recommendations into digital systems. Developed within the SMART Guidelines approach, it focuses on the content requirements for person-centred digital tracking and decision support systems used by health workers for HIV services in primary health care settings. The kit is intended to facilitate transparent, consistent and adaptable translation of narrative guidance into digital implementations while supporting interoperability and local customization.\n\nThe publication organizes HIV-related requirements into eight components: health interventions and associated recommendations; generic personas; illustrative user scenarios; business processes and workflows; core data elements; decision support and scheduling logic; indicators and performance metrics; and high-level functional and non-functional requirements. It covers processes including HIV testing, pre-exposure prophylaxis, care and treatment, prevention of mother-to-child transmission, infant diagnosis, diagnostics, client follow-up, referral, and aggregate reporting and data use, with complementary operational resources provided in web annexes."
+  },
+  {
+    "id": "9789240099456-eng",
+    "type": "book",
+    "title": "Digital adaptation kit for immunizations: operational requirements for implementing WHO recommendations in digital systems",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2024,
+          12,
+          31
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789240099456 (electronic version)",
+    "URL": "https://iris.who.int/handle/10665/380303",
+    "language": "en",
+    "abstract": "This publication presents the World Health Organization’s digital adaptation kit (DAK) for immunizations, developed within the SMART Guidelines framework to support the implementation of WHO immunization recommendations in digital systems. The document provides operational and software-neutral specifications intended to facilitate the translation of immunization guidance into interoperable digital health applications, particularly person-centred point-of-service systems and electronic immunization registries. It outlines the role of digital adaptation kits in strengthening digital health systems by improving the consistency, transparency and standardization of health content, workflows, data structures and decision-support logic used in immunization programmes. The publication also situates the DAK within broader digital health strategies and interoperability standards.\n\nThe document describes eight core components of the immunization DAK, including health interventions and recommendations, generic personas, user scenarios, workflows, core data elements, decision-support logic, indicators and functional requirements. It incorporates WHO guidance related to routine immunization, electronic immunization registries and digital health interventions, while emphasizing adaptability to country-specific policies and implementation contexts. Additional sections address interoperability, data standards, workflow optimization and the use of digital systems to support longitudinal tracking, reporting, decision support and communication within immunization services. The publication is intended for immunization programme managers, digital health teams, software developers and implementers involved in designing and deploying digital immunization systems."
+  },
+  {
+    "id": "9789240124233-eng",
+    "type": "book",
+    "title": "Consolidated HIV guidelines: service delivery",
+    "author": [
+      {
+        "literal": "World Health Organization"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          7,
+          22
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "9789240124233 (electronic version)",
+    "URL": "https://iris.who.int/handle/10665/386765",
+    "language": "en",
+    "abstract": "HIV remains a major public health challenge, particularly in low- and middle-income countries, despite the availability of effective treatment and prevention tools. Many evidence-based interventions are not implemented consistently or delivered in a timely manner, contributing to ongoing HIV transmission, advanced disease and preventable mortality. These consolidated WHO guidelines provide evidence-based recommendations to strengthen HIV service delivery through people-centred, integrated and equitable approaches that improve access to care, continuity of treatment and accelerate progress towards ending AIDS as a public health threat.\n\nThe publication consolidates all WHO recommendations on HIV service delivery issued between 2013 and 2025. It is intended to support the development of national and subnational policies, clinical guidelines and implementation guidance. It addresses key components of HIV service delivery, including linkage to care and antiretroviral therapy initiation, clinical follow-up and medication refills, adherence support and re-engagement in care, services for adolescents and young people, task sharing, decentralized service delivery, and integration with maternal and child health, tuberculosis, sexual and reproductive health, diabetes, hypertension and mental health services. Recommendations are classified as new, updated or revalidated according to WHO guideline development procedures."
+  },
+  {
+    "id": "WER9009_69-88",
+    "type": "document",
+    "title": "Japanese Encephalitis Vaccines : WHO position paper — February 2015 = Note de synthèse : position de l’OMS à propos des vaccins contre l’encéphalite japonaise — février 2015",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          2,
+          27
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/242325",
+    "language": "en"
+  },
+  {
+    "id": "WER9008_57-62",
+    "type": "document",
+    "title": "Meningococcal A conjugate vaccine : updated guidance, February 2015 = Vaccin antiméningococcique conjugué contre le sérogroupe A : orientations actualisées, février 2015",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          2,
+          20
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/242320",
+    "language": "en"
+  },
+  {
+    "id": "WER9234-477-498",
+    "type": "document",
+    "title": "Cholera vaccines:  WHO position paper –  August 2017 – Vaccins anticholériques: Note de synthèse de l’OMS – août 2017",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          8,
+          25
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/258764",
+    "language": "en"
+  },
+  {
+    "id": "WER9227-369-392",
+    "type": "document",
+    "title": "Hepatitis B vaccines: WHO position paper – July 2017 – Vaccins anti-hépatite B: note de synthèse de l’OMS – juillet 2017",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          7,
+          7
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/255873"
+  },
+  {
+    "id": "WER9217-205-227",
+    "type": "document",
+    "title": "Measles vaccines: WHO position paper – April 2017 – Note de synthèse de l’OMS sur les vaccins contre la rougeole – avril 2017",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          4,
+          28
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/255377",
+    "language": "en"
+  },
+  {
+    "id": "WER9206-53-76",
+    "type": "document",
+    "title": "Tetanus vaccines: WHO position paper – February 2017 = Note de synthèse: position de l’OMS sur les vaccins antitétaniques – février 2017",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2017,
+          2,
+          10
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/254583",
+    "language": "en"
+  },
+  {
+    "id": "WER9308-73-96",
+    "type": "document",
+    "title": "BCG vaccines: WHO position paper – February 2018 – Vaccins BCG: Note de synthèse de l’OMS – Février 2018",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          2,
+          23
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/260307",
+    "language": "en"
+  },
+  {
+    "id": "WER9335-457-476",
+    "type": "document",
+    "title": "Dengue vaccine: WHO position paper – September 2018 – Note de synthèse de l’OMS sur le vaccin contre la dengue– septembre 2018",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          9,
+          7
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/274316",
+    "language": "en"
+  },
+  {
+    "id": "WER9316-201-219",
+    "type": "document",
+    "title": "Rabies vaccines: WHO position paper – April 2018 – Vaccins antirabiques: Note de synthèse de l’OMS – avril 2018",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          4,
+          20
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/272372",
+    "language": "en"
+  },
+  {
+    "id": "WER9313-153-172",
+    "type": "document",
+    "title": "Typhoid vaccines: WHO position paper – March 2018 – Vaccins antityphoïdiques: note de synthèse de l’OMS – mars 2018",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2018,
+          3,
+          30
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/272273",
+    "language": "en"
+  },
+  {
+    "id": "WER9408-85-103",
+    "type": "document",
+    "title": "Pneumococcal conjugate vaccines in infants and children under 5 years of age: WHO position paper –February 2019 ─ Vaccins antipneumococciques conjugués chez les nourrissons et les enfants de moins de 5 ans: note de synthèse de l’OMS – février 2019",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2019,
+          2,
+          22
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/310970",
+    "language": "zh"
+  },
+  {
+    "id": "WER9527-306-324-eng-fre",
+    "type": "document",
+    "title": "Rubella vaccines: WHO position paper – July 2020 – Note de synthèse: position de l’OMS concernant les vaccins antirubéoleux",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          7,
+          3
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/332952",
+    "language": "en"
+  },
+  {
+    "id": "WER9623-217-228-eng-fre",
+    "type": "document",
+    "title": "Considerations for pneumococcal vaccination in older adults – Considérations relatives à la vaccination antipneumococcique chez les personnes âgées",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          6,
+          11
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/341722",
+    "language": "en"
+  },
+  {
+    "id": "WER9628-301-319-eng-fre",
+    "type": "document",
+    "title": "Rotavirus vaccines: WHO position paper – July 2021 – Vaccins antirotavirus : note de synthèse de l’OMS – Juillet 2021",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2021,
+          7,
+          16
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/342905",
+    "language": "en"
+  },
+  {
+    "id": "WER9750-645-672-eng-fre",
+    "type": "document",
+    "title": "Human papillomavirus vaccines: WHO position paper (2022 update) –Vaccins contre les papillomavirus humains: note de synthèse de l’OMS (mise à jour de 2022)",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          12,
+          16
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/365351",
+    "language": "en"
+  },
+  {
+    "id": "WER9709-61-78-eng-fre",
+    "type": "document",
+    "title": "Malaria vaccine: WHO position paper – March 2022 – Rapport mensuel des cas de dracunculose, janvier 2022",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          3,
+          4
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/352337",
+    "language": "en"
+  },
+  {
+    "id": "WER9725-277-300-eng-fre",
+    "type": "document",
+    "title": "Polio vaccines: WHO position paper – June 2022 – Vaccins antipoliomyélitiques: note de synthèse de l’OMS – juin 2022",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          6,
+          25
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/357168",
+    "language": "en"
+  },
+  {
+    "id": "WER9719-185-208-eng-fre",
+    "type": "document",
+    "title": "Vaccines against influenza: WHO position paper – May 2022 – Vaccins antigrippaux: note de synthèse de l’OMS – mai 2022",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          5,
+          13
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/354265",
+    "language": "en"
+  },
+  {
+    "id": "WER9740-493-512-eng-fre",
+    "type": "document",
+    "title": "WHO position paper on hepatitis A vaccines – October 2022 – Note de synthèse: position de l’OMS concernant les vaccins contre l’hépatite A – Octobre 2022",
+    "author": [
+      {
+        "literal": "World Health Organization = Organisation mondiale de la Santé"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2022,
+          10,
+          7
+        ]
+      ]
+    },
+    "publisher": "World Health Organization = Organisation mondiale de la Santé",
+    "URL": "https://iris.who.int/handle/10665/363397",
+    "language": "en"
+  },
+  {
+    "id": "wpr-rdo-2020-003-eng",
+    "type": "book",
+    "title": "Publication and information products style guide",
+    "author": [
+      {
+        "literal": "World Health Organization. Regional Office for the Western Pacific"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          2020,
+          5,
+          12
+        ]
+      ]
+    },
+    "publisher": "WHO Regional Office for the Western Pacific",
+    "URL": "http://iris.wpro.who.int/handle/10665.1/14518",
+    "language": "en",
+    "abstract": "This is the style guide for WPRO publications and information products. All designers working on WHO WPRO publication and information products should use this as reference for design and layout. Templates and further guidelines are also available. For more information on WPRO publications guidelines, please contact wpropuballstaff@who.int"
+  },
+  {
+    "id": "who-pub-tps-931",
+    "type": "book",
+    "title": "WHO editorial style manual",
+    "author": [
+      {
+        "literal": "World Health Organization. Technical Publications Unit"
+      }
+    ],
+    "issued": {
+      "date-parts": [
+        [
+          1993,
+          12,
+          31
+        ]
+      ]
+    },
+    "publisher": "World Health Organization",
+    "ISBN": "8872660203 (ita)",
+    "URL": "https://iris.who.int/handle/10665/36842",
+    "language": "en"
+  }
+]

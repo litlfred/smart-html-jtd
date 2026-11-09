@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script data-folio-saved-scheme>(function(){var d=document.documentElement,s=null,c="dark";try{s=localStorage.getItem("fa-color-scheme")}catch(e){}if(s!=="light"&&s!=="dark"){s="light";try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)s="dark"}catch(e){}}try{var n=document.getElementById("fa-site-scheme");if(n)c=JSON.parse(n.textContent).scheme==="light"?"light":"dark"}catch(e){}d.setAttribute("data-fa-scheme",s);var j=window.jtd;if(s!==c&&j&&typeof j.setTheme==="function"){try{j.setTheme(s)}catch(e){}}})();</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codings — WHO Immunization Implementation Guide</title>
+<link rel="canonical" href="./codings.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23276749'/%3E%3C/svg%3E">
+<meta name="folio-navbar" content="linked">
+<meta name="fa-visualiser-label" content="WHO Immunization Implementation Guide">
+<link rel="stylesheet" href="./assets/page-layout.css" data-fa-page-layout>
+<script src="./assets/page-layout.js" defer data-fa-page-layout></script>
+<link rel="stylesheet" href="./assets/ig-artifact.css">
+<link rel="stylesheet" href="./assets/css/docs-ui.css" data-fa-folio-mount>
+<script src="./assets/navbar/row-2acuhncsmbg.js" defer></script><script src="./assets/js/docs-ui.js" defer data-fa-folio-mount></script>
+<script type="application/json" id="fa-translation-meta">{"lang":"en","translationStatus":"","translationSource":"","supportedLocales":["ar","zh","en","fr","ru","es"],"availableLocales":[]}</script><link rel="stylesheet" href="./assets/css/navbar.css"><script src="./assets/navbar/rail-172oredv0ja.js" defer></script><script src="./assets/js/navbar.js" defer></script><link rel="stylesheet" href="./assets/css/navbar-row.css"><script src="./assets/js/navbar-row.js" defer></script><meta name="fa-pinned-data" content="."></head>
+<body><script type="application/json" id="fa-navbar-row" data-fa-root="." data-fa-row-src="row-2acuhncsmbg"></script><script type="application/json" id="fa-rail" data-fa-root="https://litlfred.github.io/folio-assistant" data-fa-to-root=".">{"data":"rail-172oredv0ja","here":"/codings.html"}</script><nav class="fa-nav" aria-label="folio-assistant" data-fa-rail="pending"><a href="./">WHO Immunization Implementation Guide</a></nav>
+
+<div class="ig-topbar fa-page-bar" role="navigation" aria-label="WHO Immunization Implementation Guide menu"><a class="ig-topbar-home" href="./index.html">WHO Immunization Implementation Guide</a><details class="ig-topbar-group"><summary>Home</summary><ul><li><a href="./index.html">Summary</a></li><li><a href="./changes.html">Changes</a></li><li><a href="./dependencies.html">Dependencies</a></li><li><a href="./references.html">References</a></li><li><a href="./adapting.html">Adapting Guidelines for Country use</a></li></ul></details><details class="ig-topbar-group"><summary>Business Requirements</summary><ul><li><a href="./concepts.html">Concepts</a></li><li><a href="./personas.html">Generic Personas</a></li><li><a href="./scenarios.html">User Scenarios</a></li><li><a href="./business-processes.html">Business Processes</a></li><li><a href="./dictionary.html">Data Dictionary</a></li><li><a href="./decision-logic.html">Decision-support Logic</a></li><li><a href="./indicators.html">Indicator and Performance Metrics</a></li><li><a href="./functional-requirements.html">Functional Requirements</a></li><li><a href="./non-functional-requirements.html">Non-functional Requirements</a></li></ul></details><details class="ig-topbar-group"><summary>Data Models and Exchange</summary><ul><li><a href="./system-actors.html">System Actors</a></li><li><a href="./sequence-diagrams.html">Sequence Diagrams</a></li><li><a href="./transactions.html">Transactions</a></li><li><a href="./indicators-measures.html">Indicators and Measures</a></li><li><a href="./codings.html">Codings</a></li></ul></details><details class="ig-topbar-group"><summary>Deployment</summary><ul><li><a href="./security-privacy.html">Security and Privacy Considerations</a></li><li><a href="./testing.html">Testing</a></li><li><a href="./test-data.html">Test Data</a></li><li><a href="./reference-implementations.html">Reference Implementations</a></li><li><a href="./trust_domain.html">Trust Domains</a></li><li><a href="./downloads.html">Downloads</a></li></ul></details><details class="ig-topbar-group"><summary>Indices</summary><ul><li><a href="./artifacts.html">Artifact Index</a></li><li><a href="./maps.html">Mappings</a></li></ul></details><form class="ig-search" role="search" data-ig-search-index="./assets/ig-search.json"><label class="ig-search-label" for="search-input">Search WHO Immunization Implementation Guide</label><input type="search" id="search-input" class="ig-search-input" placeholder="Search pages and artefacts" autocomplete="off" aria-controls="ig-search-results" aria-expanded="false"><ul id="ig-search-results" class="ig-search-results" hidden></ul></form><span class="ig-locale-slot" data-fa-slot="locale"></span><script src="./assets/ig-search.js" defer></script></div>
+<main class="ig-main main-content fa-page-main" id="main-content">
+<p><span hidden="" data-fa-figure-images="ig"></span></p>
+
+<p>Note that the terminologies included in this implementation guide will need to be updated, because the ideal mechanism for distribution (as an expression) is not currently supported by the content logical definition constructs available in the FHIR ValueSet resource and all known implementations of it. Before use in a production environment, ensure you have the latest value sets based on the definitions for each value set (as defined in the inclusion/exclusion criteria for each one).</p>
+
+<p>The following terminology artifacts are included for this implementation guide:</p>
+
+<h3 id="codesystems">CodeSystems</h3>
+
+<ul class="ig-artifact-list">
+ <li><a href="artifact/CodeSystem-IMMZ.C.html">IMMZ.C CodeSystem for Data Elements</a></li>
+ <li><a href="artifact/CodeSystem-IMMZ.D.html">IMMZ.D CodeSystem for Data Elements</a></li>
+ <li><a href="artifact/CodeSystem-IMMZ.Ex.html">IMMZ.Ex CodeSystem for Example values for required data elements</a></li>
+ <li><a href="artifact/CodeSystem-IMMZ.I.html">IMMZ.I CodeSystem for Data Elements</a></li>
+ <li><a href="artifact/CodeSystem-IMMZ.Z.html">IMMZ.Z CodeSystem for Data Elements</a></li>
+ <li><a href="artifact/CodeSystem-IMMZDAK.html">IMMZDAK CodeSystem for Decision Tables</a></li>
+</ul>
+
+<h3 id="valuesets">ValueSets</h3>
+
+<ul class="ig-artifact-list">
+ <li><a href="artifact/ValueSet-IMMZ.C.DE5.html">IMMZ.C.DE5 ValueSet for Sex</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE1.html">IMMZ.D.DE1 ValueSet for Immunization event status</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE107.html">IMMZ.D.DE107 ValueSet for Type of reaction</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE115.html">IMMZ.D.DE115 ValueSet for Reaction outcome</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE126.html">IMMZ.D.DE126 ValueSet for Disease targeted</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE156.html">IMMZ.D.DE156 ValueSet for Immunization recommendation status</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE161.html">IMMZ.D.DE161 ValueSet for Potential contraindications</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE18.html">IMMZ.D.DE18 ValueSet for Vaccine brand</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE19.html">IMMZ.D.DE19 ValueSet for Vaccine type</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE204.html">IMMZ.D.DE204 ValueSet for HIV status</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE212.html">IMMZ.D.DE212 ValueSet for Type of poliovirus dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE216.html">IMMZ.D.DE216 ValueSet for Type of JE dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE220.html">IMMZ.D.DE220 ValueSet for Type of TBE dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE225.html">IMMZ.D.DE225 ValueSet for Type of typhoid dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE229.html">IMMZ.D.DE229 ValueSet for Type of cholera dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE23.html">IMMZ.D.DE23 ValueSet for Vaccine manufacturer</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE232.html">IMMZ.D.DE232 ValueSet for Type of meningococcal dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE237.html">IMMZ.D.DE237 ValueSet for Type of hepatitis A dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE241.html">IMMZ.D.DE241 ValueSet for Dengue serostatus</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE243.html">IMMZ.D.DE243 ValueSet for Type of TB infection test performed</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE246.html">IMMZ.D.DE246 ValueSet for TB infection test result</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE25.html">IMMZ.D.DE25 ValueSet for Vaccine market authorization holder</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE254.html">IMMZ.D.DE254 ValueSet for Type of hepatitis B dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE258.html">IMMZ.D.DE258 ValueSet for Type of dose</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE5.html">IMMZ.D.DE5 ValueSet for Reason vaccine was not administered</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE86.html">IMMZ.D.DE86 ValueSet for Client education and counselling on immunization</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.DE95.html">IMMZ.D.DE95 ValueSet for Reaction manifestation</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.D.Observation.html">IMMZ.D.Observation ValueSet for Sex</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.I.DE30.html">IMMZ.I.DE30 ValueSet for Disaggregation group</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.I.DE48.html">IMMZ.I.DE48 ValueSet for Closed stock discarded type</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE1.html">IMMZ.Z.DE1 ValueSet for BCG vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE10.html">IMMZ.Z.DE10 ValueSet for Meningococcal vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE11.html">IMMZ.Z.DE11 ValueSet for Mumps-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE12.html">IMMZ.Z.DE12 ValueSet for Pertussis-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE13.html">IMMZ.Z.DE13 ValueSet for Pneumococcal vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE14.html">IMMZ.Z.DE14 ValueSet for Poliovirus-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE15.html">IMMZ.Z.DE15 ValueSet for Rabies vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE16.html">IMMZ.Z.DE16 ValueSet for Rotavirus vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE17.html">IMMZ.Z.DE17 ValueSet for Rubella-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE18.html">IMMZ.Z.DE18 ValueSet for Seasonal influenza vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE19.html">IMMZ.Z.DE19 ValueSet for Tetanus-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE2.html">IMMZ.Z.DE2 ValueSet for Cholera vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE20.html">IMMZ.Z.DE20 ValueSet for TBE vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE21.html">IMMZ.Z.DE21 ValueSet for Typhoid vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE22.html">IMMZ.Z.DE22 ValueSet for Varicella-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE23.html">IMMZ.Z.DE23 ValueSet for Yellow fever vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE24.html">IMMZ.Z.DE24 ValueSet for DTP-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE25.html">IMMZ.Z.DE25 ValueSet for Dengue vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE26.html">IMMZ.Z.DE26 ValueSet for COVID-19 vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE27.html">IMMZ.Z.DE27 ValueSet for Malaria vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE28.html">IMMZ.Z.DE28 ValueSet for Tetanus and diphtheria-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE29.html">IMMZ.Z.DE29 ValueSet for Pentavalent vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE3.html">IMMZ.Z.DE3 ValueSet for Diphtheria-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE30.html">IMMZ.Z.DE30 ValueSet for Oral polio vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE31.html">IMMZ.Z.DE31 ValueSet for Inactivated polio vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE32.html">IMMZ.Z.DE32 ValueSet for Measles and rubella-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE33.html">IMMZ.Z.DE33 ValueSet for Tetanus and diphtheria-containing vaccines (DT)</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE34.html">IMMZ.Z.DE34 ValueSet for Tetanus and diphtheria-containing vaccines (Td)</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE4.html">IMMZ.Z.DE4 ValueSet for Hib-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE5.html">IMMZ.Z.DE5 ValueSet for Hepatitis A-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE6.html">IMMZ.Z.DE6 ValueSet for Hepatitis B-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE7.html">IMMZ.Z.DE7 ValueSet for HPV vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE8.html">IMMZ.Z.DE8 ValueSet for JE vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.DE9.html">IMMZ.Z.DE9 ValueSet for Measles-containing vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.LiveAttenuated.html">IMMZ.Z.LiveAttenuated ValueSet for live attenuated vaccines</a></li>
+ <li><a href="artifact/ValueSet-IMMZ.Z.VS.html">IMMZ.Z.VS ValueSet for vaccine types</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SBCGVS.html">IMMZD18SBCG ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SCholeraWCRBSVaccine2DosesVS.html">IMMZD18SCholeraWCRBSVaccine2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SCholeraWCRBSVaccine3DosesVS.html">IMMZD18SCholeraWCRBSVaccine3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SCholeraWCVaccinesVS.html">IMMZD18SCholeraWCVaccines ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SDengue3DosesWithPreVaccinationScreeningVS.html">IMMZD18SDengue3DosesWithPreVaccinationScreening ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SDTPDelayedOrInterruptedSeriesVS.html">IMMZD18SDTPDelayedOrInterruptedSeries ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SDTPOnTimeStartVS.html">IMMZD18SDTPOnTimeStart ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SDTPPregnancyStartingWith3DosesVS.html">IMMZD18SDTPPregnancyStartingWith3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SDTPPregnancyStartingWith4DosesVS.html">IMMZD18SDTPPregnancyStartingWith4Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHepatitisAInactivatedHAV1DoseVS.html">IMMZD18SHepatitisAInactivatedHAV1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHepatitisAInactivatedHAV2DosesVS.html">IMMZD18SHepatitisAInactivatedHAV2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHepatitisALiveAttenuatedHAV1DoseVS.html">IMMZD18SHepatitisALiveAttenuatedHAV1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHib2DosesWithBoosterDoseVS.html">IMMZD18SHib2DosesWithBoosterDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHib3DosesVS.html">IMMZD18SHib3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHib3DosesWithBoosterDoseVS.html">IMMZD18SHib3DosesWithBoosterDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHPV2DosesVS.html">IMMZD18SHPV2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SHPVSingleDoseVS.html">IMMZD18SHPVSingleDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SJEInactivatedVeroCellDerivedVaccineVS.html">IMMZD18SJEInactivatedVeroCellDerivedVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SJELiveAttenuatedVaccineVS.html">IMMZD18SJELiveAttenuatedVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SJELiveRecombinantVaccineVS.html">IMMZD18SJELiveRecombinantVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMalariaVS.html">IMMZD18SMalaria ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeaslesLowTransmissionVS.html">IMMZD18SMeaslesLowTransmission ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeaslesMCVDose0VS.html">IMMZD18SMeaslesMCVDose0 ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeaslesOngoingTransmissionVS.html">IMMZD18SMeaslesOngoingTransmission ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeaslesSupplementaryDoseVS.html">IMMZD18SMeaslesSupplementaryDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeningococcalMenAConjugateVaccine1DoseVS.html">IMMZD18SMeningococcalMenAConjugateVaccine1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeningococcalMenAConjugateVaccine2DosesVS.html">IMMZD18SMeningococcalMenAConjugateVaccine2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeningococcalMonovalentMenCConjugateVaccineVS.html">IMMZD18SMeningococcalMonovalentMenCConjugateVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeningococcalPolysaccharideVaccinesVS.html">IMMZD18SMeningococcalPolysaccharideVaccines ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeningococcalQuadrivalentConjugateVaccines1DoseVS.html">IMMZD18SMeningococcalQuadrivalentConjugateVaccines1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMeningococcalQuadrivalentConjugateVaccines2DosesVS.html">IMMZD18SMeningococcalQuadrivalentConjugateVaccines2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SMumpsVS.html">IMMZD18SMumps ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SPneumococcal2DosesWithBoosterDoseVS.html">IMMZD18SPneumococcal2DosesWithBoosterDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SPneumococcal3DosesVS.html">IMMZD18SPneumococcal3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SPolioBirthDoseVS.html">IMMZD18SPolioBirthDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SPolioBOPVPlusIPVVS.html">IMMZD18SPolioBOPVPlusIPV ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SPolioIPVOnlyVS.html">IMMZD18SPolioIPVOnly ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SPolioSequentialIPVbOPVVS.html">IMMZD18SPolioSequentialIPVbOPV ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SRabiesVS.html">IMMZD18SRabies ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SRotavirusVS.html">IMMZD18SRotavirus ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SRubellaHighIncidenceVS.html">IMMZD18SRubellaHighIncidence ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SRubellaLowIncidenceVS.html">IMMZD18SRubellaLowIncidence ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STBEEncepurVS.html">IMMZD18STBEEncepur ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STBEEnceVirVS.html">IMMZD18STBEEnceVir ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STBEFSMEImmunVS.html">IMMZD18STBEFSMEImmun ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STBETBEMoscowVS.html">IMMZD18STBETBEMoscow ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STyphoidTCVVS.html">IMMZD18STyphoidTCV ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STyphoidTy21aVS.html">IMMZD18STyphoidTy21a ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18STyphoidViPSVS.html">IMMZD18STyphoidViPS ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SVaricella1DoseVS.html">IMMZD18SVaricella1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SVaricella2DosesVS.html">IMMZD18SVaricella2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD18SYellowfeverYellowFeverVS.html">IMMZD18SYellowfeverYellowFever ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTBCGVS.html">IMMZD2DTBCG ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTCholeraWCRBSVaccine2DosesVS.html">IMMZD2DTCholeraWCRBSVaccine2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTCholeraWCRBSVaccine3DosesVS.html">IMMZD2DTCholeraWCRBSVaccine3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTCholeraWCVaccinesVS.html">IMMZD2DTCholeraWCVaccines ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDengue3DosesWithoutPreVaccinationScreeningVS.html">IMMZD2DTDengue3DosesWithoutPreVaccinationScreening ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDengue3DosesWithPreVaccinationScreeningVS.html">IMMZD2DTDengue3DosesWithPreVaccinationScreening ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDTPDelayedOrInterruptedSeriesVS.html">IMMZD2DTDTPDelayedOrInterruptedSeries ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDTPOnTimeStartVS.html">IMMZD2DTDTPOnTimeStart ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDTPPregnancyVS.html">IMMZD2DTDTPPregnancy ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDTPPregnancyStartingWith3DosesVS.html">IMMZD2DTDTPPregnancyStartingWith3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTDTPPregnancyStartingWith4DosesVS.html">IMMZD2DTDTPPregnancyStartingWith4Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHepatitisAInactivatedHAV1DoseVS.html">IMMZD2DTHepatitisAInactivatedHAV1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHepatitisAInactivatedHAV2DosesVS.html">IMMZD2DTHepatitisAInactivatedHAV2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHepatitisALiveAttenuatedHAV1DoseVS.html">IMMZD2DTHepatitisALiveAttenuatedHAV1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHib2DosesWithBoosterDoseVS.html">IMMZD2DTHib2DosesWithBoosterDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHib3DosesVS.html">IMMZD2DTHib3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHib3DosesWithBoosterDoseVS.html">IMMZD2DTHib3DosesWithBoosterDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHPV2DosesVS.html">IMMZD2DTHPV2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTHPVSingleDoseVS.html">IMMZD2DTHPVSingleDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTJEInactivatedVeroCellDerivedVaccineVS.html">IMMZD2DTJEInactivatedVeroCellDerivedVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTJELiveAttenuatedVaccineVS.html">IMMZD2DTJELiveAttenuatedVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTJELiveRecombinantVaccineVS.html">IMMZD2DTJELiveRecombinantVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMalariaVS.html">IMMZD2DTMalaria ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeaslesLowTransmissionVS.html">IMMZD2DTMeaslesLowTransmission ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeaslesMCVDose0VS.html">IMMZD2DTMeaslesMCVDose0 ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeaslesOngoingTransmissionVS.html">IMMZD2DTMeaslesOngoingTransmission ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeaslesSupplementaryDoseVS.html">IMMZD2DTMeaslesSupplementaryDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeningococcalMenAConjugateVaccine1DoseVS.html">IMMZD2DTMeningococcalMenAConjugateVaccine1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeningococcalMenAConjugateVaccine2DosesVS.html">IMMZD2DTMeningococcalMenAConjugateVaccine2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeningococcalMonovalentMenCConjugateVaccineVS.html">IMMZD2DTMeningococcalMonovalentMenCConjugateVaccine ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeningococcalPolysaccharideVaccinesVS.html">IMMZD2DTMeningococcalPolysaccharideVaccines ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeningococcalQuadrivalentConjugateVaccines1DoseVS.html">IMMZD2DTMeningococcalQuadrivalentConjugateVaccines1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMeningococcalQuadrivalentConjugateVaccines2DosesVS.html">IMMZD2DTMeningococcalQuadrivalentConjugateVaccines2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTMumpsVS.html">IMMZD2DTMumps ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTPneumococcal2DosesWithBoosterDoseVS.html">IMMZD2DTPneumococcal2DosesWithBoosterDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTPneumococcal3DosesVS.html">IMMZD2DTPneumococcal3Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTPolioBirthDoseVS.html">IMMZD2DTPolioBirthDose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTPolioBOPVPlusIPVVS.html">IMMZD2DTPolioBOPVPlusIPV ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTPolioIPVOnlyVS.html">IMMZD2DTPolioIPVOnly ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTPolioSequentialIPVbOPVVS.html">IMMZD2DTPolioSequentialIPVbOPV ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTRabiesVS.html">IMMZD2DTRabies ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTRotavirusVS.html">IMMZD2DTRotavirus ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTRubellaHighIncidenceVS.html">IMMZD2DTRubellaHighIncidence ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTRubellaLowIncidenceVS.html">IMMZD2DTRubellaLowIncidence ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTBEEncepurVS.html">IMMZD2DTTBEEncepur ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTBEEnceVirVS.html">IMMZD2DTTBEEnceVir ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTBEFSMEImmunVS.html">IMMZD2DTTBEFSMEImmun ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTBETBEMoscowVS.html">IMMZD2DTTBETBEMoscow ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTyphoidTCVVS.html">IMMZD2DTTyphoidTCV ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTyphoidTy21aVS.html">IMMZD2DTTyphoidTy21a ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTTyphoidViPSVS.html">IMMZD2DTTyphoidViPS ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTVaricella1DoseVS.html">IMMZD2DTVaricella1Dose ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTVaricella2DosesVS.html">IMMZD2DTVaricella2Doses ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD2DTYellowfeverYellowFeverVS.html">IMMZD2DTYellowfeverYellowFever ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTBCGContraindicationsVS.html">IMMZD5DTBCGContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTDengueContraindicationsVS.html">IMMZD5DTDengueContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTDTPContraindicationsVS.html">IMMZD5DTDTPContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTHepatitisAContraindicationsVS.html">IMMZD5DTHepatitisAContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTHibContraindicationsVS.html">IMMZD5DTHibContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTHPVContraindicationsVS.html">IMMZD5DTHPVContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTJEContraindicationsVS.html">IMMZD5DTJEContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTMalariaContraindicationsVS.html">IMMZD5DTMalariaContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTMeaslesContraindicationsVS.html">IMMZD5DTMeaslesContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTMeningococcalContraindicationsVS.html">IMMZD5DTMeningococcalContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTMumpsContraindicationsVS.html">IMMZD5DTMumpsContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTPneumococcalContraindicationsVS.html">IMMZD5DTPneumococcalContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTPolioContraindicationsVS.html">IMMZD5DTPolioContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTRabiesContraindicationsVS.html">IMMZD5DTRabiesContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTRotavirusContraindicationsVS.html">IMMZD5DTRotavirusContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTRubellaContraindicationsVS.html">IMMZD5DTRubellaContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTTBEContraindicationsVS.html">IMMZD5DTTBEContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTTyphoidContraindicationsVS.html">IMMZD5DTTyphoidContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTVaricellaContraindicationsVS.html">IMMZD5DTVaricellaContraindications ValueSet for Decision Table</a></li>
+ <li><a href="artifact/ValueSet-IMMZD5DTYellowFeverContraindicationsVS.html">IMMZD5DTYellowFeverContraindications ValueSet for Decision Table</a></li>
+</ul>
+
+<p class="ig-edit"><a data-fa-link="edit" data-src="input/pagecontent/codings.md" data-repo="litlfred/smart-immunizations" href="https://github.com/litlfred/smart-immunizations/edit/main/input/pagecontent/codings.md">Edit this page on GitHub</a></p>
+<script type="application/json" id="ig-source-lines">{"blob": "https://github.com/litlfred/smart-immunizations/blob/main/input/pagecontent/codings.md", "repo": "litlfred/smart-immunizations", "branch": "main", "path": "input/pagecontent/codings.md", "lines": [{"t":"CodeSystems","l":5},{"t":"ValueSets","l":8}]}</script>
+
+<script src="./assets/ig-source-links.js"></script>
+
+<link rel="stylesheet" href="assets/ig-pages.css" />
+
+<footer id="ig-footer">
+<p class="ig-footer-nav"><a href="indicators-measures.html">&lt;prev</a> | <a href="#">top</a> | <a href="deployment.html">next&gt;</a></p>
+<p class="ig-footer-band">IG © 2023+ <a href="http://who.int" rel="external">WHO</a>. Package <code>smart.who.int.immunizations#0.2.0</code> based on <a href="http://hl7.org/fhir/R4/" rel="external">FHIR 4.0.1</a>. </p>
+<p class="ig-footer-links">Links: <a href="toc.html">Table of Contents</a> | <a href="https://spdx.org/licenses/CC0-1.0.html" rel="external">License</a></p>
+</footer>
+
+
+</main>
+</body>
+</html>
