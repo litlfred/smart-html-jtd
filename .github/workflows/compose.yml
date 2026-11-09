@@ -20,8 +20,9 @@ permissions:
 
 env:
   # The cat-harness-tools commit whose `shared-assets.ts stage` lays out the
-  # shared assets (litlfred/cat-harness-tools#1738).
-  TOOLS_REF: main
+  # shared assets (litlfred/cat-harness-tools#1738): the PR's head until it
+  # merges, then a main commit.
+  TOOLS_REF: e58f844a984aca0945dfcc456b76edc51ca27c35
 
 concurrency:
   group: compose-${{ github.ref }}
@@ -78,6 +79,7 @@ jobs:
           else
             git worktree add -q --orphan -b shared _work/shared
           fi
+          [ -f _work/tools/scripts/shared-assets.ts ] || { echo "::error::cat-harness-tools@$TOOLS_REF has no scripts/shared-assets.ts"; exit 1; }
           for d in _work/src/*/; do
             echo "::group::${d}"
             bun run _work/tools/scripts/shared-assets.ts stage --site "$d" --out _work/shared
