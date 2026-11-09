@@ -60,13 +60,15 @@ A workflow (`compose.yml`, on dispatch, on a schedule, or on a
    hash collision with different bytes fails the run.
 4. Renders the layers once into `/_layers/`.
 5. Runs the link check across the whole site.
-6. Uploads the site with `actions/upload-pages-artifact` and deploys with
-   `actions/deploy-pages`.
+6. Pushes the site to the `gh-pages` branch as a single commit that replaces
+   the previous one (owner, 2026-11-09).
 
 ## Why the git repository stays small
 
-- **No `gh-pages` branch.** Pages is deployed from an Actions artifact, so the
-  built site is never committed and history never grows with it.
+- **A one-commit `gh-pages` branch.** Each deploy force-pushes one new commit
+  with no parent, so the branch never holds more than the current site and
+  history does not grow with it. Pages serves it with "Deploy from a branch":
+  `gh-pages` / (root).
 - **No binaries in git.** They are release assets on the IG repositories.
 - **Git holds only** this README, `docs/`, `sites.json` and the compose
   script: kilobytes.

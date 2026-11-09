@@ -1,8 +1,8 @@
 # Compose the merged docs site from the IGs in sites.json and deploy it to
-# GitHub Pages from an Actions artifact: no gh-pages branch, so the built site
-# never enters git history (docs/publishing-workflow.md).
+# the gh-pages branch, one commit per deploy, so the built site never piles up
+# in git history (docs/publishing-workflow.md).
 #
-# Needs Settings → Pages → Source: "GitHub Actions".
+# Needs Settings → Pages → Deploy from a branch → gh-pages / (root).
 name: Compose and deploy
 
 on:
@@ -121,15 +121,30 @@ jobs:
           path: _site
 
   deploy:
+    # Publishes to the gh-pages branch (owner, 2026-11-09: "Use a gh-pages
+    # branch"). Each deploy replaces the branch with ONE new commit, so the
+    # built site never piles up in git history. Settings → Pages → Deploy from
+    # a branch → gh-pages / (root).
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy }}
     needs: compose
     runs-on: ubuntu-latest
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      contents: write
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: _artifact
+      - name: Push the site to gh-pages as one commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir _site && tar -xf _artifact/artifact.tar -C _site
+          touch _site/.nojekyll
+          cd _site
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Compose ${GITHUB_SHA::8}"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/gh-pages
+          echo "deployed $(du -sh . | cut -f1) to gh-pages" >> "$GITHUB_STEP_SUMMARY"
