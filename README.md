@@ -27,6 +27,7 @@ per IG, one folder per release), not the content or the pipeline.
 | [docs/smart-html-pipeline-review.md](docs/smart-html-pipeline-review.md) | How the WHO smart-html pipeline works, where its 9.9 GB comes from, ranked optimisations |
 | [docs/publishing-workflow.md](docs/publishing-workflow.md) | Proposed workflow for this repo: per-IG build, compose, deploy |
 | [docs/binary-publication.md](docs/binary-publication.md) | Why binaries are in git today and how to publish them as release assets |
+| [docs/shared-assets.md](docs/shared-assets.md) | The assets every IG site shares, served once from here: keys, opt-in, how keys get here |
 
 ## Status
 
