@@ -1,0 +1,30 @@
+{
+  "dir": "assets/img/harness/",
+  "digest": "35b81a0d9c84acc3",
+  "files": [
+    "landing-analyst-card.webp",
+    "landing-analyst-laptop.webp",
+    "landing-analyst-mobile.webp",
+    "landing-architecture-card.webp",
+    "landing-architecture-laptop.webp",
+    "landing-architecture-mobile.webp",
+    "landing-bootstrap-card.webp",
+    "landing-bootstrap-laptop.webp",
+    "landing-bootstrap-mobile.webp",
+    "landing-card.webp",
+    "landing-engineer-card.webp",
+    "landing-engineer-laptop.webp",
+    "landing-engineer-mobile.webp",
+    "landing-grumpy-cyborg-agents-card.webp",
+    "landing-grumpy-cyborg-agents-laptop.webp",
+    "landing-grumpy-cyborg-agents-mobile.webp",
+    "landing-laptop.webp",
+    "landing-library-card.webp",
+    "landing-library-laptop.webp",
+    "landing-library-mobile.webp",
+    "landing-mobile.webp",
+    "landing-operations-card.webp",
+    "landing-operations-laptop.webp",
+    "landing-operations-mobile.webp"
+  ]
+}

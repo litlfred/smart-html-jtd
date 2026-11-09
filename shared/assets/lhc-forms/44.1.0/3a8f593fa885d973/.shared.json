@@ -1,0 +1,17 @@
+{
+  "dir": "assets/lhc-forms/44.1.0/",
+  "digest": "3a8f593fa885d973",
+  "files": [
+    "LICENSE.md",
+    "fhir/lformsFHIRAll.min.js",
+    "vendored.json",
+    "webcomponent/assets/lib/zone.min.js",
+    "webcomponent/down_arrow_gray_10_10.png",
+    "webcomponent/lhc-forms.js",
+    "webcomponent/magnifying_glass.png",
+    "webcomponent/main.js",
+    "webcomponent/polyfills.js",
+    "webcomponent/runtime.js",
+    "webcomponent/styles.css"
+  ]
+}
