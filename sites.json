@@ -1,0 +1,9 @@
+{
+  "$comment": "What compose.py publishes. Each IG's main docs build is read from its gh-pages branch (pilot). Later: from a site-<version>.tar.zst release asset.",
+  "base": "/smart-html-jtd",
+  "exclude": ["STAGING/", "branches/", "_render-log/", "ast-data/", "sitepreview/"],
+  "igs": [
+    { "path": "immunizations", "repo": "litlfred/smart-immunizations", "ref": "gh-pages", "title": "SMART Immunizations" },
+    { "path": "base", "repo": "litlfred/smart-base", "ref": "gh-pages", "title": "SMART Base" }
+  ]
+}

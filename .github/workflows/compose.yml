@@ -1,0 +1,135 @@
+# Compose the merged docs site from the IGs in sites.json and deploy it to
+# GitHub Pages from an Actions artifact: no gh-pages branch, so the built site
+# never enters git history (docs/publishing-workflow.md).
+#
+# Needs Settings → Pages → Source: "GitHub Actions".
+name: Compose and deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      deploy:
+        description: "Deploy to Pages (off: build and upload the artifact only)"
+        type: boolean
+        default: true
+  pull_request:
+    paths: ["sites.json", "scripts/**", ".github/workflows/compose.yml"]
+
+permissions:
+  contents: read
+
+env:
+  # The cat-harness-tools commit whose `shared-assets.ts stage` lays out the
+  # shared assets (litlfred/cat-harness-tools#1738): the PR's head until it
+  # merges, then a main commit.
+  TOOLS_REF: 21e99640407c925a6e1f68b5a4a908f5130e8b73
+
+concurrency:
+  group: compose-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compose:
+    runs-on: ubuntu-latest
+    permissions:
+      # Pushes new keys to the `shared` branch, on a dispatch only.
+      contents: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - name: Fetch each IG's main docs build (no previews, no branch copies)
+        run: |
+          set -euo pipefail
+          mkdir -p _work/src
+          python3 - <<'PY' > _work/igs.tsv
+          import json
+          c = json.load(open("sites.json"))
+          for ig in c["igs"]:
+              print(ig["path"], ig["repo"], ig.get("ref", "gh-pages"), sep="\t")
+          PY
+          excl=$(python3 -c 'import json;print("\n".join("!/"+e for e in json.load(open("sites.json"))["exclude"]))')
+          while IFS=$'\t' read -r path repo ref; do
+            d="_work/src/$path"
+            git clone -q --depth 1 --filter=blob:none --no-checkout --branch "$ref" "https://github.com/$repo" "$d"
+            git -C "$d" sparse-checkout set --no-cone '/*' $excl
+            git -C "$d" checkout -q "$ref"
+            echo "$path: $(du -sh "$d" --exclude=.git | cut -f1)"
+          done < _work/igs.tsv
+
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.4.4
+
+      # Shared assets (owner, 2026-11-09, Q-SZ-7 "A"): LHC-Forms, the editor
+      # bundle and the harness images, which an IG site whose index.config.json
+      # names this site as `site.sharedAssets` loads from here instead of
+      # carrying. Each lands at shared/<dir>/<key>/, and the `shared` branch
+      # keeps every key ever served, so a site built months ago still finds
+      # its bytes. An IG build that finds its key not served keeps its own
+      # copy; the next compose stages that copy from the IG's build, and the
+      # IG's next build shares it.
+      - name: Stage the shared assets from each IG's build
+        run: |
+          set -euo pipefail
+          git init -q _work/tools
+          git -C _work/tools fetch -q --depth 1 https://github.com/litlfred/cat-harness-tools.git "$TOOLS_REF"
+          git -C _work/tools checkout -q FETCH_HEAD
+          if git fetch -q --depth 1 origin shared; then
+            git worktree add -q _work/shared FETCH_HEAD
+          else
+            git worktree add -q --orphan -b shared _work/shared
+          fi
+          [ -f _work/tools/scripts/shared-assets.ts ] || { echo "::error::cat-harness-tools@$TOOLS_REF has no scripts/shared-assets.ts"; exit 1; }
+          for d in _work/src/*/; do
+            echo "::group::${d}"
+            bun run _work/tools/scripts/shared-assets.ts stage --site "$d" --out _work/shared
+            echo "::endgroup::"
+          done
+
+      - name: Keep the new keys on the shared branch (dispatch only)
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          cd _work/shared
+          git add -A shared
+          if git diff --cached --quiet; then echo "no new shared key"; exit 0; fi
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "shared assets: $(git diff --cached --name-only | grep -c '/.shared.json$') new key(s)"
+          git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/shared
+
+      - name: Compose
+        run: python3 scripts/compose.py --sites sites.json --src _work/src --out _site --report _site/compose-report.json
+
+      - name: Serve the shared assets
+        run: |
+          [ -d _work/shared/shared ] && cp -r _work/shared/shared _site/shared || echo "no shared assets yet"
+
+      - name: Size report
+        run: |
+          {
+            echo "### Composed site"
+            echo
+            echo '```'
+            du -sh _site
+            du -sh _site/* | sort -rh | head -20
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy }}
+    needs: compose
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
