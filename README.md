@@ -13,8 +13,8 @@ per IG, one folder per release), not the content or the pipeline.
 1. **One site, every IG.** `/<ig>/` is the current build, `/<ig>/<version>/` a release.
 2. **Shared things once.** Theme assets, form tools, viewers and the harness's
    own docs live once at the root and every IG points at them.
-3. **A small git repository.** The site is pushed to `gh-pages` as one commit
-   that replaces the last, so history does not grow. Git holds only this README, the docs, the site list and the
+3. **A small source repository.** The site is published to `gh-pages` with
+   the platform's publisher, like every IG. Git holds only this README, the docs, the site list and the
    compose script.
 4. **Binaries are release assets, not git blobs.** Packages, zips and databases
    are attached to the IG repository's GitHub Release for that version.

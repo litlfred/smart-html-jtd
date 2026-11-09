@@ -1,6 +1,6 @@
 # Compose the merged docs site from the IGs in sites.json and deploy it to
-# the gh-pages branch, one commit per deploy, so the built site never piles up
-# in git history (docs/publishing-workflow.md).
+# the gh-pages branch with the platform publisher (publish-gh-pages.sh), as
+# every IG site does (docs/publishing-workflow.md).
 #
 # Needs Settings → Pages → Deploy from a branch → gh-pages / (root).
 name: Compose and deploy
@@ -121,30 +121,66 @@ jobs:
           path: _site
 
   deploy:
-    # Publishes to the gh-pages branch (owner, 2026-11-09: "Use a gh-pages
-    # branch"). Each deploy replaces the branch with ONE new commit, so the
-    # built site never piles up in git history. Settings → Pages → Deploy from
-    # a branch → gh-pages / (root).
+    # Publishes to the gh-pages branch with the platform's own publisher,
+    # cat-harness-tools/scripts/publish-gh-pages.sh, the one every folio and IG
+    # site uses (owner, 2026-11-09: "Use a gh-pages branch"; standard practice).
+    # Settings → Pages → Deploy from a branch → gh-pages / (root).
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.deploy }}
     needs: compose
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    concurrency:
+      group: gh-pages
+      cancel-in-progress: false
     steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version: 1.4.4
+
       - uses: actions/download-artifact@v4
         with:
           name: github-pages
           path: _artifact
-      - name: Push the site to gh-pages as one commit
-        env:
-          GH_TOKEN: ${{ github.token }}
+
+      - name: Unpack the composed site
         run: |
           set -euo pipefail
           mkdir _site && tar -xf _artifact/artifact.tar -C _site
           touch _site/.nojekyll
-          cd _site
-          git init -q -b gh-pages
-          git add -A
-          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "Compose ${GITHUB_SHA::8}"
-          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/gh-pages
-          echo "deployed $(du -sh . | cut -f1) to gh-pages" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Fetch the platform publisher
+        run: |
+          set -euo pipefail
+          git init -q cat-harness-tools
+          git -C cat-harness-tools fetch -q --depth 1 https://github.com/litlfred/cat-harness-tools.git "$TOOLS_REF"
+          git -C cat-harness-tools checkout -q FETCH_HEAD
+          (cd cat-harness-tools && bun install --frozen-lockfile --ignore-scripts)
+
+      - name: Check out gh-pages (made empty the first time)
+        run: |
+          set -euo pipefail
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          if ! git ls-remote --exit-code --heads origin gh-pages >/dev/null; then
+            git worktree add -q --orphan -b gh-pages _pages
+            touch _pages/.nojekyll
+            git -C _pages add .nojekyll
+            git -C _pages commit -qm "docs(gh-pages): start the branch"
+            git -C _pages push -q origin HEAD:gh-pages
+          else
+            git fetch -q --depth 1 origin gh-pages
+            git worktree add -q _pages FETCH_HEAD
+          fi
+
+      - name: Publish
+        env:
+          SITE: _site
+          STATE: _work/restore-staging.json
+          COMMIT_SHA: ${{ github.sha }}
+          PAGES_DIR: _pages
+        run: |
+          mkdir -p _work
+          bash cat-harness-tools/scripts/publish-gh-pages.sh
