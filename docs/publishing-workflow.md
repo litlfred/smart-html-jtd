@@ -1,5 +1,14 @@
 # Publishing workflow (proposed)
 
+> **Status, 2026-11-09.** Built so far: `/<ig>/` (each IG's current build,
+> copied from its gh-pages), `/shared/<dir>/<key>/` (the shared assets, see
+> [shared-assets.md](shared-assets.md)), and the deploy to `gh-pages` with the
+> platform's publisher. Not built yet: `/<ig>/<version>/`, `/_layers/`, the
+> landing page and `site.tar.zst` release assets. The mounted layers' pages
+> are no longer copied into each IG at all (cat-harness-tools#1720 scopes
+> them out), so `/_layers/` may not be needed. Where this page and the code
+> differ, the code is current and this page is the plan.
+
 How the just-the-docs builds of all SMART IGs become one site here, with a git
 repository that stays small.
 
@@ -7,8 +16,8 @@ repository that stays small.
 
 ```
 /                         landing: list of IGs and their versions
-/_shared/<hash>/...       theme + tool bundles (form builder, LHC-Forms, PDF viewer,
-                          Prism, search runtime), one copy per content hash
+/shared/<dir>/<key>/...   LHC-Forms, the editor bundle, the harness images:
+                          one copy per content key (built)
 /_layers/<layer>/...      harness and core docs (cat-harness, folio-assistant-core,
                           fhir-harness, smart-base, who-iris), rendered once
 /<ig>/                    current build of that IG: its own pages, FHIR JSON,
@@ -60,13 +69,15 @@ A workflow (`compose.yml`, on dispatch, on a schedule, or on a
    hash collision with different bytes fails the run.
 4. Renders the layers once into `/_layers/`.
 5. Runs the link check across the whole site.
-6. Uploads the site with `actions/upload-pages-artifact` and deploys with
-   `actions/deploy-pages`.
+6. Publishes to the `gh-pages` branch with the platform's own publisher,
+   `cat-harness-tools/scripts/publish-gh-pages.sh`, the same full-replace
+   commit every folio and IG site uses (owner, 2026-11-09).
 
 ## Why the git repository stays small
 
-- **No `gh-pages` branch.** Pages is deployed from an Actions artifact, so the
-  built site is never committed and history never grows with it.
+- **A `gh-pages` branch like every other site.** Each deploy is one
+  full-replace commit. History grows with each deploy, as on every IG; Pages
+  serves it with "Deploy from a branch": `gh-pages` / (root).
 - **No binaries in git.** They are release assets on the IG repositories.
 - **Git holds only** this README, `docs/`, `sites.json` and the compose
   script: kilobytes.
