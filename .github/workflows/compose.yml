@@ -23,6 +23,11 @@ env:
   # shared assets (litlfred/cat-harness-tools#1738): the PR's head until it
   # merges, then a main commit.
   TOOLS_REF: 21e99640407c925a6e1f68b5a4a908f5130e8b73
+  # The layers the publisher imports, at the commits pinned beside TOOLS_REF
+  # in litlfred/smart-immunizations' index.lock.json (#121).
+  CAT_HARNESS_REF: 8d4c141c55199e2f1e502142279e94b3fcb492ad
+  BOOTSTRAP_TOOLS_REF: 30c4585d5dfbf6960e3ecca86b18d131d6cd3921
+  BOOTSTRAP_REF: 9435037232a09950ffe442bb4b00cb7da54b5985
 
 concurrency:
   group: compose-${{ github.ref }}
@@ -151,13 +156,22 @@ jobs:
           mkdir _site && tar -xf _artifact/artifact.tar -C _site
           touch _site/.nojekyll
 
-      - name: Fetch the platform publisher
+      # The publisher's scripts import the layers below cat-harness-tools, so
+      # they are laid down beside it at the commits smart-immunizations'
+      # index.lock.json pins with the same TOOLS_REF, with one node_modules at
+      # the root the way a mounted repository has it.
+      - name: Fetch the platform publisher and the layers it imports
         run: |
           set -euo pipefail
-          git init -q cat-harness-tools
-          git -C cat-harness-tools fetch -q --depth 1 https://github.com/litlfred/cat-harness-tools.git "$TOOLS_REF"
-          git -C cat-harness-tools checkout -q FETCH_HEAD
-          (cd cat-harness-tools && bun install --frozen-lockfile --ignore-scripts)
+          for p in "cat-harness-tools $TOOLS_REF" "cat-harness $CAT_HARNESS_REF" \
+                   "bootstrap-tools $BOOTSTRAP_TOOLS_REF" "bootstrap $BOOTSTRAP_REF"; do
+            set -- $p
+            git init -q "$1"
+            git -C "$1" fetch -q --depth 1 "https://github.com/litlfred/$1.git" "$2"
+            git -C "$1" checkout -q FETCH_HEAD
+          done
+          (cd cat-harness-tools && bun install --ignore-scripts)
+          ln -s cat-harness-tools/node_modules node_modules
 
       - name: Check out gh-pages (made empty the first time)
         run: |
