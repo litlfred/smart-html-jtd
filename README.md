@@ -27,7 +27,8 @@ per IG, one folder per release), not the content or the pipeline.
 | [docs/smart-html-pipeline-review.md](docs/smart-html-pipeline-review.md) | How the WHO smart-html pipeline works, where its 9.9 GB comes from, ranked optimisations |
 | [docs/publishing-workflow.md](docs/publishing-workflow.md) | Proposed workflow for this repo: per-IG build, compose, deploy |
 | [docs/binary-publication.md](docs/binary-publication.md) | Why binaries are in git today and how to publish them as release assets |
-| [scripts/landing.py](scripts/landing.py) | The landing page: a publications table shaped like smart.who.int's, in the IG sites' theme, drawn from the fields in `sites.json` |
+| [scripts/landing.py](scripts/landing.py) | The landing page: publication tables shaped like smart.who.int's, in the IG sites' theme |
+| [scripts/catalog.py](scripts/catalog.py) | Builds the landing tables from every harnessed, published `smart-*` / `dth-*` repository (guidelines, L2 documents, shared foundations) |
 | [docs/shared-assets.md](docs/shared-assets.md) | The assets every IG site shares, served once from here: keys, opt-in, how keys get here |
 
 ## Status

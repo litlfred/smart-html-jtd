@@ -1,26 +1,18 @@
 #!/usr/bin/env python3
-"""Render the merged site's landing page (index.html) from sites.json.
+"""Render the merged site's landing page (index.html).
 
-    python3 scripts/landing.py --sites sites.json --out _site/index.html
+    python3 scripts/landing.py --sites sites.json --catalog catalog.json --out _site/index.html
 
 The page has the shape of smart.who.int's "SMART Guideline Publications"
 table (health domain with its cover, publication date, the DAK, the DAK
 components, the FHIR IG and its source), drawn in the theme the IG sites use
 (page-layout.css: the blue page bar, system font, the same colour tokens and
-dark scheme). It is one self-contained file, so it needs nothing from any IG
-folder and nothing outside this site except the cover images.
+dark scheme). It is one self-contained file except for the cover images.
 
-Each IG in sites.json may carry:
-
-  "domain"     health domain shown in the first column (default: title)
-  "cover"      URL of the DAK cover image
-  "published"  publication date as shown, e.g. "January 2025"
-  "dak"        {"title", "url"}: the L2 publication (PDF / IRIS page)
-  "components" [{"title", "page"} | {"title", "url"}]: DAK components; a
-               `page` is relative to this IG's folder on this site
-  "section"    "publications" (default) or "foundations": the second list
-               holds shared IGs with no DAK of their own (smart-base)
-  "summary"    one line under a foundation's name
+Rows come from the catalogue scripts/catalog.py builds from the repositories
+(three sections: guidelines, L2 documents such as the DTHs and smart-ra, and
+shared foundations). Without a catalogue it lists only the IGs in sites.json.
+A filter box narrows every section as you type.
 """
 import argparse
 import datetime
@@ -88,6 +80,12 @@ h2{font-size:1.3rem;margin:2.5rem 0 .75rem;border-bottom:1px solid var(--fa-pl-l
 .found .links a{display:inline-flex;gap:.4rem;align-items:flex-start;text-decoration:none}
 footer{background:var(--bar-bg);color:var(--bar-fg);text-align:center;font-size:.82rem;padding:.75rem 1.5rem}
 footer a{color:inherit}
+.meta{display:block;color:var(--fa-pl-muted);font-size:.8rem;margin-top:.15rem}
+.count{font-size:.85rem;font-weight:400;color:var(--fa-pl-muted)}
+.filter{display:flex;gap:.6rem;align-items:center;margin:1rem 0 0;max-width:32rem}
+.filter label{font-weight:600}
+.filter input{flex:1;font:inherit;padding:.4rem .6rem;border:1px solid var(--fa-pl-line);border-radius:4px;background:var(--fa-pl-bg);color:var(--fa-pl-fg)}
+.pubs{margin-top:.75rem}
 @media (max-width:52rem){
   .pubs,.pubs tbody,.pubs tr,.pubs td{display:block;width:100%}
   .pubs thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
@@ -109,54 +107,148 @@ def link(kind, href, text, external=False):
     return f'<li>{ICON[kind]}<a href="{E(href)}"{rel}>{E(text)}</a></li>'
 
 
-def href_for(ig, item):
-    return item["url"] if "url" in item else f'{ig["path"]}/{item["page"]}'
+def ul(items):
+    return f'<ul>{"".join(items)}</ul>' if items else '<span class="na">Not available</span>'
 
 
-def pub_row(ig):
-    domain = ig.get("domain", ig.get("title", ig["path"]))
+def at(e, page):
+    return e["site"] + page
+
+
+def fmt_date(s):
+    """2024-12-06 -> December 2024; a year or free text stays as written."""
+    if not s:
+        return ""
+    try:
+        return datetime.date.fromisoformat(s).strftime("%B %Y")
+    except ValueError:
+        return s
+
+
+def meta_line(e):
+    bits = [f'v{e["version"]}' if e.get("version") else "", e.get("releaseLabel") or e.get("status") or ""]
+    bits = [b for b in bits if b]
+    return f'<small class="meta">{E(" · ".join(bits))}</small>' if bits else ""
+
+
+def l3_links(e):
+    out = []
+    if e.get("fhirIg"):
+        label = "FHIR Implementation Guide (draft)"
+        out.append(link("fhir", e["site"], label, not e["hostedHere"]))
+        if e.get("upstream", {}).get("ciBuild"):
+            out.append(link("fhir", e["upstream"]["ciBuild"], "WHO CI build", True))
+    out.append(link("github", e["github"], "GitHub", True))
+    if e.get("upstream"):
+        out.append(link("github", e["upstream"]["github"], "WHO repository", True))
+    return out
+
+
+def search_text(e):
+    return E(" ".join(str(x) for x in [e.get("domain"), e.get("title"), e["name"], e.get("layer")] if x).lower())
+
+
+def guideline_row(e):
+    domain = e.get("domain") or e.get("title") or e["name"]
+    sub = f'<small class="meta">{E(e["title"])}</small>' if e.get("domain") and e.get("title") else ""
     cover = ""
-    if ig.get("cover"):
-        cover = f'<img class="cover" src="{E(ig["cover"])}" alt="Cover of the {E(domain)} Digital Adaptation Kit" loading="lazy" width="100" height="135" onerror="this.remove()">'
-    dak = ig.get("dak")
-    dak_cell = f'<ul>{link("pdf", dak["url"], dak.get("title", "Digital Adaptation Kit"), True)}</ul>' if dak else '<span class="na">Not available</span>'
-    comps = ig.get("components") or []
-    comp_cell = "<ul>" + "".join(link("page", href_for(ig, c), c["title"], "url" in c) for c in comps) + "</ul>" if comps else '<span class="na">Not available</span>'
-    l3 = [link("fhir", f'{ig["path"]}/', "FHIR Implementation Guide"),
-          link("github", f'https://github.com/{ig["repo"]}', "GitHub", True)]
-    return ("<tr>"
-            f'<td data-label="Health domain"><span class="domain">{E(domain)}</span>{cover}</td>'
-            f'<td data-label="Publication date">{E(ig.get("published", "")) or "<span class=na>Not published</span>"}</td>'
+    if e.get("cover"):
+        cover = f'<img class="cover" src="{E(e["cover"])}" alt="Cover of the {E(domain)} Digital Adaptation Kit" loading="lazy" width="100" height="135" onerror="this.remove()">'
+    dak = e.get("dak")
+    dak_cell = ul([link("pdf", dak["url"], dak.get("title", "Digital Adaptation Kit"), True)] if dak else [])
+    comps = [link("page", c.get("url") or at(e, c["page"]), c["title"], "url" in c or not e["hostedHere"]) for c in e.get("components", [])]
+    date = e.get("published") or fmt_date(e.get("date"))
+    return (f'<tr data-search="{search_text(e)}">'
+            f'<td data-label="Health domain"><span class="domain">{E(domain)}</span>{sub}{cover}</td>'
+            f'<td data-label="Publication date">{E(date) or "<span class=na>Draft</span>"}{meta_line(e)}</td>'
             f'<td data-label="Digital Adaptation Kit (DAK, L2)">{dak_cell}</td>'
-            f'<td data-label="DAK components (L2)">{comp_cell}</td>'
-            f'<td data-label="FHIR Implementation Guide (L3)"><ul>{"".join(l3)}</ul></td>'
+            f'<td data-label="DAK components (L2)">{ul(comps)}</td>'
+            f'<td data-label="FHIR Implementation Guide (L3)">{ul(l3_links(e))}</td>'
             "</tr>")
 
 
-def foundation(ig):
-    title = ig.get("title", ig["path"])
-    summary = f'<p>{E(ig["summary"])}</p>' if ig.get("summary") else ""
-    return (f'<li><h3>{E(title)}</h3>{summary}<div class="links">'
-            f'<a href="{E(ig["path"])}/">{ICON["fhir"]}<span>FHIR Implementation Guide</span></a>'
-            f'<a href="https://github.com/{E(ig["repo"])}" rel="noopener">{ICON["github"]}<span>GitHub</span></a>'
+def document_row(e):
+    title = e.get("title") or e["name"]
+    sub = f'<small class="meta">{E(e["subtitle"])}</small>' if e.get("subtitle") else ""
+    links = e.get("links") or []
+    main_doc = [link("page", at(e, links[0]["page"]), links[0]["title"], not e["hostedHere"])] if links else [link("page", e["site"], "Site", not e["hostedHere"])]
+    parts = [link("page", at(e, l["page"]), l["title"], not e["hostedHere"]) for l in links[1:]]
+    kind = e.get("documentKind") or ""
+    return (f'<tr data-search="{search_text(e)}">'
+            f'<td data-label="Handbook"><span class="domain">{E(title)}</span>{sub}</td>'
+            f'<td data-label="Date">{E(fmt_date(e.get("date"))) or "<span class=na>Not dated</span>"}'
+            f'{f"<small class=meta>{E(kind)}</small>" if kind else ""}</td>'
+            f'<td data-label="L2 document">{ul(main_doc)}</td>'
+            f'<td data-label="Components (L2)">{ul(parts)}</td>'
+            f'<td data-label="Source">{ul(l3_links(e))}</td>'
+            "</tr>")
+
+
+def foundation(e):
+    title = e.get("title") or e["name"]
+    summary = f'<p>{E(e["summary"])}</p>' if e.get("summary") else ""
+    return (f'<li data-search="{search_text(e)}"><h3>{E(title)}</h3>{meta_line(e)}{summary}<div class="links">'
+            f'<a href="{E(e["site"])}">{ICON["fhir"]}<span>FHIR Implementation Guide (draft)</span></a>'
+            f'<a href="{E(e["github"])}" rel="noopener">{ICON["github"]}<span>GitHub</span></a>'
             "</div></li>")
 
 
-def render(cfg, updated=None):
+def entries_from_sites(cfg):
+    """No catalogue (offline): one entry per IG this site hosts, from sites.json alone."""
+    base = cfg.get("base", "").rstrip("/")
+    found = cfg.get("catalog", {}).get("foundations", [])
+    over = cfg.get("catalog", {}).get("overrides", {})
+    out = []
+    for ig in cfg["igs"]:
+        name = ig["repo"].split("/")[1]
+        e = {"repo": ig["repo"], "name": name, "site": f'{base}/{ig["path"]}/', "hostedHere": True,
+             "github": f'https://github.com/{ig["repo"]}', "title": ig.get("title"), "fhirIg": True,
+             "section": "foundations" if name in found else "guidelines", "components": [], "links": []}
+        e.update(over.get(name, {}))
+        out.append(e)
+    return out
+
+
+TABLE_JS = """
+(function(){var q=document.getElementById("filter");if(!q)return;
+var rows=[].slice.call(document.querySelectorAll("[data-search]"));
+var counts=[].slice.call(document.querySelectorAll("[data-count]"));
+function run(){var v=q.value.trim().toLowerCase();rows.forEach(function(r){r.hidden=!!v&&r.getAttribute("data-search").indexOf(v)<0});
+counts.forEach(function(c){var box=document.getElementById(c.getAttribute("data-count"));var n=box.querySelectorAll("[data-search]:not([hidden])").length;c.textContent=n+(n===1?" entry":" entries")})}
+q.addEventListener("input",run);run()})();
+"""
+
+
+def render(cfg, entries=None, updated=None):
+    entries = entries if entries is not None else entries_from_sites(cfg)
     site = cfg.get("site", {})
     title = site.get("title", "SMART Guidelines")
     subtitle = site.get("subtitle", "Implementation Guide docs builds")
     updated = updated or datetime.datetime.now(datetime.timezone.utc).strftime("%B %Y")
-    pubs = [ig for ig in cfg["igs"] if ig.get("section", "publications") == "publications"]
-    founds = [ig for ig in cfg["igs"] if ig.get("section") == "foundations"]
     official = site.get("official", "https://smart.who.int/")
     initiative = site.get("initiative", "https://www.who.int/teams/digital-health-and-innovation/smart-guidelines")
-    rows = "\n".join(pub_row(ig) for ig in pubs)
+    key = lambda e: (e.get("domain") or e.get("title") or e["name"]).lower()
+    guides = sorted((e for e in entries if e.get("section") == "guidelines"), key=key)
+    docs = sorted((e for e in entries if e.get("section") == "documents"), key=key)
+    founds = sorted((e for e in entries if e.get("section") == "foundations"), key=key)
+    nav = ['<a href="#publications">Guidelines</a>']
+    if docs:
+        nav.append('<a href="#handbooks">Handbooks</a>')
+    if founds:
+        nav.append('<a href="#foundations">Shared foundations</a>')
+    docs_html = ""
+    if docs:
+        docs_html = ('<h2 id="handbooks">Digital Transformation Handbooks (L2) <small class="count" data-count="docs-table"></small></h2>'
+                     "<p>L2 documents built on WHO Digital Transformation Handbooks and the DPI-H Reference Architecture, "
+                     "with their glossary, ArchiMate and review pages.</p>"
+                     '<table class="pubs" id="docs-table"><thead><tr><th scope="col">Handbook</th><th scope="col">Date</th>'
+                     '<th scope="col">L2 document</th><th scope="col">Components<br>(L2)</th><th scope="col">Source</th></tr></thead>'
+                     f'<tbody>{"".join(document_row(e) for e in docs)}</tbody></table>')
     found_html = ""
     if founds:
-        found_html = ('<h2 id="foundations">Shared foundations</h2>'
+        found_html = ('<h2 id="foundations">Shared foundations <small class="count" data-count="found-list"></small></h2>'
                       "<p>Implementation Guides every SMART Guideline builds on.</p>"
-                      f'<ul class="found">{"".join(foundation(ig) for ig in founds)}</ul>')
+                      f'<ul class="found" id="found-list">{"".join(foundation(e) for e in founds)}</ul>')
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -172,27 +264,31 @@ def render(cfg, updated=None):
 <body>
 <nav class="fa-page-bar" aria-label="Site">
 <a class="bar-home" href="./">{E(title)}</a>
-<a href="#publications">Publications</a>{'<a href="#foundations">Shared foundations</a>' if founds else ''}
+{"".join(nav)}
 <a href="{E(official)}" rel="noopener">smart.who.int</a>
 </nav>
 <header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true">S</span><span>{E(title)}<small>{E(subtitle)}</small></span></div></header>
 <main id="main-content">
 <h1 id="publications">SMART Guideline Publications</h1>
 <div class="lede">
-<p>The table below lists the SMART Guidelines published on this site, with links to each Digital Adaptation Kit (L2), its components, and the docs build of its FHIR Implementation Guide (L3).</p>
+<p>The tables below list every harnessed SMART Guideline and Digital Transformation Handbook, with links to each Digital Adaptation Kit (L2), its components, and the draft build of its FHIR Implementation Guide (L3). They are built from the repositories themselves each time the site is composed.</p>
 <p>For more information on the WHO SMART Guidelines initiative, <a href="{E(initiative)}" rel="noopener">visit here</a>. The official publications are at <a href="{E(official)}" rel="noopener">smart.who.int</a>.</p>
 </div>
 <p class="updated">Last updated: {E(updated)}</p>
-<table class="pubs">
+<div class="filter"><label for="filter">Filter</label><input id="filter" type="search" placeholder="Health domain, title or repository" autocomplete="off"></div>
+<h2 id="guidelines">SMART Guidelines (DAK, L2 and FHIR IG, L3) <small class="count" data-count="guides-table"></small></h2>
+<table class="pubs" id="guides-table">
 <thead><tr><th scope="col">Health domain</th><th scope="col">Publication date</th><th scope="col">Digital Adaptation Kit<br>(DAK, L2)</th><th scope="col">DAK components<br>(L2)</th><th scope="col">FHIR Implementation Guide<br>(L3)</th></tr></thead>
 <tbody>
-{rows}
+{"".join(guideline_row(e) for e in guides)}
 </tbody>
 </table>
+{docs_html}
 {found_html}
-<p class="note">These are docs-only builds of each Implementation Guide. The FHIR package, downloads and the IG Publisher build stay with each guide's own release.</p>
+<p class="note">These are draft, docs-only builds. The FHIR package, downloads and the IG Publisher build stay with each guide's own release.</p>
 </main>
 <footer><a href="{E(official)}" rel="noopener">smart.who.int</a> · <a href="https://github.com/{E(site.get('repo', 'litlfred/smart-html-jtd'))}" rel="noopener">Source</a></footer>
+<script>{TABLE_JS}</script>
 </body>
 </html>
 """
@@ -201,13 +297,15 @@ def render(cfg, updated=None):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sites", required=True)
+    ap.add_argument("--catalog", help="catalogue from scripts/catalog.py (default: only the IGs in sites.json)")
     ap.add_argument("--out", required=True)
     ap.add_argument("--updated", help='date shown as "Last updated" (default: this month)')
     a = ap.parse_args()
     cfg = json.load(open(a.sites, encoding="utf-8"))
+    entries = json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, "w", encoding="utf-8") as fh:
-        fh.write(render(cfg, a.updated))
+        fh.write(render(cfg, entries, a.updated))
     print(f"wrote {a.out}")
     return 0
 

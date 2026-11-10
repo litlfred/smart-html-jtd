@@ -1,5 +1,5 @@
 {
-  "$comment": "What compose.py publishes. Each IG's main docs build is read from its gh-pages branch (pilot). Later: from a site-<version>.tar.zst release asset. Landing page fields (domain, cover, published, dak, components, section, summary): scripts/landing.py.",
+  "$comment": "What compose.py publishes. Each IG's main docs build is read from its gh-pages branch (pilot). Later: from a site-<version>.tar.zst release asset. `catalog` drives the landing page (scripts/catalog.py, scripts/landing.py).",
   "base": "/smart-html-jtd",
   "exclude": [
     "STAGING/",
@@ -13,45 +13,53 @@
       "path": "immunizations",
       "repo": "litlfred/smart-immunizations",
       "ref": "gh-pages",
-      "title": "SMART Immunizations",
-      "domain": "Immunizations",
-      "cover": "https://iris.who.int/server/api/core/bitstreams/02d65009-2da0-4091-97eb-5a9d182aa9fb/content",
-      "published": "January 2025",
-      "dak": {
-        "title": "Digital Adaptation Kit",
-        "url": "https://www.who.int/publications/i/item/9789240099456"
-      },
-      "components": [
-        {
-          "title": "Core data dictionary",
-          "page": "dictionary.html"
-        },
-        {
-          "title": "Decision support and scheduling logic",
-          "page": "decision-logic.html"
-        },
-        {
-          "title": "Indicator table",
-          "page": "indicators.html"
-        },
-        {
-          "title": "Functional and non-functional requirements",
-          "page": "system-requirements.html"
-        }
-      ]
+      "title": "SMART Immunizations"
     },
     {
       "path": "base",
       "repo": "litlfred/smart-base",
       "ref": "gh-pages",
-      "title": "SMART Base",
-      "section": "foundations",
-      "summary": "Shared profiles, extensions, terminology and the DAK model that every SMART IG uses."
+      "title": "SMART Base"
     }
   ],
   "site": {
     "title": "SMART Guidelines",
     "subtitle": "Implementation Guide docs builds",
     "repo": "litlfred/smart-html-jtd"
+  },
+  "catalog": {
+    "$comment": "The landing table is built by scripts/catalog.py from every harnessed, published repository of `owner` named with one of `prefixes`. Only what no repository holds is kept here, under `overrides` (keyed by repository name).",
+    "owner": "litlfred",
+    "prefixes": [
+      "smart-",
+      "dth-"
+    ],
+    "upstream": "WorldHealthOrganization",
+    "foundations": [
+      "smart-base",
+      "smart-base-clinical",
+      "smart-core"
+    ],
+    "exclude": [],
+    "overrides": {
+      "smart-immunizations": {
+        "domain": "Immunizations",
+        "cover": "https://iris.who.int/server/api/core/bitstreams/02d65009-2da0-4091-97eb-5a9d182aa9fb/content",
+        "published": "January 2025",
+        "dak": {
+          "title": "Digital Adaptation Kit",
+          "url": "https://www.who.int/publications/i/item/9789240099456"
+        }
+      },
+      "smart-hiv": {
+        "domain": "HIV",
+        "cover": "https://iris.who.int/server/api/core/bitstreams/a3f36420-7690-46dd-a3d6-ac1efbae3576/content",
+        "published": "February 2024",
+        "dak": {
+          "title": "Digital Adaptation Kit",
+          "url": "https://www.who.int/publications/i/item/9789240085138"
+        }
+      }
+    }
   }
 }

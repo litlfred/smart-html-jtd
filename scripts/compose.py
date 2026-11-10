@@ -140,6 +140,7 @@ def main():
     ap.add_argument("--src", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--report")
+    ap.add_argument("--catalog", help="landing-page catalogue from scripts/catalog.py")
     a = ap.parse_args()
     cfg = json.load(open(a.sites))
     base = cfg.get("base", "").rstrip("/")
@@ -168,7 +169,7 @@ def main():
         mine = {d: h for d, h in chosen.items() if hashes[ig["path"]].get(d, (None,))[0] == h}
         report["igs"][ig["path"]]["rewritten_files"] = rewrite_refs(os.path.join(a.out, ig["path"]), ig["path"], mine, base)
     with open(os.path.join(a.out, "index.html"), "w", encoding="utf-8") as fh:
-        fh.write(landing.render(cfg))
+        fh.write(landing.render(cfg, json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None))
     open(os.path.join(a.out, ".nojekyll"), "w").close()
     total = sum(os.path.getsize(os.path.join(a.out, r)) for r in files_under(a.out))
     report["bytes_total"] = total
