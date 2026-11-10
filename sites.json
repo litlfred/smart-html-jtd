@@ -61,7 +61,8 @@
         }
       },
       "smart-ra": {
-        "role": "reference-architecture"
+        "role": "reference-architecture",
+        "short": "DPI-H Reference Architecture"
       }
     }
   }

@@ -13,7 +13,11 @@ build). The script:
    references in each IG's text files (html, js, css, json, ...) to the shared
    copy, as site-absolute URLs under `base`;
 3. points each page's rail Home at this site's landing page (data-fa-home);
-4. writes <out>/index.html, the publications table (scripts/landing.py), and a report of what it shared.
+4. writes <out>/index.html, the publications table (scripts/landing.py), in
+   the IG sites' own chrome: their assets are copied from a hosted IG into
+   <out>/assets/, and every hosted IG's search index is folded into the
+   landing page's, so its top bar searches the whole site;
+5. writes a report of what it shared.
 
 Only whole directories are shared, so files inside a shared directory keep
 finding each other by relative path.
@@ -136,6 +140,46 @@ def rewrite_refs(site, ig_path, shared, base):
     return changed
 
 
+# The IG page chrome the landing page wears (top bar, search, language
+# picker, left navbar), copied from the first hosted IG that has it.
+CHROME = ["page-layout.css", "page-layout.js", "css/docs-ui.css", "js/docs-ui.js",
+          "css/navbar.css", "js/navbar.js", "ig-search.js", "ig-pages.css", "ig-artifact.css"]
+
+
+def landing_chrome(cfg, src, out):
+    """Copy the chrome assets into <out>/assets/ and fold every hosted IG's
+    search index into the landing page's, so the top bar searches all of them."""
+    used = None
+    for ig in cfg["igs"]:
+        root = os.path.join(src, ig["path"], "assets")
+        if all(os.path.isfile(os.path.join(root, f)) for f in CHROME):
+            for f in CHROME:
+                os.makedirs(os.path.dirname(os.path.join(out, "assets", f)), exist_ok=True)
+                shutil.copyfile(os.path.join(root, f), os.path.join(out, "assets", f))
+            used = ig["path"]
+            break
+    ix_path = os.path.join(out, "assets", "ig-search.json")
+    ix = json.load(open(ix_path, encoding="utf-8"))
+    for ig in cfg["igs"]:
+        p = os.path.join(src, ig["path"], "assets", "ig-search.json")
+        if not os.path.isfile(p):
+            continue
+        sub = json.load(open(p, encoding="utf-8"))
+        # The IG's base is relative to its assets/; ours is the site root.
+        prefix = os.path.normpath(os.path.join(ig["path"], "assets", sub.get("base", "../"))).replace(os.sep, "/")
+        prefix = "" if prefix == "." else prefix + "/"
+        label = ig.get("title") or ig["path"]
+        for e in sub.get("entries", []):
+            h = e.get("h", "")
+            if not re.match(r"^[a-z]+:|^/|^#", h):
+                h = prefix + h
+            ix["entries"].append({k: v for k, v in {"t": e.get("t"), "h": h, "k": e.get("k"),
+                                                     "d": " · ".join(x for x in [label, e.get("d")] if x)}.items() if v})
+    with open(ix_path, "w", encoding="utf-8") as fh:
+        json.dump(ix, fh, ensure_ascii=False, separators=(",", ":"))
+    return {"chrome_from": used, "search_entries": len(ix["entries"])}
+
+
 RAIL_BLOCK = re.compile(r'(<script type="application/json" id="fa-rail" data-fa-root="[^"]*" data-fa-to-root="[^"]*")(?: data-fa-home="[^"]*")?>')
 
 
@@ -200,8 +244,8 @@ def main():
         mine = {d: h for d, h in chosen.items() if hashes[ig["path"]].get(d, (None,))[0] == h}
         report["igs"][ig["path"]]["rewritten_files"] = rewrite_refs(os.path.join(a.out, ig["path"]), ig["path"], mine, base)
         report["igs"][ig["path"]]["rail_home_pages"] = set_rail_home(os.path.join(a.out, ig["path"]), f"{base}/")
-    with open(os.path.join(a.out, "index.html"), "w", encoding="utf-8") as fh:
-        fh.write(landing.render(cfg, json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None))
+    landing.write(cfg, json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None, a.out)
+    report["landing_chrome"] = landing_chrome(cfg, a.src, a.out)
     open(os.path.join(a.out, ".nojekyll"), "w").close()
     total = sum(os.path.getsize(os.path.join(a.out, r)) for r in files_under(a.out))
     report["bytes_total"] = total
