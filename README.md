@@ -28,7 +28,8 @@ per IG, one folder per release), not the content or the pipeline.
 | [docs/publishing-workflow.md](docs/publishing-workflow.md) | Proposed workflow for this repo: per-IG build, compose, deploy |
 | [docs/binary-publication.md](docs/binary-publication.md) | Why binaries are in git today and how to publish them as release assets |
 | [scripts/landing.py](scripts/landing.py) | The landing page: publication tables shaped like smart.who.int's, in the IG sites' theme |
-| [scripts/catalog.py](scripts/catalog.py) | Builds the landing tables from every harnessed, published `smart-*` / `dth-*` repository (guidelines, L2 documents, shared foundations) |
+| [guideline-portfolio.json](guideline-portfolio.json) | This site as a `guideline-portfolio` (smart-base, over cat-harness-tools' `portfolio` kind): the umbrella KG of SMART Guidelines. Each SMART level (L1 to L4) links one or more libraries: who-iris items at L1, handbooks at L2, FHIR IGs and foundations at L3. Members are linked, never copied |
+| [scripts/catalog.py](scripts/catalog.py) | Builds the landing tables from the portfolio's libraries: every harnessed, published repository they name or discover, and the who-iris items they list |
 | [docs/shared-assets.md](docs/shared-assets.md) | The assets every IG site shares, served once from here: keys, opt-in, how keys get here |
 
 ## Status

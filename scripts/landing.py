@@ -203,8 +203,13 @@ def publication_row(e):
 def entries_from_sites(cfg):
     """No catalogue (offline): one entry per IG this site hosts, from sites.json alone."""
     base = cfg.get("base", "").rstrip("/")
-    found = cfg.get("catalog", {}).get("foundations", [])
-    over = cfg.get("catalog", {}).get("overrides", {})
+    import catalog
+    try:
+        portfolio = catalog.load_portfolio(cfg)
+    except (OSError, ValueError):
+        portfolio = {"levels": []}
+    found = catalog.foundations(portfolio)
+    over = portfolio.get("memberOverrides") or {}
     out = []
     for ig in cfg["igs"]:
         name = ig["repo"].split("/")[1]
