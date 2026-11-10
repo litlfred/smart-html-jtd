@@ -1,0 +1,9 @@
+{
+  "dir": "assets/js/vendor/sqlite-wasm/",
+  "digest": "8600db3cb28ca66b",
+  "files": [
+    "LICENSE.txt",
+    "index.mjs",
+    "sqlite3.wasm"
+  ]
+}

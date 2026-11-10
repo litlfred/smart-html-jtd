@@ -1,0 +1,8 @@
+{
+  "dir": "assets/js/vendor/wasm-graphviz/",
+  "digest": "84c98a14823678b6",
+  "files": [
+    "LICENSE.txt",
+    "index.js"
+  ]
+}
