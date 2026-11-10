@@ -2,11 +2,13 @@
   "igs": {
     "immunizations": {
       "files": 6681,
-      "rewritten_files": 299
+      "rewritten_files": 299,
+      "rail_home_pages": 2359
     },
     "base": {
       "files": 3775,
-      "rewritten_files": 1
+      "rewritten_files": 1,
+      "rail_home_pages": 1237
     }
   },
   "shared": [
@@ -47,6 +49,10 @@
       ]
     }
   ],
-  "bytes_total": 220423620,
+  "landing_chrome": {
+    "chrome_from": "immunizations",
+    "search_entries": 1120
+  },
+  "bytes_total": 221916000,
   "bytes_saved_by_sharing": 12031408
 }
