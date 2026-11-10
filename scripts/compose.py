@@ -12,19 +12,21 @@ build). The script:
    more IGs, moves one copy to <out>/_shared/<hash>/<dir>/ and rewrites the
    references in each IG's text files (html, js, css, json, ...) to the shared
    copy, as site-absolute URLs under `base`;
-3. writes <out>/index.html listing the IGs, and a report of what it shared.
+3. writes <out>/index.html, the publications table (scripts/landing.py), and a report of what it shared.
 
 Only whole directories are shared, so files inside a shared directory keep
 finding each other by relative path.
 """
 import argparse
 import hashlib
-import html
 import json
 import os
 import re
 import shutil
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import landing  # noqa: E402
 from collections import defaultdict
 
 TEXT = (".html", ".htm", ".js", ".mjs", ".css", ".json", ".jsonld", ".svg", ".xml", ".txt", ".webmanifest")
@@ -165,9 +167,8 @@ def main():
     for ig in cfg["igs"]:
         mine = {d: h for d, h in chosen.items() if hashes[ig["path"]].get(d, (None,))[0] == h}
         report["igs"][ig["path"]]["rewritten_files"] = rewrite_refs(os.path.join(a.out, ig["path"]), ig["path"], mine, base)
-    items = "\n".join(f'<li><a href="{html.escape(ig["path"])}/">{html.escape(ig.get("title", ig["path"]))}</a> <small>({html.escape(ig["repo"])})</small></li>' for ig in cfg["igs"])
     with open(os.path.join(a.out, "index.html"), "w", encoding="utf-8") as fh:
-        fh.write(f'<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SMART IGs (docs)</title><h1>SMART IGs (docs)</h1><ul>{items}</ul>\n')
+        fh.write(landing.render(cfg))
     open(os.path.join(a.out, ".nojekyll"), "w").close()
     total = sum(os.path.getsize(os.path.join(a.out, r)) for r in files_under(a.out))
     report["bytes_total"] = total

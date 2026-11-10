@@ -1,9 +1,57 @@
 {
-  "$comment": "What compose.py publishes. Each IG's main docs build is read from its gh-pages branch (pilot). Later: from a site-<version>.tar.zst release asset.",
+  "$comment": "What compose.py publishes. Each IG's main docs build is read from its gh-pages branch (pilot). Later: from a site-<version>.tar.zst release asset. Landing page fields (domain, cover, published, dak, components, section, summary): scripts/landing.py.",
   "base": "/smart-html-jtd",
-  "exclude": ["STAGING/", "branches/", "_render-log/", "ast-data/", "sitepreview/"],
+  "exclude": [
+    "STAGING/",
+    "branches/",
+    "_render-log/",
+    "ast-data/",
+    "sitepreview/"
+  ],
   "igs": [
-    { "path": "immunizations", "repo": "litlfred/smart-immunizations", "ref": "gh-pages", "title": "SMART Immunizations" },
-    { "path": "base", "repo": "litlfred/smart-base", "ref": "gh-pages", "title": "SMART Base" }
-  ]
+    {
+      "path": "immunizations",
+      "repo": "litlfred/smart-immunizations",
+      "ref": "gh-pages",
+      "title": "SMART Immunizations",
+      "domain": "Immunizations",
+      "cover": "https://iris.who.int/server/api/core/bitstreams/02d65009-2da0-4091-97eb-5a9d182aa9fb/content",
+      "published": "January 2025",
+      "dak": {
+        "title": "Digital Adaptation Kit",
+        "url": "https://www.who.int/publications/i/item/9789240099456"
+      },
+      "components": [
+        {
+          "title": "Core data dictionary",
+          "page": "dictionary.html"
+        },
+        {
+          "title": "Decision support and scheduling logic",
+          "page": "decision-logic.html"
+        },
+        {
+          "title": "Indicator table",
+          "page": "indicators.html"
+        },
+        {
+          "title": "Functional and non-functional requirements",
+          "page": "system-requirements.html"
+        }
+      ]
+    },
+    {
+      "path": "base",
+      "repo": "litlfred/smart-base",
+      "ref": "gh-pages",
+      "title": "SMART Base",
+      "section": "foundations",
+      "summary": "Shared profiles, extensions, terminology and the DAK model that every SMART IG uses."
+    }
+  ],
+  "site": {
+    "title": "SMART Guidelines",
+    "subtitle": "Implementation Guide docs builds",
+    "repo": "litlfred/smart-html-jtd"
+  }
 }
