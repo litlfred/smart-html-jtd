@@ -103,8 +103,15 @@ jobs:
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -qm "shared assets: $(git diff --cached --name-only | grep -c '/.shared.json$') new key(s)"
           git push -q "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/shared
 
+      # The landing table: every harnessed, published smart-*/dth-* repository,
+      # read from the repositories themselves (scripts/catalog.py).
+      - name: Build the landing-page catalogue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 scripts/catalog.py --sites sites.json --out _work/catalog.json
+
       - name: Compose
-        run: python3 scripts/compose.py --sites sites.json --src _work/src --out _site --report _site/compose-report.json
+        run: python3 scripts/compose.py --sites sites.json --src _work/src --out _site --report _site/compose-report.json --catalog _work/catalog.json
 
       - name: Serve the shared assets
         run: |
