@@ -18,6 +18,12 @@ For every repository of `catalog.owner` whose name starts with one of
    it a FHIR IG, whose DAK component pages are read off its `pages:`;
 4. `catalog.foundations` lists the shared IGs every guide builds on.
 
+`catalog.publications` names the L1 publications listed under Foundations:
+WHO IRIS handles catalogued in a who-iris repository. Their title, date and
+cover come from that catalogue (catalogue/nodes, catalogue/records,
+library/<id>-cover.png); each links to IRIS and, when who-iris holds the
+item, to its who-iris entry page. The originals are referenced, never copied.
+
 A fork's upstream is `catalog.upstream`/<repo>, with its CI build on
 build.fhir.org. The result is a JSON list that scripts/landing.py renders.
 """
@@ -171,6 +177,63 @@ def entry(repo, info, cat, hosted):
     return e, "listed"
 
 
+def short_title(t):
+    """A title up to its subtitle, unless that leaves too little to name it."""
+    head = t.split(":")[0].strip()
+    return head if len(head) >= 20 else t
+
+
+def iris_publications(pub):
+    """The L1 publications, read from a sparse shallow clone of the who-iris
+    catalogue (one fetch, rather than one request per node)."""
+    if not pub or not pub.get("handles"):
+        return []
+    import tempfile
+    repo = pub.get("repo", "litlfred/who-iris")
+    site = pub.get("site", f"https://{repo.split('/')[0]}.github.io/{repo.split('/')[1]}/").rstrip("/")
+    d = tempfile.mkdtemp(prefix="who-iris-")
+    run = lambda *a: subprocess.run(["git", "-C", d, *a], check=True, capture_output=True, text=True, timeout=600)
+    subprocess.run(["git", "clone", "-q", "--depth", "1", "--filter=blob:none", "--no-checkout",
+                    f"https://github.com/{repo}", d], check=True, capture_output=True, timeout=600)
+    run("sparse-checkout", "set", "--no-cone", "/catalogue/nodes/", "/catalogue/records/", "/library/*-cover.png")
+    run("checkout", "-q")
+    nodes = {}
+    ndir = os.path.join(d, "catalogue", "nodes")
+    for f in os.listdir(ndir):
+        try:
+            n = json.load(open(os.path.join(ndir, f), encoding="utf-8"))
+        except ValueError:
+            continue
+        if n.get("kind") == "item" and n.get("handle"):
+            nodes[n["handle"]] = n
+    out = []
+    for h in pub["handles"]:
+        n = nodes.get(h)
+        if not n:
+            print(f"  publication {h}: not in {repo}'s catalogue", file=sys.stderr)
+            continue
+        date = None
+        try:
+            rec = json.load(open(os.path.join(d, n["metadataRef"]), encoding="utf-8"))
+            date = next((f["values"][0]["value"] for f in rec.get("fields", [])
+                         if f.get("element") == "date" and f.get("qualifier") == "issued"), None)
+        except (KeyError, OSError, ValueError):
+            pass
+        lid = n.get("libraryId")
+        iris = f"https://iris.who.int/handle/{h}"
+        e = {"section": "publications", "name": lid or h.replace("/", "-"), "handle": h,
+             "title": n["title"], "short": short_title(n["title"]),
+             "date": date, "iris": iris, "hostedHere": False, "site": iris,
+             "state": (n.get("materialization") or {}).get("state")}
+        if lid:
+            e["entry"] = f"{site}/cat-harness/library/{repo.split('/')[1]}/{lid}/"
+            e["site"] = e["entry"]
+            if os.path.isfile(os.path.join(d, "library", f"{lid}-cover.png")):
+                e["cover"] = RAW.format(repo=repo, path=f"library/{lid}-cover.png")
+        out.append(e)
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sites", required=True)
@@ -192,9 +255,11 @@ def main():
             out.append(e)
         else:
             skipped[repo] = why
+    pubs = iris_publications(cat.get("publications"))
+    out += pubs
     with open(a.out, "w", encoding="utf-8") as fh:
         json.dump({"entries": out, "skipped": skipped}, fh, indent=2, ensure_ascii=False)
-    print(f"catalogue: {len(out)} listed, {len(skipped)} skipped")
+    print(f"catalogue: {len(out)} listed ({len(pubs)} L1 publications), {len(skipped)} skipped")
     for r, why in sorted(skipped.items()):
         print(f"  skipped {r}: {why}")
     return 0

@@ -40,6 +40,8 @@ CSS = """
 :root[data-fa-scheme="dark"]{--head-bg:#1f4f7d;--card:#0d1117;--pdf:#ff7b72;--page:#56d364;--fhir:#ffa657}
 .fa-page-main h1{font-size:1.6rem}
 .fa-page-main table.pubs{display:table;width:100%}
+.fa-page-main > h3{font-size:1.1rem;margin:1.75rem 0 .5rem}
+#l1-table td:first-child{width:60%}
 @media (max-width:52rem){.ig-topbar-group{position:static}.ig-topbar-group>ul{left:.5rem;right:.5rem;width:auto;max-width:none}}
 .fa-page-main .pubs th,.fa-page-main .pubs td{border:0}
 h2{font-size:1.3rem;margin:2.5rem 0 .75rem;border-bottom:1px solid var(--fa-pl-line);padding-bottom:.25rem}
@@ -177,6 +179,19 @@ def foundation(e):
             "</div></li>")
 
 
+def publication_row(e):
+    """An L1 publication: WHO's own, referenced on IRIS, and its who-iris entry when catalogued there."""
+    cover = (f'<img class="cover" src="{E(e["cover"])}" alt="Cover of {E(e["title"])}" loading="lazy" onerror="this.remove()">'
+             if e.get("cover") else "")
+    links = [link("pdf", e["iris"], "WHO IRIS", external=True)]
+    if e.get("entry"):
+        links.append(link("page", e["entry"], "who-iris entry"))
+    return (f'<tr data-search="{E((e["title"] + " " + e.get("handle", "")).lower())}">'
+            f'<td data-label="Publication"><span class="domain">{E(e["title"])}</span>{cover}</td>'
+            f'<td data-label="Date">{E(fmt_date(e.get("date")) or "Not available")}</td>'
+            f'<td data-label="Links">{ul(links)}</td></tr>')
+
+
 def entries_from_sites(cfg):
     """No catalogue (offline): one entry per IG this site hosts, from sites.json alone."""
     base = cfg.get("base", "").rstrip("/")
@@ -202,7 +217,8 @@ def short(e):
     """The name a guide goes by in the rail and the menus: its health domain,
     or its title without the handbook series prefix."""
     t = e.get("short") or e.get("domain") or e.get("title") or e["name"]
-    return re.sub(r"^Digital Transformation Handbook(?::\s*| (?:for|on) (?:the )?)", "", t)
+    t = re.sub(r"^Digital Transformation Handbook(?::\s*| (?:for|on) (?:the )?)", "", t, flags=re.I)
+    return t[:1].upper() + t[1:]
 
 
 def href(e):
@@ -216,13 +232,20 @@ def rail_data(cfg, groups):
     is the visualiser section, open on arrival, grouped as the tables are."""
     title = cfg.get("site", {}).get("title", "SMART Guidelines")
     items = []
-    for label, anchor, es in groups:
-        if not es:
+    for label, anchor, subs in groups:
+        if not any(es for _, _, es in subs):
             continue
         items.append({"label": label, "icon": "▸", "href": f"@fa-rail-to-root@/#{anchor}"})
-        for e in es:
-            items.append({"label": short(e), "icon": "·", "depth": 1,
-                          "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e)})
+        for sublabel, subanchor, es in subs:
+            depth = 1
+            if sublabel:
+                if not es:
+                    continue
+                items.append({"label": sublabel, "icon": "▸", "depth": 1, "href": f"@fa-rail-to-root@/#{subanchor}"})
+                depth = 2
+            for e in es:
+                items.append({"label": short(e), "icon": "·", "depth": depth,
+                              "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e)})
     shared = {"instance": title, "homeLabel": title, "links": [],
               "documentIndex": {"label": "Publications", "icon": "§", "items": items}}
     return f"(self.FaRailData=self.FaRailData||{{}})[{json.dumps(RAIL_DATA)}]={json.dumps(json.dumps(shared))};\n"
@@ -234,19 +257,24 @@ def search_index(entries):
     own pages to it."""
     out = []
     for e in entries:
-        kind = {"guidelines": "guideline", "documents": "handbook", "foundations": "foundation"}.get(e.get("section"), "guide")
+        kind = {"guidelines": "guideline", "documents": "handbook", "foundations": "foundation",
+                "publications": "publication"}.get(e.get("section"), "guide")
         out.append({"t": short(e), "h": href(e), "k": kind,
-                    "i": f'{e["name"]} {e.get("layer", "")}'.strip(),
+                    "i": f'{e["name"]} {e.get("layer", "")} {e.get("handle", "")}'.strip(),
                     "d": " · ".join(x for x in [e.get("title"), e.get("subtitle"), e.get("version") and f'v{e["version"]}'] if x)})
     return {"format": "fhir-harness-ig-search/v1", "base": "../", "entries": out}
 
 
 def topbar(title, groups, official):
     menus = []
-    for label, anchor, es in groups:
-        if not es:
+    for label, anchor, subs in groups:
+        if not any(es for _, _, es in subs):
             continue
-        lis = "".join(f'<li><a href="{E(href(e))}">{E(short(e))}</a></li>' for e in es)
+        lis = ""
+        for sublabel, subanchor, es in subs:
+            if sublabel and es:
+                lis += f'<li><a href="#{subanchor}"><strong>{E(sublabel)}</strong></a></li>'
+            lis += "".join(f'<li><a href="{E(href(e))}">{E(short(e))}</a></li>' for e in es)
         menus.append(f'<details class="ig-topbar-group"><summary>{E(label.removeprefix("SMART "))}</summary><ul><li><a href="#{anchor}">All {E(label.split(" (")[0].removeprefix("SMART ").lower())}</a></li>{lis}</ul></details>')
     menus.append(f'<details class="ig-topbar-group"><summary>About</summary><ul><li><a href="{E(official)}" rel="noopener">smart.who.int</a></li>'
                  '<li><a href="https://www.who.int/teams/digital-health-and-innovation/smart-guidelines" rel="noopener">WHO SMART Guidelines</a></li></ul></details>')
@@ -259,9 +287,11 @@ def topbar(title, groups, official):
             '<span class="ig-locale-slot" data-fa-slot="locale"></span></div>')
 
 
-def groups_of(guides, docs, founds):
-    """The rail's and the top bar's groups: (label, table anchor, entries)."""
-    return [("SMART Guidelines", "guidelines", guides), ("Handbooks (DTH)", "handbooks", docs), ("Foundations", "foundations", founds)]
+def groups_of(guides, docs, founds, pubs):
+    """The rail's and the top bar's groups: (label, anchor, [(sub-label or None, sub-anchor, entries)])."""
+    return [("SMART Guidelines", "guidelines", [(None, None, guides)]),
+            ("Handbooks (DTH)", "handbooks", [(None, None, docs)]),
+            ("Foundations", "foundations", [("Publications (L1)", "publications-l1", pubs), ("Technical", "technical", founds)])]
 
 
 def sections(entries):
@@ -271,7 +301,9 @@ def sections(entries):
     docs = sorted((e for e in entries if e.get("section") == "documents"),
                   key=lambda e: (e.get("role") == "reference-architecture", key(e)))
     founds = sorted((e for e in entries if e.get("section") == "foundations"), key=key)
-    return guides, docs, founds
+    # L1 publications newest first.
+    pubs = sorted((e for e in entries if e.get("section") == "publications"), key=lambda e: e.get("date") or "", reverse=True)
+    return guides, docs, founds, pubs
 
 
 def render(cfg, entries=None, updated=None):
@@ -281,8 +313,8 @@ def render(cfg, entries=None, updated=None):
     updated = updated or datetime.datetime.now(datetime.timezone.utc).strftime("%B %Y")
     official = site.get("official", "https://smart.who.int/")
     initiative = site.get("initiative", "https://www.who.int/teams/digital-health-and-innovation/smart-guidelines")
-    guides, docs, founds = sections(entries)
-    groups = groups_of(guides, docs, founds)
+    guides, docs, founds, pubs = sections(entries)
+    groups = groups_of(guides, docs, founds, pubs)
     docs_html = ""
     if docs:
         docs_html = ('<h2 id="handbooks">Digital Transformation Handbooks (L2)</h2>'
@@ -292,8 +324,17 @@ def render(cfg, entries=None, updated=None):
                      '<th scope="col">L2 document</th><th scope="col">Components<br>(L2)</th><th scope="col">Source</th></tr></thead>'
                      f'<tbody>{"".join(document_row(e) for e in docs)}</tbody></table>')
     found_html = ""
+    if founds or pubs:
+        found_html = '<h2 id="foundations">Foundations</h2>'
+    if pubs:
+        found_html += ('<h3 id="publications-l1">Publications (L1)</h3>'
+                       "<p>WHO's digital health publications that the guidelines and handbooks build on, "
+                       "referenced on WHO IRIS and catalogued in who-iris. The originals stay with WHO.</p>"
+                       '<table class="pubs" id="l1-table"><thead><tr><th scope="col">Publication</th><th scope="col">Date</th>'
+                       '<th scope="col">Links</th></tr></thead>'
+                       f'<tbody>{"".join(publication_row(e) for e in pubs)}</tbody></table>')
     if founds:
-        found_html = ('<h2 id="foundations">Shared foundations</h2>'
+        found_html += ('<h3 id="technical">Technical</h3>'
                       "<p>Implementation Guides every SMART Guideline builds on.</p>"
                       f'<ul class="found" id="found-list">{"".join(foundation(e) for e in founds)}</ul>')
     meta = json.dumps({"lang": "en", "translationStatus": "", "translationSource": "",
@@ -350,8 +391,8 @@ def render(cfg, entries=None, updated=None):
 def write(cfg, entries, out_dir, updated=None):
     """index.html, its rail data and its search index, into the site root."""
     entries = entries if entries is not None else entries_from_sites(cfg)
-    guides, docs, founds = sections(entries)
-    groups = groups_of(guides, docs, founds)
+    guides, docs, founds, pubs = sections(entries)
+    groups = groups_of(guides, docs, founds, pubs)
     os.makedirs(os.path.join(out_dir, "assets", "navbar"), exist_ok=True)
     with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(render(cfg, entries, updated))

@@ -64,6 +64,25 @@
         "role": "reference-architecture",
         "short": "DPI-H Reference Architecture"
       }
+    },
+    "publications": {
+      "repo": "litlfred/who-iris",
+      "site": "https://litlfred.github.io/who-iris/",
+      "handles": [
+        "10665/344249",
+        "10665/311941",
+        "10665/373581",
+        "10665/260480",
+        "10665/334306",
+        "10665/252183",
+        "10665/185238",
+        "10665/75211",
+        "10665/343361",
+        "10665/379452",
+        "10665/379506",
+        "10665/383309",
+        "10665/386358"
+      ]
     }
   }
 }
