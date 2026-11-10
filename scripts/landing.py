@@ -260,30 +260,42 @@ def rail_data(cfg, groups):
     navbar.js reads (cat-harness-tools `railSharedJson`): the page's own index
     is the visualiser section, open on arrival, grouped as the tables are."""
     title = cfg.get("site", {}).get("title", "SMART Guidelines")
+    def fold(kids):
+        n = len(kids)
+        return "1 entry" if n == 1 else f"{n} entries"
+
+    def leaf(e):
+        return {"label": short(e), "icon": "·",
+                "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e),
+                **({"pin": 1} if e.get("role") == "reference-architecture" else {})}
+
+    # Each group FOLDS its entries under its own row (children + fold), the
+    # shape navbar.js draws with a working twisty. A flat list with depths
+    # drew a ▸ that opened and closed nothing (owner, 2026-11-10).
     items = []
     for label, anchor, subs in groups:
         if not any(es for _, _, es in subs):
             continue
-        items.append({"label": label, "icon": "▸", "href": f"@fa-rail-to-root@/#{anchor}"})
+        kids = []
         for sublabel, subanchor, es in subs:
-            depth = 1
+            if not es:
+                continue
+            leaves = [{**leaf(e), "depth": 2 if sublabel else 1} for e in es]
             if sublabel:
-                if not es:
-                    continue
-                items.append({"label": sublabel, "icon": "▸", "depth": 1, "href": f"@fa-rail-to-root@/#{subanchor}"})
-                depth = 2
-            for e in es:
-                items.append({"label": short(e), "icon": "·", "depth": depth,
-                              "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e),
-                              **({"pin": 1} if e.get("role") == "reference-architecture" else {})})
+                kids.append({"label": sublabel, "icon": "", "depth": 1, "href": f"@fa-rail-to-root@/#{subanchor}",
+                             "children": leaves, "fold": fold(leaves)})
+            else:
+                kids.extend(leaves)
+        items.append({"label": label, "icon": "", "href": f"@fa-rail-to-root@/#{anchor}",
+                      "children": kids, "fold": fold(kids)})
     shared = {"instance": title, "homeLabel": title, "links": [],
               "documentIndex": {"label": "Publications", "icon": "§", "items": items}}
     # The rail's entries are sorted here too, in the reader's locale, before
-    # navbar.js reads them: each run of leaf entries ("·") at one depth.
-    return ("(function(){var d=" + json.dumps(shared, ensure_ascii=False) + ",c=(" + LOCALE_JS + ")(),it=d.documentIndex.items,i=0;\n"
-            "while(i<it.length){if(it[i].icon!==\"·\"){i++;continue}var j=i;while(j<it.length&&it[j].icon===\"·\"&&it[j].depth===it[i].depth)j++;"
+    # navbar.js reads them: each run of leaf entries (no children) in a list.
+    return ("(function(){var d=" + json.dumps(shared, ensure_ascii=False) + ",c=(" + LOCALE_JS + ")();\n"
+            "function srt(it){var i=0;while(i<it.length){if(it[i].children){srt(it[i].children);i++;continue}var j=i;while(j<it.length&&!it[j].children)j++;"
             "var run=it.slice(i,j).sort(function(a,b){return (a.pin||0)-(b.pin||0)||c.compare(a.label,b.label)});"
-            "it.splice.apply(it,[i,j-i].concat(run));i=j}\n"
+            "it.splice.apply(it,[i,j-i].concat(run));i=j}}srt(d.documentIndex.items);\n"
             f"(self.FaRailData=self.FaRailData||{{}})[{json.dumps(RAIL_DATA)}]=JSON.stringify(d)}})();\n")
 
 
