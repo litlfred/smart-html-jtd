@@ -12,13 +12,15 @@ build). The script:
    more IGs, moves one copy to <out>/_shared/<hash>/<dir>/ and rewrites the
    references in each IG's text files (html, js, css, json, ...) to the shared
    copy, as site-absolute URLs under `base`;
-3. writes <out>/index.html, the publications table (scripts/landing.py), and a report of what it shared.
+3. points each page's rail Home at this site's landing page (data-fa-home);
+4. writes <out>/index.html, the publications table (scripts/landing.py), and a report of what it shared.
 
 Only whole directories are shared, so files inside a shared directory keep
 finding each other by relative path.
 """
 import argparse
 import hashlib
+import html
 import json
 import os
 import re
@@ -134,6 +136,35 @@ def rewrite_refs(site, ig_path, shared, base):
     return changed
 
 
+RAIL_BLOCK = re.compile(r'(<script type="application/json" id="fa-rail" data-fa-root="[^"]*" data-fa-to-root="[^"]*")(?: data-fa-home="[^"]*")?>')
+
+
+def set_rail_home(site, home):
+    """Point each page's rail Home at the merged site's landing page.
+
+    Every IG here is a subgraph of this site's KG (owner, 2026-11-10), so the
+    rail's header link goes to `home`, not to the IG's own root. The rail reads
+    `data-fa-home` on its `#fa-rail` block (cat-harness-tools `RailPage.home`);
+    an IG built before that keeps its own home until it is re-pinned.
+    Returns the number of pages changed."""
+    changed = 0
+    for rel in files_under(site):
+        if not rel.endswith((".html", ".htm")):
+            continue
+        p = os.path.join(site, rel)
+        try:
+            with open(p, encoding="utf-8") as fh:
+                t = fh.read()
+        except UnicodeDecodeError:
+            continue
+        n = RAIL_BLOCK.sub(lambda m: f'{m.group(1)} data-fa-home="{html.escape(home, quote=True)}">', t)
+        if n != t:
+            with open(p, "w", encoding="utf-8") as fh:
+                fh.write(n)
+            changed += 1
+    return changed
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sites", required=True)
@@ -168,6 +199,7 @@ def main():
     for ig in cfg["igs"]:
         mine = {d: h for d, h in chosen.items() if hashes[ig["path"]].get(d, (None,))[0] == h}
         report["igs"][ig["path"]]["rewritten_files"] = rewrite_refs(os.path.join(a.out, ig["path"]), ig["path"], mine, base)
+        report["igs"][ig["path"]]["rail_home_pages"] = set_rail_home(os.path.join(a.out, ig["path"]), f"{base}/")
     with open(os.path.join(a.out, "index.html"), "w", encoding="utf-8") as fh:
         fh.write(landing.render(cfg, json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None))
     open(os.path.join(a.out, ".nojekyll"), "w").close()
@@ -178,7 +210,7 @@ def main():
         json.dump(report, open(a.report, "w"), indent=2)
     print(f"composed {len(cfg['igs'])} IG(s): {total/1e6:.1f} MB; {len(chosen)} shared asset dir(s) saved {saved/1e6:.1f} MB")
     for ig, r in report["igs"].items():
-        print(f"  {ig}: {r['files']} files, {r['rewritten_files']} rewritten")
+        print(f"  {ig}: {r['files']} files, {r['rewritten_files']} rewritten, {r['rail_home_pages']} rail homes set")
     return 0
 
 
