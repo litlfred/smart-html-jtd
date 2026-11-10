@@ -3,29 +3,40 @@
 
     python3 scripts/catalog.py --sites sites.json --out catalog.json
 
-Nothing in the table is kept by hand except what no repository holds (a DAK's
-cover and its WHO publication link, under `catalog.overrides` in sites.json).
-For every repository of `catalog.owner` whose name starts with one of
-`catalog.prefixes`:
+What is listed is declared in the site's guideline portfolio
+(`catalog.portfolio` in sites.json, default guideline-portfolio.json; issue
+#20): smart-base's `guideline-portfolio/1.0.0` kind over cat-harness-tools'
+`portfolio/1.0.0`. It names the SMART levels (L1 to L4, in order) and, for
+each, the libraries whose members belong there. A library is reached one of
+three ways:
+
+- `library`: a who-iris catalogue, by item (IRIS handle). Each item's title,
+  date and cover come from that catalogue (catalogue/nodes, catalogue/records,
+  library/<id>-cover.png); it links to IRIS and, when who-iris holds it, to
+  its who-iris entry page;
+- `discover`: every repository of `owner` named with one of `prefixes`;
+- `repos`: repositories listed by name.
+
+`memberKind` says what a discovered or listed library takes: `folio-document`
+or `fhir-ig`. For every candidate repository:
 
 1. it is HARNESSED when it has an index.lock.json, and PUBLISHED when it has
    a gh-pages branch; only harnessed, published repositories are listed;
 2. its layer name is the index.config.json instance read from `.` (smart-ra's
    is dpi-h-ra), and `<name>.json`, its declaration, gives its title and the
    pages it publishes (each directory's `coverage.visualiser`);
-3. a folio manifest (folio/<name>/<name>.ts) makes it an L2 DOCUMENT (a DTH,
-   smart-base document kinds `dth` / `l2-dth`); else a sushi-config.yaml makes
-   it a FHIR IG, whose DAK component pages are read off its `pages:`;
-4. `catalog.foundations` lists the shared IGs every guide builds on.
+3. a folio manifest (folio/<name>/<name>.ts) makes it a `folio-document` (a
+   DTH, smart-base document kinds `dth` / `l2-dth`); else a sushi-config.yaml
+   makes it a `fhir-ig`, whose DAK component pages are read off its `pages:`;
+4. it joins the first library, in level order, that takes its member kind
+   and names it (`repos`), else matches it (`discover`). A `repos` library of
+   IGs is a level's shared foundations.
 
-`catalog.publications` names the L1 publications listed under Foundations:
-WHO IRIS handles catalogued in a who-iris repository. Their title, date and
-cover come from that catalogue (catalogue/nodes, catalogue/records,
-library/<id>-cover.png); each links to IRIS and, when who-iris holds the
-item, to its who-iris entry page. The originals are referenced, never copied.
-
-A fork's upstream is `catalog.upstream`/<repo>, with its CI build on
-build.fhir.org. The result is a JSON list that scripts/landing.py renders.
+Members are linked where they publish, never copied. The portfolio's
+`memberOverrides` hold only what no repository holds (a DAK's cover and its
+WHO publication link). A fork's upstream is `catalog.upstream`/<repo>, with
+its CI build on build.fhir.org. The result is a JSON list that
+scripts/landing.py renders.
 """
 import argparse
 import json
@@ -46,6 +57,79 @@ DAK_PAGES = [
     ("Indicator table", ["indicators"]),
     ("Functional and non-functional requirements", ["system-requirements", "functional-requirements", "requirements"]),
 ]
+
+
+SMART_LEVELS = ["L1", "L2", "L3", "L4"]
+SOURCES = ("library", "discover", "repos")
+
+
+def check_portfolio(p):
+    """The checks of guideline-portfolio/1.0.0 (smart-base) that the catalogue
+    relies on: SMART levels in order, unique ids, one source per library."""
+    errs = []
+    if not str(p.get("$schema", "")).startswith("guideline-portfolio/1."):
+        errs.append(f"$schema is {p.get('$schema')!r}, not guideline-portfolio/1.x")
+    extra = set(p) - {"$schema", "id", "title", "description", "levels", "memberOverrides"}
+    if extra:
+        errs.append(f"unknown keys {sorted(extra)}")
+    last, libs = -1, set()
+    for lv in p.get("levels") or []:
+        at = SMART_LEVELS.index(lv["id"]) if lv.get("id") in SMART_LEVELS else -1
+        if at <= last:
+            errs.append(f"level {lv.get('id')!r} is not a SMART level in order ({', '.join(SMART_LEVELS)})")
+        last = max(last, at)
+        for lib in lv.get("libraries") or []:
+            if lib.get("id") in libs:
+                errs.append(f"library {lib.get('id')!r} is declared twice")
+            libs.add(lib.get("id"))
+            src = lib.get("source") or {}
+            if [k for k in SOURCES if k in src] == [] or len([k for k in SOURCES if k in src]) > 1:
+                errs.append(f"library {lib.get('id')!r}: source must be one of {', '.join(SOURCES)}")
+    if not p.get("levels"):
+        errs.append("no levels")
+    if errs:
+        raise ValueError("guideline portfolio: " + "; ".join(errs))
+    return p
+
+
+def load_portfolio(cfg, sites_dir="."):
+    """The guideline portfolio sites.json names, checked."""
+    path = os.path.join(sites_dir, cfg.get("catalog", {}).get("portfolio", "guideline-portfolio.json"))
+    return check_portfolio(json.load(open(path, encoding="utf-8")))
+
+
+def libraries(p):
+    """Every (level, library), in level order."""
+    for lv in p["levels"]:
+        for lib in lv.get("libraries") or []:
+            yield lv, lib
+
+
+def foundations(p):
+    """Repository names in a `repos` library of IGs: the shared foundations."""
+    return {r.split("/")[1] for _, lib in libraries(p) for r in lib["source"].get("repos", [])
+            if lib["source"].get("memberKind") in (None, "fhir-ig")}
+
+
+def place(p, repo, member_kind, exclude=()):
+    """The (level, library) that takes this repository, or (None, None)."""
+    owner, name = repo.split("/")
+    for lv, lib in libraries(p):  # a library that names it wins over one that discovers it
+        src = lib["source"]
+        if "repos" in src and repo in src["repos"] and src.get("memberKind") in (None, member_kind):
+            return lv, lib
+    for lv, lib in libraries(p):
+        src = lib["source"]
+        if "discover" in src:
+            d = src["discover"]
+            kind = d.get("memberKind")
+            hit = (d["owner"] == owner and any(name.startswith(x) for x in d["prefixes"])
+                   and name not in (d.get("exclude") or []) and name not in exclude)
+        else:
+            continue
+        if hit and kind in (None, member_kind):
+            return lv, lib
+    return None, None
 
 
 def http(url, token=None):
@@ -118,7 +202,7 @@ def visualisers(decl):
     return out
 
 
-def entry(repo, info, cat, hosted):
+def entry(repo, info, cat, portfolio, hosted):
     owner, name = repo.split("/")
     if not raw(repo, "index.lock.json"):
         return None, "not harnessed"
@@ -159,7 +243,7 @@ def entry(repo, info, cat, hosted):
         e["level"] = manifest_field(manifest, "level")
         e["status"] = manifest_field(manifest, "status")
     elif sushi:
-        e["section"] = "foundations" if name in cat.get("foundations", []) else "guidelines"
+        e["section"] = "foundations" if name in foundations(portfolio) else "guidelines"
         e["title"] = scalar(sushi, "title") or decl.get("title") or name
         e["date"] = scalar(sushi, "date")
         e["version"] = scalar(sushi, "version")
@@ -173,7 +257,11 @@ def entry(repo, info, cat, hosted):
         return None, "harnessed, neither a document nor an IG"
     if sushi:
         e["fhirIg"] = True
-    e.update(cat.get("overrides", {}).get(name, {}))
+    lv, lib = place(portfolio, repo, "folio-document" if manifest else "fhir-ig", cat.get("exclude", []))
+    if not lv:
+        return None, "not in any library of the portfolio"
+    e["portfolioLevel"], e["library"] = lv["id"], lib["id"]
+    e.update((portfolio.get("memberOverrides") or {}).get(name, {}))
     return e, "listed"
 
 
@@ -184,9 +272,9 @@ def short_title(t):
 
 
 def iris_publications(pub):
-    """The L1 publications, read from a sparse shallow clone of the who-iris
-    catalogue (one fetch, rather than one request per node)."""
-    if not pub or not pub.get("handles"):
+    """A `library` source's items, read from a sparse shallow clone of the
+    who-iris catalogue (one fetch, rather than one request per node)."""
+    if not pub or not pub.get("items"):
         return []
     import tempfile
     repo = pub.get("repo", "litlfred/who-iris")
@@ -207,7 +295,7 @@ def iris_publications(pub):
         if n.get("kind") == "item" and n.get("handle"):
             nodes[n["handle"]] = n
     out = []
-    for h in pub["handles"]:
+    for h in pub["items"]:
         n = nodes.get(h)
         if not n:
             print(f"  publication {h}: not in {repo}'s catalogue", file=sys.stderr)
@@ -234,36 +322,62 @@ def iris_publications(pub):
     return out
 
 
+def candidates(p, token):
+    """Every repository a `discover` or `repos` library names."""
+    found = {}
+    for _, lib in libraries(p):
+        src = lib["source"]
+        if "discover" in src:
+            found.update(search_repos(src["discover"]["owner"], src["discover"]["prefixes"], token))
+        for r in src.get("repos", []):
+            if r not in found:
+                body = http(f"https://api.github.com/repos/{r}", token)
+                if body:
+                    it = json.loads(body)
+                    found[r] = {"fork": it.get("fork", False), "description": it.get("description") or ""}
+    return found
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sites", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--check", action="store_true", help="only check the portfolio declaration")
     a = ap.parse_args()
     cfg = json.load(open(a.sites, encoding="utf-8"))
     cat = cfg.get("catalog", {})
+    portfolio = load_portfolio(cfg, os.path.dirname(os.path.abspath(a.sites)))
+    if a.check:
+        print(f"portfolio {portfolio['id']}: {', '.join(lv['id'] for lv in portfolio['levels'])} ok")
+        return 0
     base = cfg.get("base", "").rstrip("/")
     hosted = {ig["repo"].split("/")[1]: f'{base}/{ig["path"]}' for ig in cfg["igs"]}
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
-    repos = search_repos(cat.get("owner", "litlfred"), cat.get("prefixes", ["smart-", "dth-"]), token)
+    repos = candidates(portfolio, token)
     out, skipped = [], {}
     for repo in sorted(repos):
         if repo.split("/")[1] in cat.get("exclude", []):
             skipped[repo] = "excluded in sites.json"
             continue
-        e, why = entry(repo, repos[repo], cat, hosted)
+        e, why = entry(repo, repos[repo], cat, portfolio, hosted)
         if e:
             out.append(e)
         else:
             skipped[repo] = why
-    pubs = iris_publications(cat.get("publications"))
+    pubs = []
+    for lv, lib in libraries(portfolio):
+        if "library" in lib["source"]:
+            for e in iris_publications(lib["source"]["library"]):
+                e["portfolioLevel"], e["library"] = lv["id"], lib["id"]
+                pubs.append(e)
     out += pubs
     with open(a.out, "w", encoding="utf-8") as fh:
-        json.dump({"entries": out, "skipped": skipped}, fh, indent=2, ensure_ascii=False)
+        json.dump({"portfolio": {k: portfolio.get(k) for k in ("id", "title", "description")},
+                   "entries": out, "skipped": skipped}, fh, indent=2, ensure_ascii=False)
     print(f"catalogue: {len(out)} listed ({len(pubs)} L1 publications), {len(skipped)} skipped")
     for r, why in sorted(skipped.items()):
         print(f"  skipped {r}: {why}")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

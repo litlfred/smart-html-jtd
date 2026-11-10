@@ -28,61 +28,9 @@
     "repo": "litlfred/smart-html-jtd"
   },
   "catalog": {
-    "$comment": "The landing table is built by scripts/catalog.py from every harnessed, published repository of `owner` named with one of `prefixes`. Only what no repository holds is kept here, under `overrides` (keyed by repository name).",
-    "owner": "litlfred",
-    "prefixes": [
-      "smart-",
-      "dth-"
-    ],
+    "$comment": "What the landing table lists is declared in `portfolio` (guideline-portfolio.json, issue #20). Kept here: how forks link upstream, and repositories left out of discovery.",
+    "portfolio": "guideline-portfolio.json",
     "upstream": "WorldHealthOrganization",
-    "foundations": [
-      "smart-base",
-      "smart-base-clinical",
-      "smart-core"
-    ],
-    "exclude": [],
-    "overrides": {
-      "smart-immunizations": {
-        "domain": "Immunizations",
-        "cover": "https://iris.who.int/server/api/core/bitstreams/02d65009-2da0-4091-97eb-5a9d182aa9fb/content",
-        "published": "January 2025",
-        "dak": {
-          "title": "Digital Adaptation Kit",
-          "url": "https://www.who.int/publications/i/item/9789240099456"
-        }
-      },
-      "smart-hiv": {
-        "domain": "HIV",
-        "cover": "https://iris.who.int/server/api/core/bitstreams/a3f36420-7690-46dd-a3d6-ac1efbae3576/content",
-        "published": "February 2024",
-        "dak": {
-          "title": "Digital Adaptation Kit",
-          "url": "https://www.who.int/publications/i/item/9789240085138"
-        }
-      },
-      "smart-ra": {
-        "role": "reference-architecture",
-        "short": "DPI-H Reference Architecture"
-      }
-    },
-    "publications": {
-      "repo": "litlfred/who-iris",
-      "site": "https://litlfred.github.io/who-iris/",
-      "handles": [
-        "10665/344249",
-        "10665/311941",
-        "10665/373581",
-        "10665/260480",
-        "10665/334306",
-        "10665/252183",
-        "10665/185238",
-        "10665/75211",
-        "10665/343361",
-        "10665/379452",
-        "10665/379506",
-        "10665/383309",
-        "10665/386358"
-      ]
-    }
+    "exclude": []
   }
 }
