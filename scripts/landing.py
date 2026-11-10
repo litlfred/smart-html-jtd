@@ -128,6 +128,14 @@ def l3_links(e):
     return out
 
 
+def sort_attrs(e, label=None):
+    """What the page's collator sorts by (LOCALE_SORT_JS): the name shown, and
+    a pin that keeps smart-ra after the DTHs it underpins."""
+    label = label or e.get("domain") or e.get("title") or e["name"]
+    pin = ' data-sort-pin="1"' if e.get("role") == "reference-architecture" else ""
+    return f' data-sort="{E(label)}"{pin}'
+
+
 def search_text(e):
     return E(" ".join(str(x) for x in [e.get("domain"), e.get("title"), e["name"], e.get("layer")] if x).lower())
 
@@ -142,7 +150,7 @@ def guideline_row(e):
     dak_cell = ul([link("pdf", dak["url"], dak.get("title", "Digital Adaptation Kit"), True)] if dak else [])
     comps = [link("page", c.get("url") or at(e, c["page"]), c["title"], "url" in c or not e["hostedHere"]) for c in e.get("components", [])]
     date = e.get("published") or fmt_date(e.get("date"))
-    return (f'<tr data-search="{search_text(e)}">'
+    return (f'<tr data-search="{search_text(e)}"{sort_attrs(e)}>'
             f'<td data-label="Health domain"><span class="domain">{E(domain)}</span>{sub}{cover}</td>'
             f'<td data-label="Publication date">{E(date) or "<span class=na>Draft</span>"}{meta_line(e)}</td>'
             f'<td data-label="Digital Adaptation Kit (DAK, L2)">{dak_cell}</td>'
@@ -160,7 +168,7 @@ def document_row(e):
     main_doc = [link("page", at(e, links[0]["page"]), links[0]["title"], not e["hostedHere"])] if links else [link("page", e["site"], "Site", not e["hostedHere"])]
     parts = [link("page", at(e, l["page"]), l["title"], not e["hostedHere"]) for l in links[1:]]
     kind = e.get("documentKind") or ""
-    return (f'<tr data-search="{search_text(e)}">'
+    return (f'<tr data-search="{search_text(e)}"{sort_attrs(e)}>'
             f'<td data-label="Handbook"><span class="domain">{E(title)}</span>{sub}</td>'
             f'<td data-label="Date">{E(fmt_date(e.get("date"))) or "<span class=na>Not dated</span>"}'
             f'{f"<small class=meta>{E(kind)}</small>" if kind else ""}</td>'
@@ -173,7 +181,7 @@ def document_row(e):
 def foundation(e):
     title = e.get("title") or e["name"]
     summary = f'<p>{E(e["summary"])}</p>' if e.get("summary") else ""
-    return (f'<li data-search="{search_text(e)}"><h3>{E(title)}</h3>{meta_line(e)}{summary}<div class="links">'
+    return (f'<li data-search="{search_text(e)}"{sort_attrs(e)}><h3>{E(title)}</h3>{meta_line(e)}{summary}<div class="links">'
             f'<a href="{E(e["site"])}">{ICON["fhir"]}<span>FHIR Implementation Guide (draft)</span></a>'
             f'<a href="{E(e["github"])}" rel="noopener">{ICON["github"]}<span>GitHub</span></a>'
             "</div></li>")
@@ -186,7 +194,7 @@ def publication_row(e):
     links = [link("pdf", e["iris"], "WHO IRIS", external=True)]
     if e.get("entry"):
         links.append(link("page", e["entry"], "who-iris entry"))
-    return (f'<tr data-search="{E((e["title"] + " " + e.get("handle", "")).lower())}">'
+    return (f'<tr data-search="{E((e["title"] + " " + e.get("handle", "")).lower())}"{sort_attrs(e, e["title"])}>'
             f'<td data-label="Publication"><span class="domain">{E(e["title"])}</span>{cover}</td>'
             f'<td data-label="Date">{E(fmt_date(e.get("date")) or "Not available")}</td>'
             f'<td data-label="Links">{ul(links)}</td></tr>')
@@ -211,6 +219,27 @@ def entries_from_sites(cfg):
 
 
 RAIL_DATA = "rail-landing"
+
+# The reader's locale, chosen as the IG sites' docs-ui chooses it: `?lang=`,
+# then the page's own language when it is a translation, then the language
+# the picker remembered (`fa-locale`), then English.
+LOCALE_JS = """function(){var l=null;try{l=new URLSearchParams(location.search).get("lang")}catch(e){}
+var h=document.documentElement.getAttribute("lang");if(!l&&h&&h!=="en")l=h;
+if(!l){try{l=localStorage.getItem("fa-locale")}catch(e){}}
+try{return new Intl.Collator(l||"en",{sensitivity:"base",numeric:true})}catch(e){return new Intl.Collator("en",{sensitivity:"base",numeric:true})}}"""
+
+# Alphabetise every list on the page in the reader's locale: each run of
+# siblings carrying data-sort (table rows, cards, menu entries), pinned ones
+# last. Runs are split by siblings without data-sort (menu sub-headings).
+LOCALE_SORT_JS = """(function(){var collator=(""" + LOCALE_JS + """);
+function sort(){var c=collator(),seen=[];
+document.querySelectorAll("[data-sort]").forEach(function(el){var p=el.parentNode;if(seen.indexOf(p)<0)seen.push(p)});
+seen.forEach(function(p){var run=[],kids=[].slice.call(p.children);kids.push(null);
+kids.forEach(function(k){if(k&&k.hasAttribute("data-sort")){run.push(k);return}
+if(run.length>1){var after=run[run.length-1].nextSibling;run.slice().sort(function(a,b){
+return (a.getAttribute("data-sort-pin")||0)-(b.getAttribute("data-sort-pin")||0)||c.compare(a.getAttribute("data-sort"),b.getAttribute("data-sort"))})
+.forEach(function(el){p.insertBefore(el,after)})}run=[]})})}
+sort();document.addEventListener("click",function(ev){if(ev.target.closest&&ev.target.closest(".ig-locale-slot"))setTimeout(sort,50)})})();"""
 
 
 def short(e):
@@ -245,10 +274,17 @@ def rail_data(cfg, groups):
                 depth = 2
             for e in es:
                 items.append({"label": short(e), "icon": "·", "depth": depth,
-                              "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e)})
+                              "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e),
+                              **({"pin": 1} if e.get("role") == "reference-architecture" else {})})
     shared = {"instance": title, "homeLabel": title, "links": [],
               "documentIndex": {"label": "Publications", "icon": "§", "items": items}}
-    return f"(self.FaRailData=self.FaRailData||{{}})[{json.dumps(RAIL_DATA)}]={json.dumps(json.dumps(shared))};\n"
+    # The rail's entries are sorted here too, in the reader's locale, before
+    # navbar.js reads them: each run of leaf entries ("·") at one depth.
+    return ("(function(){var d=" + json.dumps(shared, ensure_ascii=False) + ",c=(" + LOCALE_JS + ")(),it=d.documentIndex.items,i=0;\n"
+            "while(i<it.length){if(it[i].icon!==\"·\"){i++;continue}var j=i;while(j<it.length&&it[j].icon===\"·\"&&it[j].depth===it[i].depth)j++;"
+            "var run=it.slice(i,j).sort(function(a,b){return (a.pin||0)-(b.pin||0)||c.compare(a.label,b.label)});"
+            "it.splice.apply(it,[i,j-i].concat(run));i=j}\n"
+            f"(self.FaRailData=self.FaRailData||{{}})[{json.dumps(RAIL_DATA)}]=JSON.stringify(d)}})();\n")
 
 
 def search_index(entries):
@@ -274,7 +310,7 @@ def topbar(title, groups, official):
         for sublabel, subanchor, es in subs:
             if sublabel and es:
                 lis += f'<li><a href="#{subanchor}"><strong>{E(sublabel)}</strong></a></li>'
-            lis += "".join(f'<li><a href="{E(href(e))}">{E(short(e))}</a></li>' for e in es)
+            lis += "".join(f'<li{sort_attrs(e, short(e))}><a href="{E(href(e))}">{E(short(e))}</a></li>' for e in es)
         menus.append(f'<details class="ig-topbar-group"><summary>{E(label.removeprefix("SMART "))}</summary><ul><li><a href="#{anchor}">All {E(label.split(" (")[0].removeprefix("SMART ").lower())}</a></li>{lis}</ul></details>')
     menus.append(f'<details class="ig-topbar-group"><summary>About</summary><ul><li><a href="{E(official)}" rel="noopener">smart.who.int</a></li>'
                  '<li><a href="https://www.who.int/teams/digital-health-and-innovation/smart-guidelines" rel="noopener">WHO SMART Guidelines</a></li></ul></details>')
@@ -301,8 +337,7 @@ def sections(entries):
     docs = sorted((e for e in entries if e.get("section") == "documents"),
                   key=lambda e: (e.get("role") == "reference-architecture", key(e)))
     founds = sorted((e for e in entries if e.get("section") == "foundations"), key=key)
-    # L1 publications newest first.
-    pubs = sorted((e for e in entries if e.get("section") == "publications"), key=lambda e: e.get("date") or "", reverse=True)
+    pubs = sorted((e for e in entries if e.get("section") == "publications"), key=lambda e: e["title"].lower())
     return guides, docs, founds, pubs
 
 
@@ -383,6 +418,7 @@ def render(cfg, entries=None, updated=None):
 <p class="note">These are draft, docs-only builds. The FHIR package, downloads and the IG Publisher build stay with each guide's own release.</p>
 <div id="ig-footer"><div class="ig-footer-band"><p><a href="{E(official)}" rel="noopener external">smart.who.int</a> · <a href="https://github.com/{E(site.get('repo', 'litlfred/smart-html-jtd'))}" rel="noopener external">Source</a></p></div></div>
 </main>
+<script>{LOCALE_SORT_JS}</script>
 </body>
 </html>
 """
