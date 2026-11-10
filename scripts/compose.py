@@ -180,16 +180,18 @@ def landing_chrome(cfg, src, out):
     return {"chrome_from": used, "search_entries": len(ix["entries"])}
 
 
-RAIL_BLOCK = re.compile(r'(<script type="application/json" id="fa-rail" data-fa-root="[^"]*" data-fa-to-root="[^"]*")(?: data-fa-home="[^"]*")?>')
+RAIL_BLOCK = re.compile(r'(<script type="application/json" id="fa-rail" data-fa-root="[^"]*" data-fa-to-root="[^"]*")(?: data-fa-home="[^"]*")?(?: data-fa-home-name="[^"]*")?>')
 
 
-def set_rail_home(site, home):
+def set_rail_home(site, home, name):
     """Point each page's rail Home at the merged site's landing page.
 
     Every IG here is a subgraph of this site's KG (owner, 2026-11-10), so the
     rail's header link goes to `home`, not to the IG's own root. The rail reads
     `data-fa-home` on its `#fa-rail` block (cat-harness-tools `RailPage.home`);
-    an IG built before that keeps its own home until it is re-pinned.
+    an IG built before that keeps its own home until it is re-pinned. The
+    header is then called `name` (`data-fa-home-name`), the house and "SMART
+    Guidelines" rather than the IG's own name and mark (owner, 2026-11-10).
     Returns the number of pages changed."""
     changed = 0
     for rel in files_under(site):
@@ -201,7 +203,8 @@ def set_rail_home(site, home):
                 t = fh.read()
         except UnicodeDecodeError:
             continue
-        n = RAIL_BLOCK.sub(lambda m: f'{m.group(1)} data-fa-home="{html.escape(home, quote=True)}">', t)
+        n = RAIL_BLOCK.sub(lambda m: f'{m.group(1)} data-fa-home="{html.escape(home, quote=True)}"'
+                           f' data-fa-home-name="{html.escape(name, quote=True)}">', t)
         if n != t:
             with open(p, "w", encoding="utf-8") as fh:
                 fh.write(n)
@@ -243,7 +246,8 @@ def main():
     for ig in cfg["igs"]:
         mine = {d: h for d, h in chosen.items() if hashes[ig["path"]].get(d, (None,))[0] == h}
         report["igs"][ig["path"]]["rewritten_files"] = rewrite_refs(os.path.join(a.out, ig["path"]), ig["path"], mine, base)
-        report["igs"][ig["path"]]["rail_home_pages"] = set_rail_home(os.path.join(a.out, ig["path"]), f"{base}/")
+        report["igs"][ig["path"]]["rail_home_pages"] = set_rail_home(os.path.join(a.out, ig["path"]), f"{base}/",
+                                                                     cfg.get("site", {}).get("title", "SMART Guidelines"))
     landing.write(cfg, json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None, a.out)
     report["landing_chrome"] = landing_chrome(cfg, a.src, a.out)
     open(os.path.join(a.out, ".nojekyll"), "w").close()
