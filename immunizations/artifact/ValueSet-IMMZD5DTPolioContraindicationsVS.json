@@ -22,7 +22,7 @@
     {
       "@type": "schema:MediaObject",
       "schema:contentUrl": {
-        "@id": "../ValueSet-IMMZD5DTPolioContraindicationsVS.json"
+        "@id": "https://raw.githubusercontent.com/litlfred/smart-immunizations/17d22993d4d2ff22922bbf156bad57ce760fb3e4/resources/ValueSet/IMMZD5DTPolioContraindicationsVS--4a60c69a.json"
       },
       "schema:encodingFormat": "application/fhir+json",
       "dcterms:source": "local"

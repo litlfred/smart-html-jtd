@@ -5,8 +5,11 @@
  * 2026-10-14: "cache + ucum. this is gh-pages so no XSS".
  *
  * Registered with its configuration in its own URL, relative to itself:
- *   fa-terminology-sw.js?index=<terminology index>&ucum=<UCUM rows>&lhc=<LHC-Forms dir>&v=<LHC-Forms version>
+ *   fa-terminology-sw.js?index=<terminology index>&ucum=<UCUM rows>&lhc=<LHC-Forms dir>&v=<LHC-Forms version>&bundle=<builder bundle dir>
  * Its scope is the Form Builder's directory, where the site build puts it.
+ * That directory holds only the pages and this worker: every other file under
+ * it is the builder's bundle, which the worker fetches from `bundle` (beside
+ * it on this site, or on a shared host of the same origin).
  */
 /* global importScripts, faTerminologyMap */
 importScripts("fa-terminology-map.js");
@@ -35,9 +38,17 @@ function ready() {
 self.addEventListener("install", function (e) { e.waitUntil(self.skipWaiting()); });
 self.addEventListener("activate", function (e) { e.waitUntil(self.clients.claim()); });
 
+var OWN = /^(|index\.html|window-open(\.html)?|fa-terminology-(sw|map)\.js)$/;
+var scope = self.registration ? self.registration.scope : at("./");
+
 self.addEventListener("fetch", function (e) {
   var url = e.request.url;
-  if (new URL(url).origin === self.location.origin) return;
+  if (new URL(url).origin === self.location.origin) {
+    var path = url.split(/[?#]/)[0];
+    if (cfg.get("bundle") && e.request.method === "GET" && path.indexOf(scope) === 0 && !OWN.test(path.slice(scope.length)))
+      e.respondWith(fetch(at(cfg.get("bundle")) + path.slice(scope.length)));
+    return;
+  }
   e.respondWith(
     ready().then(function (d) {
       var a = faTerminologyMap.answer(url, { origin: self.location.origin, index: d.index, ucum: d.ucum, lhcBase: at(cfg.get("lhc") || ""), lhcVersion: cfg.get("v") });

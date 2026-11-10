@@ -1,39 +1,21 @@
 {
   "igs": {
     "immunizations": {
-      "files": 6681,
-      "rewritten_files": 299,
-      "rail_home_pages": 2359
+      "files": 4649,
+      "rewritten_files": 22,
+      "rail_home_pages": 842
     },
     "base": {
       "files": 3775,
-      "rewritten_files": 1,
+      "rewritten_files": 0,
       "rail_home_pages": 1237
     }
   },
   "shared": [
     {
-      "dir": "assets/img/harness",
-      "hash": "35b81a0d9c84acc3",
-      "bytes": 5235900,
-      "igs": [
-        "immunizations",
-        "base"
-      ]
-    },
-    {
       "dir": "assets/jquery",
       "hash": "8f8e375d118d31c8",
       "bytes": 91422,
-      "igs": [
-        "immunizations",
-        "base"
-      ]
-    },
-    {
-      "dir": "assets/lhc-forms",
-      "hash": "bace3c0091f93b44",
-      "bytes": 6697619,
       "igs": [
         "immunizations",
         "base"
@@ -51,8 +33,8 @@
   ],
   "landing_chrome": {
     "chrome_from": "immunizations",
-    "search_entries": 1139
+    "search_entries": 1140
   },
-  "bytes_total": 221970931,
-  "bytes_saved_by_sharing": 12031408
+  "bytes_total": 164924279,
+  "bytes_saved_by_sharing": 97889
 }

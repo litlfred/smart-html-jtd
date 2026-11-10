@@ -22,7 +22,7 @@
     {
       "@type": "schema:MediaObject",
       "schema:contentUrl": {
-        "@id": "../ValueSet-IMMZ.Z.DE3.json"
+        "@id": "https://raw.githubusercontent.com/litlfred/smart-immunizations/17d22993d4d2ff22922bbf156bad57ce760fb3e4/resources/ValueSet/IMMZ.Z.DE3--bc4c0c24.json"
       },
       "schema:encodingFormat": "application/fhir+json",
       "dcterms:source": "local"

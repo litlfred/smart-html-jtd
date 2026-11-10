@@ -21,7 +21,7 @@
     {
       "@type": "schema:MediaObject",
       "schema:contentUrl": {
-        "@id": "../Questionnaire-QIMMZC4.json"
+        "@id": "https://raw.githubusercontent.com/litlfred/smart-immunizations/17d22993d4d2ff22922bbf156bad57ce760fb3e4/resources/Questionnaire/QIMMZC4--bb54f7f9.json"
       },
       "schema:encodingFormat": "application/fhir+json",
       "dcterms:source": "local"

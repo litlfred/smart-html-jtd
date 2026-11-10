@@ -22,7 +22,7 @@
     {
       "@type": "schema:MediaObject",
       "schema:contentUrl": {
-        "@id": "../PlanDefinition-IMMZD2DTRabies.json"
+        "@id": "https://raw.githubusercontent.com/litlfred/smart-immunizations/17d22993d4d2ff22922bbf156bad57ce760fb3e4/resources/PlanDefinition/IMMZD2DTRabies--67b6b9ac.json"
       },
       "schema:encodingFormat": "application/fhir+json",
       "dcterms:source": "local"
