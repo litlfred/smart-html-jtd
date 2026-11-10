@@ -22,7 +22,7 @@ env:
   # The cat-harness-tools commit whose `shared-assets.ts stage` lays out the
   # shared assets (litlfred/cat-harness-tools#1738): the PR's head until it
   # merges, then a main commit.
-  TOOLS_REF: 21e99640407c925a6e1f68b5a4a908f5130e8b73
+  TOOLS_REF: 9f7df9774465d8a4af4d533bd63ebacc8101d045
   # The layers the publisher imports, at the commits pinned beside TOOLS_REF
   # in litlfred/smart-immunizations' index.lock.json (#121).
   CAT_HARNESS_REF: 8d4c141c55199e2f1e502142279e94b3fcb492ad
