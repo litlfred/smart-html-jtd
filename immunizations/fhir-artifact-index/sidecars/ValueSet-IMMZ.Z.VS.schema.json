@@ -355,5 +355,5 @@
   "fhir:displays": "http://smart.who.int/immunizations/ValueSet-IMMZ.Z.VS.displays.json",
   "fhir:valueSet": "http://smart.who.int/immunizations/ValueSet/IMMZ.Z.VS",
   "fhir:version": "0.2.0",
-  "fhir:expansionTimestamp": "2026-10-21T12:39:16+00:00"
+  "fhir:expansionTimestamp": "2026-11-10T17:34:43+00:00"
 }

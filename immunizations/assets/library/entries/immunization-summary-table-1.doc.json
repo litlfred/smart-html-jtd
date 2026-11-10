@@ -78,7 +78,20 @@
         "text": "Provides the introductory header and disclaimer for WHO's December 2025 Summary Table 1 on routine immunization recommendations, directing readers to the WHO position papers webpage and noting that cited ages and intervals guide national schedule development rather than direct clinical use.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "vaccines",
+          "heading": false
+        },
+        {
+          "term": "position",
+          "heading": false
+        },
+        {
+          "term": "schedules",
+          "heading": false
+        }
+      ],
       "extract": "Refer to https://www.who.int/teams/immunization-vaccines-and-biologicals/policies/position-papers for latest position paper updates. This table summarizes the WHO vaccination recommendations for children. The ages/intervals cited are to assist the development of country specific schedules and are not for direct use by health workers. National schedules should be based on local epidemiologic, programmatic, resource &",
       "extractCut": true
     },
@@ -96,7 +109,40 @@
         "text": "Presents the first part of WHO Summary Table 1 (updated December 2025), summarizing routine immunization recommendations across children, adolescents, and adults for universally recommended antigens: RSV (maternal vaccine or long-acting monoclonal antibody), BCG, Hepatitis B, Polio, DTP-containing vaccine, Haemophilus influenzae type b (Hib), Pneumococcal conjugate vaccine (PCV), Rotavirus, Measles, Rubella, and HPV.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "option dose",
+          "heading": false
+        },
+        {
+          "term": "birth dose",
+          "heading": false
+        },
+        {
+          "term": "primary doses",
+          "heading": false
+        },
+        {
+          "term": "schedule options",
+          "heading": false
+        },
+        {
+          "term": "maternal vaccination",
+          "heading": false
+        },
+        {
+          "term": "interrupted schedule",
+          "heading": false
+        },
+        {
+          "term": "delayed interrupted",
+          "heading": false
+        },
+        {
+          "term": "footnote",
+          "heading": false
+        }
+      ],
       "extract": "Antigen Children (See Table 2 for details) Adolescents Adults Considerations (see footnotes for details) Recommendations for all immunization programmes RSV 1 Option 1 1 dose maternal vaccination (see footnote) Strategy options: maternal vaccination in third trimester and/or long-acting monoclonal antibodies (to newborn after birth) Co-administration; Seasonality Option 2 1 dose monoclonal antibody (see footnote)",
       "extractCut": true
     },
@@ -114,7 +160,40 @@
         "text": "Presents the remainder of WHO Summary Table 1 (updated December 2025) covering regional, high-risk, and programme-specific antigens—Japanese Encephalitis, Yellow Fever, Tick-Borne Encephalitis, Typhoid, Cholera, Meningococcal, Hepatitis A, Rabies, Dengue (TAK-003), Malaria, Mumps, Seasonal Influenza, Varicella, and the off-label 1p+1 PCV schedule—followed by detailed antigen-by-antigen footnotes (1–24) summarizing the corresponding WHO position papers and SAGE updates.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "position papers",
+          "heading": true
+        },
+        {
+          "term": "age months",
+          "heading": false
+        },
+        {
+          "term": "aged years",
+          "heading": false
+        },
+        {
+          "term": "ipv dose",
+          "heading": false
+        },
+        {
+          "term": "booster dose",
+          "heading": false
+        },
+        {
+          "term": "malaria vaccines",
+          "heading": false
+        },
+        {
+          "term": "ipv bopv",
+          "heading": false
+        },
+        {
+          "term": "children months",
+          "heading": false
+        }
+      ],
       "extract": "Antigen Children (See Table 2 for details) Adolescents Adults Considerations (see footnotes for details) Recommendations for certain regions Japanese Encephalitis 12 Inactivated Vero cell-derived vaccine: generally 2 doses Live attenuated vaccine: 1 dose Live recombinant vaccine: 1 dose Co-administration live vaccines; Vaccine options and manufacturer’s recommendations; Pregnancy; Immunocompromised Yellow Fever 13 1",
       "extractCut": true
     }
@@ -127,6 +206,56 @@
     }
   },
   "withheld": false,
+  "keywords": [
+    {
+      "term": "age months",
+      "heading": false
+    },
+    {
+      "term": "booster dose",
+      "heading": false
+    },
+    {
+      "term": "dose ipv",
+      "heading": false
+    },
+    {
+      "term": "dose schedule",
+      "heading": false
+    },
+    {
+      "term": "children months",
+      "heading": false
+    },
+    {
+      "term": "dose primary",
+      "heading": false
+    },
+    {
+      "term": "booster vaccination",
+      "heading": false
+    },
+    {
+      "term": "doses yrs",
+      "heading": false
+    },
+    {
+      "term": "age groups",
+      "heading": false
+    },
+    {
+      "term": "conjugate vaccines",
+      "heading": false
+    },
+    {
+      "term": "option dose",
+      "heading": false
+    },
+    {
+      "term": "ipv bopv",
+      "heading": false
+    }
+  ],
   "pageLabels": [
     {
       "physical": 1,

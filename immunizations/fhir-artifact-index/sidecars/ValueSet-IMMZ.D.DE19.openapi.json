@@ -384,7 +384,7 @@
         "fhir:displays": "http://smart.who.int/immunizations/ValueSet-IMMZ.D.DE19.displays.json",
         "fhir:valueSet": "http://smart.who.int/immunizations/ValueSet/IMMZ.D.DE19",
         "fhir:version": "0.2.0",
-        "fhir:expansionTimestamp": "2026-10-21T12:39:13+00:00"
+        "fhir:expansionTimestamp": "2026-11-10T17:34:39+00:00"
       }
     }
   }

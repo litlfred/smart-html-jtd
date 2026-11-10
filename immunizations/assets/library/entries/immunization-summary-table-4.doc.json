@@ -34,7 +34,40 @@
         "text": "Presents WHO Summary Table 4 (updated December 2025) on the immunization of health care workers (HCWs), categorizing 25 antigens into those recommended for HCWs (BCG, Hepatitis B, Polio, Diphtheria, Measles, Rubella, Meningococcal, Influenza, Varicella, and Pertussis) and those without current HCW-specific recommendations (Tetanus, Hib, Pneumococcal, Rotavirus, HPV, Japanese Encephalitis, Yellow Fever, Tick-Borne Encephalitis, Typhoid, Cholera, Hepatitis A, Rabies, Mumps, Dengue TAK-003, and Malaria), along with position paper references and footnotes.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "epidemiological record",
+          "heading": false
+        },
+        {
+          "term": "position paper",
+          "heading": false
+        },
+        {
+          "term": "care workers",
+          "heading": false
+        },
+        {
+          "term": "care setting",
+          "heading": false
+        },
+        {
+          "term": "health-care workers",
+          "heading": false
+        },
+        {
+          "term": "cholera vaccines",
+          "heading": false
+        },
+        {
+          "term": "special risk",
+          "heading": false
+        },
+        {
+          "term": "recommendation regarding",
+          "heading": false
+        }
+      ],
       "extract": "Updated December 2025 Antigen Vaccination of Health Care Workers Recommended BCG 1 BCG vaccination is recommended for unvaccinated TST- or IGRA-negative persons at risk of occupational exposure in low and high TB incidence areas (e.g. health- care workers, laboratory workers, medical students, prison workers, other individuals with occupational exposure). Hepatitis B 2 Immunization is suggested for groups at risk of",
       "extractCut": true
     }
@@ -51,6 +84,56 @@
     }
   },
   "withheld": false,
+  "keywords": [
+    {
+      "term": "epidemiological record",
+      "heading": false
+    },
+    {
+      "term": "position paper",
+      "heading": false
+    },
+    {
+      "term": "care workers",
+      "heading": false
+    },
+    {
+      "term": "care setting",
+      "heading": false
+    },
+    {
+      "term": "health-care workers",
+      "heading": false
+    },
+    {
+      "term": "cholera vaccines",
+      "heading": false
+    },
+    {
+      "term": "special risk",
+      "heading": false
+    },
+    {
+      "term": "recommendation regarding",
+      "heading": false
+    },
+    {
+      "term": "typhoid vaccines",
+      "heading": false
+    },
+    {
+      "term": "pneumococcal disease",
+      "heading": false
+    },
+    {
+      "term": "disease lies",
+      "heading": false
+    },
+    {
+      "term": "endemic areas",
+      "heading": false
+    }
+  ],
   "pageLabels": [
     {
       "physical": 1,

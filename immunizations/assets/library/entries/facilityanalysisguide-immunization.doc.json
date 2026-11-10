@@ -683,7 +683,20 @@
         "text": "Title page and copyright notice for WHO's February 2018 working document 'Analysis and Use of Health Facility Data: Guidance for immunization programme managers' (Module 6). It notes that all rights are reserved and that as a working document it should not be quoted, reproduced, translated, or adapted.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "programme managers",
+          "heading": false
+        },
+        {
+          "term": "working document",
+          "heading": false
+        },
+        {
+          "term": "reserved",
+          "heading": false
+        }
+      ],
       "extract": "ANALYSIS AND USE OF HEALTH FACILITY DATA Guidance for immunization programme managers WORKING DOCUMENT – FEBRUARY 2018 © World Health Organization 2018 All rights reserved. This is a working document and should not be quoted, reproduced, translated or adapted, in part or in whole, in any form or by any means. MODULE 6. Guidance for immunization programme managers",
       "extractCut": false
     },
@@ -719,7 +732,28 @@
         "text": "Defines the scope and target audience for the routine immunization data analysis guidance, noting that separate guidance covers periodic multi-source reviews using surveys and focused investigations. The module targets Ministry of Health decision-makers (immunization programme staff, data managers, and HIS managers), immunization partner staff, and research institute consultants and staff.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "information system",
+          "heading": false
+        },
+        {
+          "term": "audience",
+          "heading": true
+        },
+        {
+          "term": "routine",
+          "heading": false
+        },
+        {
+          "term": "decision",
+          "heading": false
+        },
+        {
+          "term": "institutes",
+          "heading": false
+        }
+      ],
       "extract": "systems, develop training materials, evaluate the monitoring system and the data it produces, or look for ways to represent and visualize immunization data in ways that support decision making. This section focuses on use of routine data. Separate guidance is under development on use of data from multiple sources (health facility surveys, population-based surveys, focused investigations in addition to the routine",
       "extractCut": true
     },
@@ -788,7 +822,28 @@
         "text": "Presents the table of contents covering data scope, data quality, core facility indicators, and core analyses (coverage, dropouts, stock management, AEFIs, sessions, and reporting completeness), followed by acknowledgements of financial support from the Bloomberg Philanthropies Data for Health Initiative, Gavi, the Global Fund, and Norad.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "acknowledgements",
+          "heading": true
+        },
+        {
+          "term": "working document",
+          "heading": false
+        },
+        {
+          "term": "programme managers",
+          "heading": false
+        },
+        {
+          "term": "core",
+          "heading": false
+        },
+        {
+          "term": "initiative",
+          "heading": false
+        }
+      ],
       "extract": "1. About the data ............................................................................................ 7 2. Data quality ................................................................................................ 8 3. Core facility indicators ............................................................................... 10 4. Core analysis",
       "extractCut": true
     },
@@ -806,7 +861,40 @@
         "text": "Describes the scope of routine facility immunization data covered by the guide—tracking child and maternal vaccinations, AEFIs, vaccine supplies, and cold chain status—while excluding campaign data, disease surveillance, case-based severe AEFI investigations, and HR/financial tracking. It explains how monthly aggregate reporting and Electronic Immunization Registries (EIRs) operate alongside integrated HMIS platforms such as DHIS2 and Excel-based tools like the District Vaccine Data Management Tool (DVDMT).",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "middle income",
+          "heading": false
+        },
+        {
+          "term": "income countries",
+          "heading": false
+        },
+        {
+          "term": "adverse events",
+          "heading": false
+        },
+        {
+          "term": "events following",
+          "heading": false
+        },
+        {
+          "term": "extracted",
+          "heading": false
+        },
+        {
+          "term": "lower",
+          "heading": false
+        },
+        {
+          "term": "chain",
+          "heading": false
+        },
+        {
+          "term": "reported",
+          "heading": false
+        }
+      ],
       "extract": "Routine immunization data are recorded by staff at health facilities to track the immunization status of children and pregnant women served by the health facility, any adverse events following immunization (AEFIs), vaccines and supplies used and status of the cold chain. Summary data are periodically reported to supervisors who monitor performance indicators such as immunization coverage and vaccine wastage. The",
       "extractCut": true
     },
@@ -824,7 +912,40 @@
         "text": "Outlines essential data quality assessment steps prior to analysing routine immunization data, combining desk reviews (using WHO's Excel DQR tool or DHIS2 Data Quality Tool) with field data verification surveys against facility registers and tally sheets. It details three core checks: assessing reporting completeness and timeliness, checking internal consistency (detecting outliers beyond 3 standard deviations, suspicious uniformity or multiples of 5/10, negative dropouts or wastage rates, and register discrepancies), and evaluating external consistency against population-based surveys such as DHS and MICS.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "reported values",
+          "heading": false
+        },
+        {
+          "term": "desk review",
+          "heading": false
+        },
+        {
+          "term": "district level",
+          "heading": false
+        },
+        {
+          "term": "external consistency",
+          "heading": false
+        },
+        {
+          "term": "verification survey",
+          "heading": false
+        },
+        {
+          "term": "internal consistency",
+          "heading": false
+        },
+        {
+          "term": "quality",
+          "heading": true
+        },
+        {
+          "term": "discussed below",
+          "heading": false
+        }
+      ],
       "extract": "All data have limitations that affect the reliability and interpretation of the data. The data routinely reported by health facilities are certainly no exception. The data cannot be interpreted without first knowing how complete they are and examining them for inconsistencies and errors. The data may need to be adjusted before they can be meaningfully analyzed. Findings from review of data quality and explanations",
       "extractCut": true
     },
@@ -905,7 +1026,40 @@
         "text": "Tabulates the core health facility immunization indicators, their calculation formulas, and required disaggregations across seven areas: immunization coverage rate by vaccine, dropout rates (DPT1–DPT3, BCG–MCV1, and MCV1–MCV2), closed and open vial wastage rates, full availability of vaccines and supplies, functional status of cold chain equipment, temperature alarms, serious and non-serious AEFIs, and immunization session completion rate.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "geographic region",
+          "heading": false
+        },
+        {
+          "term": "dpt doses",
+          "heading": false
+        },
+        {
+          "term": "mcv dropout",
+          "heading": false
+        },
+        {
+          "term": "bcg doses",
+          "heading": false
+        },
+        {
+          "term": "vial wastage",
+          "heading": false
+        },
+        {
+          "term": "measles containing",
+          "heading": false
+        },
+        {
+          "term": "chain equipment",
+          "heading": false
+        },
+        {
+          "term": "aefi",
+          "heading": false
+        }
+      ],
       "extract": "Immunization coverage rate by vaccine for each vacine in the national schedule 100 x (Number of children receiving the vaccine) / (Estimated number of target population (e.g. infants less than one year) • By vaccine / dose of vaccine • Age (<1 year, ≥ 1 year for infant immunizations; ≤ 2 years, ≥ 2 years for toddler immunizations) • Status (pregnant women, others) for TT • Geographic region Dropout rate for: - first",
       "extractCut": true
     },
@@ -956,7 +1110,40 @@
         "text": "Defines immunization coverage as the percentage of a target population vaccinated with a defined number of antigen doses and explains its use across facility, sub-national, and national levels. It catalogues nine standard coverage and dose-monitoring visualizations (Charts/Maps 1–9), including cumulative facility coverage charts, district coverage maps for BCG, Penta 3, and MCV1, district rankings showing Penta 1–3 dropout, monthly and annual doses administered, annual coverage trends, and comparisons of routine DPT3/MCV1 estimates against survey estimates.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "recent performance",
+          "heading": false
+        },
+        {
+          "term": "penta coverage",
+          "heading": false
+        },
+        {
+          "term": "doses administered",
+          "heading": false
+        },
+        {
+          "term": "progress towards",
+          "heading": false
+        },
+        {
+          "term": "map",
+          "heading": false
+        },
+        {
+          "term": "target population",
+          "heading": false
+        },
+        {
+          "term": "delivered",
+          "heading": false
+        },
+        {
+          "term": "programme managers",
+          "heading": false
+        }
+      ],
       "extract": "Immunization coverage is the fraction of a certain target population that is vaccinated with a defined number of doses for a certain antigen or vaccine, expressed as a percentage. Coverage is the most direct measure of program performance and is monitored at national, sub-national and facility levels in order to detect performance issues and take corrective action when needed. Analysis Monitor vaccine doses",
       "extractCut": true
     },
@@ -1007,7 +1194,20 @@
         "text": "Explains that coverage for early schedule doses such as BCG or Penta-1 serves as an indicator of access to immunization services, where high first-dose coverage reflects both broad service reach and community acceptance of vaccination.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "indicates",
+          "heading": false
+        },
+        {
+          "term": "indicative",
+          "heading": false
+        },
+        {
+          "term": "access",
+          "heading": true
+        }
+      ],
       "extract": "Coverage for early doses in the immunization schedule, like BCG or Penta-1, are indicative of access to immunization services. High first dose coverage indicates that health services cover a high proportion of the population and that people also seem to accept vaccination.",
       "extractCut": false
     },
@@ -1025,7 +1225,24 @@
         "text": "Explains why aggregate reporting systems rarely track 'fully immunized' children directly—given the difficulty of scanning complete individual immunization histories at facility level and evolving schedules across older ages—and instead rely on a tracer vaccine dose such as DTP3 to measure overall programme performance.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "tracer",
+          "heading": false
+        },
+        {
+          "term": "overall",
+          "heading": true
+        },
+        {
+          "term": "immunized",
+          "heading": false
+        },
+        {
+          "term": "officials",
+          "heading": false
+        }
+      ],
       "extract": "Immunization program managers and health officials sometimes want to use routine data to monitor full immunization coverage. It is difficult to set up an aggregate reporting system that reliably reports on the number of children that are fully immunized. To do this, those aggregating the data at facility level must reliably scan all immunizations provided to the child to date to determine whether they are fully",
       "extractCut": true
     },
@@ -1043,7 +1260,20 @@
         "text": "Notes that misclassifying children receiving their first or second DPT dose as receiving DPT3 can inflate reported DPT3 counts above DPT1, producing an apparent negative dropout rate even across a full year.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "dpt",
+          "heading": false
+        },
+        {
+          "term": "report",
+          "heading": false
+        },
+        {
+          "term": "discussed",
+          "heading": false
+        }
+      ],
       "extract": "Children given their first or second doses of DPT vaccine can be misclassified as receiving their third dose of DPT. If this happens frequently enough, the health facility can report DPT3 greater than DPT1 (i.e. a “negative dropout rate” – discussed below), sometimes for an entire year overall.",
       "extractCut": false
     },
@@ -1061,7 +1291,20 @@
         "text": "Recommends monitoring coverage for every vaccine in the national schedule to detect vaccine-specific uptake or programmatic issues early, especially following a new vaccine introduction to verify that uptake aligns with established vaccines.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "vaccines",
+          "heading": true
+        },
+        {
+          "term": "coverage",
+          "heading": true
+        },
+        {
+          "term": "schedule",
+          "heading": true
+        }
+      ],
       "extract": "Coverage for all other vaccines in the national schedule should also be monitored, as vaccine specific uptake or programmatic issues may arise and need to be detected as soon as possible. After a new vaccine introduction, it is recommended to specifically monitor coverage of that vaccine to make sure it reaches levels in line with established vaccines.",
       "extractCut": false
     },
@@ -1079,7 +1322,28 @@
         "text": "Explains how age disaggregation distinguishes timely coverage (immunization before 12 months of age for infant vaccines, or before 24 months for MCV2 and in some countries MCV1) from delayed coverage (immunization at or after those age thresholds).",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "children immunized",
+          "heading": false
+        },
+        {
+          "term": "delayed coverage",
+          "heading": false
+        },
+        {
+          "term": "mcv",
+          "heading": false
+        },
+        {
+          "term": "measles containing",
+          "heading": false
+        },
+        {
+          "term": "age",
+          "heading": true
+        }
+      ],
       "extract": "To determine whether children are protected as early as possible, childhood immunization data should be disaggregated by age. In this way it is possible to monitor “timely coverage” versus “delayed coverage”. With the possible exception of the first dose of measles containing vaccine (MCV1), timely coverage is the percentage of children immunized before 12 month of age while delayed coverage is the percentage of",
       "extractCut": true
     },
@@ -1097,7 +1361,32 @@
         "text": "Advises against routine disaggregation of administered doses by sex, delivery strategy (fixed versus outreach), or catchment residency, noting that each added disaggregation doubles recording and reporting workload without yielding reliable or actionable routine data. It recommends streamlining facility reporting forms to limit cell counts and relying on household surveys for such questions.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "reporting forms",
+          "heading": false
+        },
+        {
+          "term": "findings",
+          "heading": false
+        },
+        {
+          "term": "disaggregated",
+          "heading": false
+        },
+        {
+          "term": "collected",
+          "heading": false
+        },
+        {
+          "term": "further",
+          "heading": false
+        },
+        {
+          "term": "child",
+          "heading": false
+        }
+      ],
       "extract": "Sometimes the administered doses are further disaggregated, for example by sex of the child, or the strategy that was used to vaccinate it (i.e. fixed versus outreach), or whether or not the child lives within the catchment area of the health facility. These additional dis-aggregations are not recommended as there is scant evidence that reliable data disaggregated in these ways can be collected or meaningfully used.",
       "extractCut": true
     },
@@ -1115,7 +1404,36 @@
         "text": "Discusses target population denominators for coverage calculations, distinguishing live births for birth doses (BCG, OPV0, HepB0) from surviving infants for other first-year vaccines and preferring independent census-derived regional demographic estimates over national averages or local enumerations. It notes that coverage exceeding 100% signals either denominator underestimation (including cross-border or mobile populations) or over-reporting of administered doses.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "population estimates",
+          "heading": false
+        },
+        {
+          "term": "target population",
+          "heading": false
+        },
+        {
+          "term": "missed",
+          "heading": false
+        },
+        {
+          "term": "infant",
+          "heading": false
+        },
+        {
+          "term": "denominator",
+          "heading": false
+        },
+        {
+          "term": "local",
+          "heading": false
+        },
+        {
+          "term": "source",
+          "heading": false
+        }
+      ],
       "extract": "For all vaccines in the first year of life other than birth doses (i.e. BCG, OPV 0, hepatitis B vaccine 0), the target population for calculating coverage is the number of surviving infants (= live births minus infant deaths). For most countries, official census-derived population estimates are the best source of denominator data, because they are most likely established using rigorous statistical methods, and are",
       "extractCut": true
     },
@@ -1133,7 +1451,20 @@
         "text": "Explains that abrupt year-to-year jumps or drops in coverage often stem from census-driven revisions to target population denominators, which can be diagnosed by graphing annual numerators and denominators separately rather than coverage percentages alone.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "graph",
+          "heading": false
+        },
+        {
+          "term": "year-to-year",
+          "heading": true
+        },
+        {
+          "term": "denominator",
+          "heading": true
+        }
+      ],
       "extract": "Abrupt year-to-year increases or decreases in coverage estimates are sometimes the result of adjustments made to estimates of the target population when findings become available from a new census. To reveal the influence of such denominator adjustments, instead of graphing coverage by year (see graph 8), it is revealing to graph numerators by year (see graph 7) and denominators by year (graph not shown).",
       "extractCut": false
     },
@@ -1187,7 +1518,28 @@
         "text": "Explains how multi-year time series of doses administered and coverage estimates reveal both programme performance trends and data quality or denominator anomalies. It warns against interpreting coverage trends across years when facility reporting completeness has shifted substantially (e.g., from 65% to 85%) unless informed imputations for missing or invalid reports can be made in consultation with local staff.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "graph",
+          "heading": false
+        },
+        {
+          "term": "trends",
+          "heading": false
+        },
+        {
+          "term": "missing",
+          "heading": false
+        },
+        {
+          "term": "completeness",
+          "heading": false
+        },
+        {
+          "term": "caution",
+          "heading": false
+        }
+      ],
       "extract": "While often showing trends in the performance of an immunization program, can also be used to assess the consistency of the data. Erratic fluctuations may suggest a problem with data quality or, as just discussed, adjustments to denominator estimates. For this reason, it is useful to review the trend in doses administered (see graph 7) as well as the coverage estimates (graph 8). Trends Trends must be interpreted",
       "extractCut": true
     },
@@ -1223,7 +1575,36 @@
         "text": "Reviews the limitations and risks of household coverage surveys (such as DHS and MICS) when used as a benchmark against routine estimates, including multi-year measurement lags, wide uncertainty and small sample sizes at sub-national levels, variable interview and card-verification quality, parental recall bias, and unquantified non-sampling errors.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "survey estimates",
+          "heading": true
+        },
+        {
+          "term": "confidence intervals",
+          "heading": false
+        },
+        {
+          "term": "bias",
+          "heading": false
+        },
+        {
+          "term": "sample",
+          "heading": false
+        },
+        {
+          "term": "size",
+          "heading": false
+        },
+        {
+          "term": "error",
+          "heading": false
+        },
+        {
+          "term": "card",
+          "heading": false
+        }
+      ],
       "extract": "Coverage surveys are often seen as the gold standards for coverage estimation. But while they can be very useful, it is worth pointing out that they also have inherent limitations and risks:  Delay in measurement: There is typically a lag of a couple of years between when immunizations are provided and when survey estimates becomes available.  Limited geographic disaggregation: Survey estimates are not commonly",
       "extractCut": true
     },
@@ -1259,7 +1640,24 @@
         "text": "Defines vaccine dropout rates (such as DTP1-to-DTP3 and MCV1-to-MCV2) as the percentage of children who start but fail to complete a vaccination course, serving as a key indicator of service utilization, service quality, and ability to vaccinate beyond the first year of life. It lists four standard tabular and graphical analyses (Charts/Tables 10–13) tracking annual and regional 12-month dropout rates.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "dropout rates",
+          "heading": false
+        },
+        {
+          "term": "same dropout",
+          "heading": false
+        },
+        {
+          "term": "table presents",
+          "heading": false
+        },
+        {
+          "term": "trends",
+          "heading": false
+        }
+      ],
       "extract": "The drop-out rates between early and later doses, for example between DTP1 and DTP3, are defined as the percentage of children that started a course, but didn't finish it for some reason. Low drop-out rates are indicative of good utilization and therefore of good service quality. The MCV1 to MCV2 dropout rate assesses the ability of the program to vaccinate beyond the first year of life. Analysis Monitor “drop out”",
       "extractCut": true
     },
@@ -1310,7 +1708,20 @@
         "text": "Describes how Figure 14 cross-classifies districts or provinces using DPT1 coverage thresholds (<90%, ≥90%, and >100%) and DPT1-to-DPT3 dropout rate categories (<10%, ≥10%, and negative dropout) to diagnose access, utilization, and data quality problems.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "districts",
+          "heading": true
+        },
+        {
+          "term": "dpt",
+          "heading": false
+        },
+        {
+          "term": "performance",
+          "heading": true
+        }
+      ],
       "extract": "Figure 14 shows how districts or geographic regions can be classified based upon two Key Performance Indicators: DPT1 coverage (<90%; ≥90%; > 100%) and DPT1 to DPT3 dropout rate (<10%; ≥10%; negative). ANALYSIS AND USE OF HEALTH FACILITY DATA: Guidance for immunization programme managers WORKING DOCUMENT, FEBRUARY 2018 – 18 –",
       "extractCut": false
     },
@@ -1343,7 +1754,32 @@
         "text": "Introduces the vaccine stock management subsection covering monthly aggregate facility indicators for vaccine and injection supply availability and closed/open vial wastage. It outlines standard tables and charts (15–20) tracking the percentage of health facilities with full monthly availability by district and closed and open vial wastage rates by vaccine and region over 12-month and 5-year periods.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "vial wastage",
+          "heading": false
+        },
+        {
+          "term": "closed vial",
+          "heading": false
+        },
+        {
+          "term": "open vial",
+          "heading": false
+        },
+        {
+          "term": "wastage rate",
+          "heading": false
+        },
+        {
+          "term": "district",
+          "heading": false
+        },
+        {
+          "term": "full availability",
+          "heading": false
+        }
+      ],
       "extract": "Effective supply and cold storage of vaccines is essential for good coverage and efficient use of expensive vaccines. This sub-section covers only the small subset of stock management indicators for which aggregated data can be reported monthly by each health facility. Analysis Monitor availability of vaccines and injection supplies 15) Percentage of health facilities with “full availability” during the month, by",
       "extractCut": true
     },
@@ -1361,7 +1797,20 @@
         "text": "Lists the standard cold chain equipment monitoring analyses (Charts 21–23): monthly and annual counts of high and low temperature alarms by region, and monthly counts of functional refrigerators by region over the past 12 months.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "temperature alarms",
+          "heading": false
+        },
+        {
+          "term": "months",
+          "heading": false
+        },
+        {
+          "term": "region",
+          "heading": false
+        }
+      ],
       "extract": "Monitor vaccine wastage 21) Number of high temperature alarms and number of low temperature alarms by month by region for the last 12 months 22) Number of high temperature alarms and number of low temperature alarms by region for 2016 23) Number of functional refrigerators by month by region for the last 12 months",
       "extractCut": false
     },
@@ -1412,7 +1861,20 @@
         "text": "Defines 'full availability' of vaccines as meeting all vaccination demand without turning children away or providing incomplete schedules due to stockouts, emphasizing that health staff must track stock availability continuously whenever immunization is demanded rather than only checking end-of-month balances.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "demand",
+          "heading": false
+        },
+        {
+          "term": "full",
+          "heading": true
+        },
+        {
+          "term": "know",
+          "heading": false
+        }
+      ],
       "extract": "Full availability means that all demand could be met. Data on unmet demand are hard to come by. How do we know for sure that no children were turned away because of a stock out, or that some of them only received half of the vaccines they were due for? It is not enough to know whether there were stocks at the end of the month. Health staff must track this continuously whenever immunizations are demanded.",
       "extractCut": false
     },
@@ -1430,7 +1892,24 @@
         "text": "Defines closed vial wastage as the percentage of vaccine doses spoiled due to expiry, heat exposure (such as turned VVMs), freezing, or breakage, noting that while tracking wastage by reason code helps pinpoint storage or transport shortcomings, reliable reason-disaggregated data are difficult to obtain.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "closed vial",
+          "heading": true
+        },
+        {
+          "term": "vial wastage",
+          "heading": true
+        },
+        {
+          "term": "heat exposure",
+          "heading": false
+        },
+        {
+          "term": "breakage",
+          "heading": false
+        }
+      ],
       "extract": "Closed vial wastage is the percentage of doses of vaccine that were spoiled during a reporting period due to expiry, heat exposure, freezing or breakage. Closed vial wastage is a good performance indicator because it can be avoided if the right management practices are in place. It is best practice to keep track of closed vial wastage by reason code, which would allow managers to identify specific shortcomings in",
       "extractCut": true
     },
@@ -1448,7 +1927,20 @@
         "text": "Provides the formula for open vial wastage—(doses used minus doses administered) divided by doses used, where doses used equals starting balance plus received doses minus ending balance—and explains that a negative wastage rate signals data quality errors from over-reported doses administered or under-reported doses used.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "doses administered",
+          "heading": false
+        },
+        {
+          "term": "wastage",
+          "heading": true
+        },
+        {
+          "term": "children reported",
+          "heading": false
+        }
+      ],
       "extract": "Open vial wastage = (Doses used - doses administered)/ (Doses used). Doses administered are the same as the number of children reported to have received the vaccine. Doses used = Starting balance + addition doses supplied during the period – ending balance. If the number of children reported to have received the vaccine during the period is greater than the number of doses used then the wastage rate is negative.",
       "extractCut": true
     },
@@ -1466,7 +1958,20 @@
         "text": "Explains that when digital temperature recorders are used, the counts of high and low temperature alarms over a reporting period provide a direct indicator of cold chain equipment performance and vaccine storage conditions.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "alarms",
+          "heading": true
+        },
+        {
+          "term": "temperature",
+          "heading": true
+        },
+        {
+          "term": "digital",
+          "heading": false
+        }
+      ],
       "extract": "If digital temperature recorders are being used, then the number of high alarms and the number of low alarms generated by these devices over the period provide a good indication of the working status of cold chain equipment and the conditions in which vaccines are being kept.",
       "extractCut": false
     },
@@ -1535,7 +2040,24 @@
         "text": "Outlines the two-pronged monitoring approach for adverse events following immunization (AEFIs): monthly aggregate reporting of mild and severe AEFIs by facility and district, and individual case reporting and causality investigation for all severe/serious cases (involving hospitalization, disability, or death). It also lists standard regional and monthly/annual AEFI monitoring charts (24–26).",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "serious aefi",
+          "heading": false
+        },
+        {
+          "term": "severe cases",
+          "heading": false
+        },
+        {
+          "term": "non-serious",
+          "heading": false
+        },
+        {
+          "term": "region",
+          "heading": false
+        }
+      ],
       "extract": "AEFI should be monitored in two different ways:  Aggregate reporting systems should be set up to monitor the total number of AEFI recorded in any health facility or district. These should be classified as either mild or severe AEFI.  Case reporting forms should be filled out for all severe cases, and each of these cases should be properly investigated, including an analysis whether the AEFI was a direct result of",
       "extractCut": true
     },
@@ -1604,7 +2126,20 @@
         "text": "Explains the purpose of monitoring planned versus conducted immunization sessions (Chart 27) to help supervisors track micro-plan implementation and identify planning, operational, or budget constraints at reporting facilities.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "sessions",
+          "heading": false
+        },
+        {
+          "term": "planned",
+          "heading": false
+        },
+        {
+          "term": "completion",
+          "heading": false
+        }
+      ],
       "extract": "This indicator enables supervisors to follow up on the implementation of micro plans. Reporting the number of sessions held versus planned might give an indication of planning, operational, or budget issues at the reporting facility Analysis Monitor completion of planned immunization sessions 27) Completion of planned sessions ANALYSIS AND USE OF HEALTH FACILITY DATA: Guidance for immunization programme managers",
       "extractCut": true
     },
@@ -1622,7 +2157,20 @@
         "text": "Explains that monitoring reporting completeness (Charts 28–30) is essential for compiling and analysing routine immunization data and for accurately interpreting coverage trends over time.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "completeness",
+          "heading": true
+        },
+        {
+          "term": "reporting",
+          "heading": true
+        },
+        {
+          "term": "trends",
+          "heading": false
+        }
+      ],
       "extract": "Purpose Complete reporting is required if all routine immunization data are to be compiled and analyzed. Understanding of trends in completeness of reporting is especially important when interpreting trends in coverage. Analysis 28) Completeness 1 29) Completeness 2 30) Completeness 3",
       "extractCut": false
     },
@@ -1673,7 +2221,20 @@
         "text": "Advises analysts to examine regional differences in facility reporting completeness before interpreting apparent regional disparities in immunization coverage.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "completeness",
+          "heading": true
+        },
+        {
+          "term": "examine",
+          "heading": false
+        },
+        {
+          "term": "regional",
+          "heading": false
+        }
+      ],
       "extract": "Examine regional differences in completeness before analyzing regional disparities in immunization coverage. ANALYSIS AND USE OF HEALTH FACILITY DATA: Guidance for immunization programme managers WORKING DOCUMENT, FEBRUARY 2018",
       "extractCut": false
     }
@@ -1700,6 +2261,56 @@
     }
   },
   "withheld": false,
+  "keywords": [
+    {
+      "term": "dpt doses",
+      "heading": false
+    },
+    {
+      "term": "coverage estimates",
+      "heading": false
+    },
+    {
+      "term": "doses administered",
+      "heading": true
+    },
+    {
+      "term": "facility reporting",
+      "heading": true
+    },
+    {
+      "term": "penta coverage",
+      "heading": false
+    },
+    {
+      "term": "children reported",
+      "heading": false
+    },
+    {
+      "term": "bcg doses",
+      "heading": false
+    },
+    {
+      "term": "vial wastage",
+      "heading": true
+    },
+    {
+      "term": "programme managers",
+      "heading": true
+    },
+    {
+      "term": "wastage rate",
+      "heading": false
+    },
+    {
+      "term": "reporting completeness",
+      "heading": true
+    },
+    {
+      "term": "reporting system",
+      "heading": false
+    }
+  ],
   "pageLabels": [
     {
       "physical": 1,

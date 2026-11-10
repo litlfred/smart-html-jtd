@@ -22,7 +22,20 @@
         "text": "Presents the front cover and title page for the July 2022 update of the WHO document Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "monitoring metrics",
+          "heading": false
+        },
+        {
+          "term": "metrics related",
+          "heading": false
+        },
+        {
+          "term": "global covid",
+          "heading": false
+        }
+      ],
       "extract": "1 Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World July 2022 update",
       "extractCut": false
     },
@@ -58,7 +71,40 @@
         "text": "States the document's purpose as specifying monitoring metrics and key performance indicators (KPIs, metrics 1–3 and 7) to guide progress toward the July 2022 WHO Global Covid-19 Vaccination Strategy, and presents the first part of Table 1 covering country-level metrics 1–6 under Goal 1 (reducing mortality and morbidity, protecting health systems, and resuming socio-economic activity with existing vaccines, including primary-series and booster coverage for healthcare workers, older adults, total populations, and humanitarian settings, adult vaccination systems, and electronic health information reporting).",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "monitoring metrics",
+          "heading": false
+        },
+        {
+          "term": "metrics associated",
+          "heading": false
+        },
+        {
+          "term": "metrics related",
+          "heading": false
+        },
+        {
+          "term": "primary series",
+          "heading": false
+        },
+        {
+          "term": "booster additional",
+          "heading": false
+        },
+        {
+          "term": "global covid",
+          "heading": false
+        },
+        {
+          "term": "assistance vaccinated",
+          "heading": false
+        },
+        {
+          "term": "humanitarian assistance",
+          "heading": false
+        }
+      ],
       "extract": "3 Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World Purpose of this document This document complements the WHO’s ‘Global Covid-19 Vaccination Strategy in a Changing World’ published in July of 2022.1 Its purpose is to specify key monitoring metrics to guide progress towards the goals, objectives, and operational priorities of the strategy. Monitoring metrics The following",
       "extractCut": true
     },
@@ -76,7 +122,40 @@
         "text": "Completes Table 1 with global-level metrics 7–10 under Goal 2 (accelerating development and access to improved vaccines, covering clinical-trial and authorized products, effectiveness and safety studies against variants of concern, and secured and delivered doses per 100 inhabitants by income group), outlines monthly and annual WHO reporting mechanisms, and begins Table 2 with metadata and ILOStat/WHO workforce sources for Metric 1.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "improved attributes",
+          "heading": false
+        },
+        {
+          "term": "monitoring metrics",
+          "heading": false
+        },
+        {
+          "term": "metrics related",
+          "heading": false
+        },
+        {
+          "term": "global covid",
+          "heading": false
+        },
+        {
+          "term": "healthcare workers",
+          "heading": false
+        },
+        {
+          "term": "covid vaccination",
+          "heading": false
+        },
+        {
+          "term": "reduce transmission",
+          "heading": false
+        },
+        {
+          "term": "increase duration",
+          "heading": false
+        }
+      ],
       "extract": "4 Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World Goal 2 ‘Accelerate development and access to improved vaccines to achieve durable, broadly protective immunity, and reduce transmission’ 7. A. Number of COVID-19 vaccine products with improved attributes in phase 2/3 clinical trial with prospects to increase duration, broaden immunity, reduce transmission, and improve",
       "extractCut": true
     },
@@ -94,7 +173,40 @@
         "text": "Continues Table 2 with metadata indicators and data sources for Metrics 2 through 6, detailing regional country reports, UN population estimates, OCHA Global Humanitarian Overview and UN Global Health Cluster data for humanitarian settings, planned data-collection mechanisms for adult vaccination systems, and the WHO/UNICEF electronic Joint Reporting Form (eJRF) proxy question on electronic immunization systems.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "united nations",
+          "heading": false
+        },
+        {
+          "term": "nations population",
+          "heading": false
+        },
+        {
+          "term": "humanitarian assistance",
+          "heading": false
+        },
+        {
+          "term": "older adults",
+          "heading": false
+        },
+        {
+          "term": "country number",
+          "heading": false
+        },
+        {
+          "term": "country regional",
+          "heading": false
+        },
+        {
+          "term": "persons vaccinated",
+          "heading": false
+        },
+        {
+          "term": "country reports",
+          "heading": false
+        }
+      ],
       "extract": "5 Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World 2 • Number of older adults vaccinated with a complete primary series by country • Number of older persons vaccinated with at least one booster/additional dose by country • Definition of ‘older population’ age group by country8 • Regional systems based on country reports • Total number of older adults, aggregated by age based",
       "extractCut": true
     },
@@ -112,7 +224,28 @@
         "text": "Concludes Table 2 by specifying the metadata and data sources for Metrics 7, 8, and 9–10, including the WHO International Clinical Trials Registry Platform, public registries such as IVAC View-hub, the UNICEF COVID-19 Vaccine Market Dashboard, World Bank income classifications, and UN population estimates.",
         "status": "draft"
       },
-      "keywords": [],
+      "keywords": [
+        {
+          "term": "covid",
+          "heading": false
+        },
+        {
+          "term": "income",
+          "heading": false
+        },
+        {
+          "term": "studies",
+          "heading": false
+        },
+        {
+          "term": "nations",
+          "heading": false
+        },
+        {
+          "term": "authorized",
+          "heading": false
+        }
+      ],
       "extract": "6 Monitoring Metrics Related to the Global Covid-19 Vaccination Strategy in a Changing World 7 • Number of COVID-19 vaccine products in phase 2/3 clinical trial • Number of COVID-19 vaccine products authorized • WHO International Clinical Trials Registry Platform14 • Public registries, such as IVAC View-hub • Sources will be further specified and developed 8 • Number of COVID-19 vaccine effectiveness studies against",
       "extractCut": true
     },
@@ -143,6 +276,56 @@
     }
   },
   "withheld": false,
+  "keywords": [
+    {
+      "term": "global covid",
+      "heading": true
+    },
+    {
+      "term": "monitoring metrics",
+      "heading": true
+    },
+    {
+      "term": "covid vaccination",
+      "heading": true
+    },
+    {
+      "term": "metrics related",
+      "heading": true
+    },
+    {
+      "term": "metrics associated",
+      "heading": false
+    },
+    {
+      "term": "changing world",
+      "heading": false
+    },
+    {
+      "term": "vaccination strategy",
+      "heading": false
+    },
+    {
+      "term": "global level",
+      "heading": false
+    },
+    {
+      "term": "world number",
+      "heading": false
+    },
+    {
+      "term": "country number",
+      "heading": false
+    },
+    {
+      "term": "primary series",
+      "heading": false
+    },
+    {
+      "term": "population vaccinated",
+      "heading": false
+    }
+  ],
   "pageLabels": [
     {
       "physical": 1,

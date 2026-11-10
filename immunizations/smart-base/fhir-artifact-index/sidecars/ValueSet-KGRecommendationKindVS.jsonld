@@ -16,7 +16,7 @@
   },
   "@id": "http://smart.who.int/base/ValueSet-KGRecommendationKindVS.jsonld",
   "@type": "http://www.w3.org/ns/prov#Entity",
-  "generatedAt": "2026-10-31T02:07:36.310Z",
+  "generatedAt": "2026-11-08T11:58:43.435017451Z",
   "@graph": [
     {
       "id": "#recommendation",

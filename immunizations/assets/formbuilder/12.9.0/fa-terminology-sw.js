@@ -41,7 +41,14 @@ self.addEventListener("fetch", function (e) {
   e.respondWith(
     ready().then(function (d) {
       var a = faTerminologyMap.answer(url, { origin: self.location.origin, index: d.index, ucum: d.ucum, lhcBase: at(cfg.get("lhc") || ""), lhcVersion: cfg.get("v") });
-      if (!a) return fetch(e.request);
+      if (!a)
+        return new Response(
+          JSON.stringify({
+            resourceType: "OperationOutcome",
+            issue: [{ severity: "error", code: "not-supported", diagnostics: "A request to " + new URL(url).origin + " is disabled on this site: it makes no cross-site calls" }],
+          }),
+          { status: 503, headers: { "Content-Type": "application/json" } },
+        );
       if (a.kind === "local") return fetch(a.path);
       if (a.kind === "json") return new Response(JSON.stringify(a.body), { status: a.status, headers: { "Content-Type": "application/json" } });
       return new Response(a.body, { status: a.status, headers: { "Content-Type": a.type } });

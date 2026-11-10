@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<script data-folio-saved-scheme>(function(){var d=document.documentElement,s=null,c="dark";try{s=localStorage.getItem("fa-color-scheme")}catch(e){}if(s!=="light"&&s!=="dark"){s="light";try{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)s="dark"}catch(e){}}try{var n=document.getElementById("fa-site-scheme");if(n)c=JSON.parse(n.textContent).scheme==="light"?"light":"dark"}catch(e){}d.setAttribute("data-fa-scheme",s);var j=window.jtd;if(s!==c&&j&&typeof j.setTheme==="function"){try{j.setTheme(s)}catch(e){}}})();</script>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QA Report — WHO Immunization Implementation Guide</title>
+<link rel="canonical" href="./qa.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23276749'/%3E%3C/svg%3E">
+<meta name="folio-navbar" content="linked">
+<meta name="fa-visualiser-label" content="WHO Immunization Implementation Guide">
+<link rel="stylesheet" href="./assets/page-layout.css" data-fa-page-layout>
+<script src="./assets/page-layout.js" defer data-fa-page-layout></script>
+<link rel="stylesheet" href="./assets/ig-artifact.css">
+<link rel="stylesheet" href="./assets/css/docs-ui.css" data-fa-folio-mount>
+<script src="./assets/navbar/row-2acuhncsmbg.js" defer></script><script src="./assets/js/docs-ui.js" defer data-fa-folio-mount></script>
+<script type="application/json" id="fa-translation-meta">{"lang":"en","translationStatus":"","translationSource":"","supportedLocales":["ar","zh","en","fr","ru","es"],"availableLocales":[]}</script><link rel="stylesheet" href="./assets/css/navbar.css"><script src="./assets/navbar/rail-172oredv0ja.js" defer></script><script src="./assets/js/navbar.js" defer></script><link rel="stylesheet" href="./assets/css/navbar-row.css"><script src="./assets/js/navbar-row.js" defer></script><meta name="fa-pinned-data" content="."></head>
+<body><script type="application/json" id="fa-navbar-row" data-fa-root="." data-fa-row-src="row-2acuhncsmbg"></script><script type="application/json" id="fa-rail" data-fa-root="https://litlfred.github.io/folio-assistant" data-fa-to-root=".">{"data":"rail-172oredv0ja","here":"/qa.html"}</script><nav class="fa-nav" aria-label="folio-assistant" data-fa-rail="pending"><a href="./">WHO Immunization Implementation Guide</a></nav>
+
+<div class="ig-topbar fa-page-bar" role="navigation" aria-label="WHO Immunization Implementation Guide menu"><a class="ig-topbar-home" href="./index.html">WHO Immunization Implementation Guide</a><details class="ig-topbar-group"><summary>Home</summary><ul><li><a href="./index.html">Summary</a></li><li><a href="./changes.html">Changes</a></li><li><a href="./dependencies.html">Dependencies</a></li><li><a href="./en/folio-assistant-core/bibliography/">Bibliography</a></li><li><a href="./adapting.html">Adapting Guidelines for Country use</a></li></ul></details><details class="ig-topbar-group"><summary>Business Requirements</summary><ul><li><a href="./concepts.html">Concepts</a></li><li><a href="./personas.html">Generic Personas</a></li><li><a href="./scenarios.html">User Scenarios</a></li><li><a href="./business-processes.html">Business Processes</a></li><li><a href="./dictionary.html">Data Dictionary</a></li><li><a href="./decision-logic.html">Decision-support Logic</a></li><li><a href="./indicators.html">Indicator and Performance Metrics</a></li><li><a href="./functional-requirements.html">Functional Requirements</a></li><li><a href="./non-functional-requirements.html">Non-functional Requirements</a></li></ul></details><details class="ig-topbar-group"><summary>Data Models and Exchange</summary><ul><li><a href="./system-actors.html">System Actors</a></li><li><a href="./sequence-diagrams.html">Sequence Diagrams</a></li><li><a href="./transactions.html">Transactions</a></li><li><a href="./indicators-measures.html">Indicators and Measures</a></li><li><a href="./codings.html">Codings</a></li></ul></details><details class="ig-topbar-group"><summary>Deployment</summary><ul><li><a href="./security-privacy.html">Security and Privacy Considerations</a></li><li><a href="./testing.html">Testing</a></li><li><a href="./test-data.html">Test Data</a></li><li><a href="./reference-implementations.html">Reference Implementations</a></li><li><a href="./trust_domain.html">Trust Domains</a></li><li><a href="./downloads.html">Downloads</a></li></ul></details><details class="ig-topbar-group"><summary>Indices</summary><ul><li><a href="./artifacts.html">Artifact Index</a></li><li><a href="./maps.html">Mappings</a></li></ul></details><form class="ig-search" role="search" data-ig-search-index="./assets/ig-search.json"><label class="ig-search-label" for="search-input">Search WHO Immunization Implementation Guide</label><input type="search" id="search-input" class="ig-search-input" placeholder="Search pages and artefacts" autocomplete="off" aria-controls="ig-search-results" aria-expanded="false"><ul id="ig-search-results" class="ig-search-results" hidden></ul></form><span class="ig-locale-slot" data-fa-slot="locale"></span><script src="./assets/ig-search.js" defer></script></div>
+<main class="ig-main main-content fa-page-main" id="main-content">
+<p><span hidden="" data-fa-figure-images="ig"></span></p>
+
+<h1 id="qa-report">QA Report</h1>
+
+<p>Two halves: the FHIR QA of this implementation guide, and the knowledge graph’s QA, the harness’s checks over the instances this site is built from. A finding is a gap a check reports, not a failure of the build.</p>
+
+<h2 id="fhir-qa">FHIR QA</h2>
+
+<h3 id="ig-publisher">IG Publisher</h3>
+
+<p>The Publisher’s own QA summary for the run this AST came from (IG Publisher 6.0.0-snapshot1 (3), FHIR 4.0.1, on Tue, 10 Nov, 2026 17:27:47 +0000). <a href="assets/fhir-qa/qa.json">Summary (JSON)</a></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>messages</th>
+      <th>count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>errors</td>
+      <td>744</td>
+    </tr>
+    <tr>
+      <td>warnings</td>
+      <td>1722</td>
+    </tr>
+    <tr>
+      <td>hints</td>
+      <td>6267</td>
+    </tr>
+    <tr>
+      <td>suppressed warnings</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <td>suppressed hints</td>
+      <td>870</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="the-igs-ast">The IG’s AST</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>field</th>
+      <th>value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>generated</td>
+      <td><code class="language-plaintext highlighter-rouge">2026-11-10T17:38:38.412046257Z</code></td>
+    </tr>
+    <tr>
+      <td>authority</td>
+      <td><code class="language-plaintext highlighter-rouge">cache</code></td>
+    </tr>
+    <tr>
+      <td>publisher</td>
+      <td><code class="language-plaintext highlighter-rouge">3.0.0</code></td>
+    </tr>
+    <tr>
+      <td>core</td>
+      <td><code class="language-plaintext highlighter-rouge">7.0.1</code></td>
+    </tr>
+    <tr>
+      <td>sushi</td>
+      <td><code class="language-plaintext highlighter-rouge">SUSHI v3.21.0 (implements FHIR Shorthand specification v3.0.0)</code></td>
+    </tr>
+    <tr>
+      <td>java</td>
+      <td><code class="language-plaintext highlighter-rouge">17.0.21</code></td>
+    </tr>
+    <tr>
+      <td>resources</td>
+      <td>756</td>
+    </tr>
+    <tr>
+      <td>provisional</td>
+      <td><code class="language-plaintext highlighter-rouge">indices</code>, <code class="language-plaintext highlighter-rouge">dependencies</code>, <code class="language-plaintext highlighter-rouge">versions</code>, until a full IG Publisher run</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Validity for this checkout:</strong> <code class="language-plaintext highlighter-rouge">valid</code>.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>recorded in the AST</th>
+      <th>this checkout</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>toolchain</td>
+      <td><code class="language-plaintext highlighter-rouge">ig-publisher 3.0.0 / core 7.0.1</code></td>
+      <td><code class="language-plaintext highlighter-rouge">ig-publisher 3.0.0 / core 7.0.1</code></td>
+    </tr>
+    <tr>
+      <td>sourceRevision</td>
+      <td><code class="language-plaintext highlighter-rouge">0232a9cdb96d12620ceb07df3e6f53b9946bdbeb</code></td>
+      <td><code class="language-plaintext highlighter-rouge">0232a9cdb96d12620ceb07df3e6f53b9946bdbeb</code></td>
+    </tr>
+    <tr>
+      <td>inputDigest</td>
+      <td><code class="language-plaintext highlighter-rouge">b7f0685d0bb83abd77a772fa42b78cda6380f14e03e0c5c1e7e65feb5ec3bee4</code></td>
+      <td><code class="language-plaintext highlighter-rouge">b7f0685d0bb83abd77a772fa42b78cda6380f14e03e0c5c1e7e65feb5ec3bee4</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="knowledge-graph-qa">Knowledge-graph QA</h2>
+
+<p>The harness’s checks over the knowledge graph, as each instance recorded them. <a href="en/cat-harness/qa/">Every instance’s QA</a> is the harness’s own view of the same graph.</p>
+
+<p>An instance with no records in this checkout keeps them on its own QA store, keyed by commit; its view says what that store holds.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>instance</th>
+      <th>records</th>
+      <th>findings</th>
+      <th>view</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">smart-immunizations</code></td>
+      <td>none in this checkout</td>
+      <td>—</td>
+      <td><a href="en/cat-harness/qa/smart-immunizations/">smart-immunizations</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">cat-harness</code></td>
+      <td>none in this checkout</td>
+      <td>—</td>
+      <td><a href="https://litlfred.github.io/folio-assistant/en/cat-harness/qa/cat-harness/">cat-harness</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">fhir-harness</code></td>
+      <td>none in this checkout</td>
+      <td>—</td>
+      <td><a href="https://litlfred.github.io/folio-assistant/en/cat-harness/qa/fhir-harness/">fhir-harness</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">folio-assistant-core</code></td>
+      <td>none in this checkout</td>
+      <td>—</td>
+      <td><a href="https://litlfred.github.io/folio-assistant/en/cat-harness/qa/folio-assistant-core/">folio-assistant-core</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">smart-base</code></td>
+      <td>none in this checkout</td>
+      <td>—</td>
+      <td><a href="en/cat-harness/qa/smart-base/">smart-base</a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">who-iris</code></td>
+      <td>none in this checkout</td>
+      <td>—</td>
+      <td><a href="https://litlfred.github.io/folio-assistant/en/cat-harness/qa/who-iris/">who-iris</a></td>
+    </tr>
+  </tbody>
+</table>
+
+
+</main>
+<link rel="stylesheet" href="assets/ig-pages.css">
+<footer id="ig-footer">
+<p class="ig-footer-nav"><a href="#">top</a></p>
+<p class="ig-footer-band">IG © 2023+ <a href="http://who.int" rel="external">WHO</a>. Package <code>smart.who.int.immunizations#0.2.0</code> based on <a href="http://hl7.org/fhir/R4/" rel="external">FHIR 4.0.1</a>. Generated 2026-11-10</p>
+<p class="ig-footer-links">Links: <a href="toc.html">Table of Contents</a> | <a href="qa.html">QA Report</a> | <a href="https://spdx.org/licenses/CC0-1.0.html" rel="external">License</a></p>
+</footer>
+
+</body>
+</html>

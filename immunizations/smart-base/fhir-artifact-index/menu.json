@@ -6,9 +6,9 @@
   "source": {
     "kind": "sushi-config",
     "of": "https://github.com/litlfred/smart-base",
-    "ref": "a9d57a2d046e32c98ad0f9d60c451ae202016707",
+    "ref": "60d9b473c1a9797b21db65a1f2b0abe1645c897c",
     "path": "sushi-config.yaml",
-    "readAt": "2026-10-31"
+    "readAt": "2026-11-07"
   },
   "groups": [
     {

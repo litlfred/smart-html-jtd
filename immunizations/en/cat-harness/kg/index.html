@@ -218,7 +218,7 @@
   <!-- The way back (bean yhcq, finding 8). The page is reached from the docs
        navbar and carries none of its chrome, so returning depended on the
        browser's Back button. The site root, reached relatively: the same
-       reasoning as DOC, so it is right under STAGING/<slug>/ too. -->
+       reasoning as DOC, so it is right under branches/<slug>/ too. -->
   <a class="crumb" id="home" href="../../../">&larr; <bdi id="home-t">Docs site</bdi></a>
   <h1 id="title">cat-harness — knowledge graph</h1>
   <div class="meta" id="meta">loading <code>../../../cat-harness/cat-harness.jsonld</code>…</div>
@@ -261,7 +261,7 @@
 "use strict";
 // The document is a SIBLING of this page — never an absolute URL and never a
 // composed one. The same bytes therefore work at the canonical base and under
-// STAGING/<slug>/ with no configuration.
+// branches/<slug>/ with no configuration.
 const DOC = "../../../cat-harness/cat-harness.jsonld";
 const STUB = "cat-harness";
 const SUBJECT_KINDS = ["actor","asset","capability","convention","decision","directory","externalSchema","globalTask","glossary-usage","package","process","requirement","role","schema","skill"];
@@ -648,7 +648,11 @@ function renderMeta() {
   if (loaded.sourceTreeDirty) bits.push(T("tree dirty"));
   // A timestamp is data rather than a sentence, and is shown as the document
   // wrote it.
-  if (loaded.generatedAt) bits.push(String(loaded.generatedAt).slice(0, 19).replace("T", " ") + "Z");
+  // An export no longer stamps when it ran (owner rulings 2026-11-06, "QA
+  // dates" / "Date source"): its date is derived, the source commit's own.
+  const when = loaded.generatedAt ?? loaded.sourceCommitAt;
+  const utc = when ? new Date(String(when)) : undefined;
+  if (utc && !isNaN(utc.getTime())) bits.push(utc.toISOString().slice(0, 19).replace("T", " ") + "Z");
 
   // Each bit is ISOLATED, and this line is where it stopped being optional.
   //
@@ -673,7 +677,7 @@ function renderMeta() {
   //
   // DOC, not a composed absolute URL. The page already fetched its sibling by
   // that relative path, so the link is correct wherever the page is served
-  // from -- canonical or STAGING/<slug>/ -- for the same reason the fetch is.
+  // from -- canonical or branches/<slug>/ -- for the same reason the fetch is.
   // Composing <base>/kg/<stub>.jsonld from the declaration would have been a
   // second answer to a question the page has already answered, and the one
   // that goes wrong on a preview.

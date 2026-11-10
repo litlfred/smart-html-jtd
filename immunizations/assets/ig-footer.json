@@ -1,4 +1,27 @@
 {
+  "publisher": "WHO",
+  "publisherUrl": "http://who.int",
   "packageId": "smart.who.int.immunizations",
-  "version": "0.2.0"
+  "version": "0.2.0",
+  "fhirVersion": "4.0.1",
+  "fhirUrl": "http://hl7.org/fhir/R4/",
+  "license": "CC0-1.0",
+  "licenseUrl": "https://spdx.org/licenses/CC0-1.0.html",
+  "copyrightYear": "2023+",
+  "generated": "2026-11-10",
+  "links": [
+    {
+      "label": "Table of Contents",
+      "href": "toc.html"
+    },
+    {
+      "label": "QA Report",
+      "href": "qa.html"
+    },
+    {
+      "label": "License",
+      "href": "https://spdx.org/licenses/CC0-1.0.html",
+      "external": true
+    }
+  ]
 }
