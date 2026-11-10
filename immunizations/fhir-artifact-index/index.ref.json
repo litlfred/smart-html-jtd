@@ -1,0 +1,7 @@
+{
+  "$schema": "fhir-artifact-index-ref/v1",
+  "index": "https://raw.githubusercontent.com/litlfred/smart-immunizations/dece82b9e889c7fc27bdea0a218a3634e9520f91/fhir-artifact-index/index.json",
+  "base": "https://raw.githubusercontent.com/litlfred/smart-immunizations/dece82b9e889c7fc27bdea0a218a3634e9520f91/",
+  "repository": "litlfred/smart-immunizations",
+  "commit": "dece82b9e889c7fc27bdea0a218a3634e9520f91"
+}

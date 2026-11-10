@@ -23,7 +23,7 @@
  * scripts/uml-palette.ts) and a class per kind, and the chrome is styled by uml.css.
  * Ported from the ihris folio's src/site/kg-graph.js. No build step.
  */
-const GRAPHVIZ = new URL("./vendor/wasm-graphviz/index.js", import.meta.url).href;
+const GRAPHVIZ = new URL("https://litlfred.github.io/smart-html-jtd/shared/assets/js/vendor/wasm-graphviz/84c98a14823678b6/index.js", import.meta.url).href;
 let gvPromise = null;
 const graphviz = () => (gvPromise ||= import(GRAPHVIZ).then((m) => m.Graphviz.load()));
 

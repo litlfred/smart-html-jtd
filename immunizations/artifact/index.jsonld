@@ -21,6 +21,7 @@
       "@type": "fhir:ActivityDefinition",
       "dcterms:identifier": "ActivityDefinition/IMMZD2DTCR",
       "dcterms:title": "IMMZ.D2.DT.CR",
+      "schema:name": "IMMZD2DTCommunicationRequest",
       "dcterms:description": "Provide immunization communication",
       "dcterms:type": "Other",
       "schema:sameAs": {
@@ -32,6 +33,7 @@
       "@type": "fhir:ActivityDefinition",
       "dcterms:identifier": "ActivityDefinition/IMMZD2DTMR",
       "dcterms:title": "IMMZD2DTMR",
+      "schema:name": "IMMZD2DTMedicationRequest",
       "dcterms:description": "Provide immunization",
       "dcterms:type": "Other",
       "schema:sameAs": {
@@ -43,6 +45,7 @@
       "@type": "fhir:ActivityDefinition",
       "dcterms:identifier": "ActivityDefinition/IMMZD5DTMR",
       "dcterms:title": "IMMZD5DTMR",
+      "schema:name": "IMMZD5DTMedicationRequest",
       "dcterms:description": "Don't administer immunization due to contraindication",
       "dcterms:type": "Other",
       "schema:sameAs": {
@@ -5667,6 +5670,7 @@
       "@type": "fhir:ActorDefinition",
       "dcterms:identifier": "ActorDefinition/IMMZ.Persona.ClericalStaff",
       "dcterms:title": "Clerical staff",
+      "schema:name": "ClericalStaff",
       "dcterms:description": "A clerical staff assists in scheduling appointments, answers phone calls, greets clients, keeps/documents medical records and handles medical billing.\n\n**Alternate names**: Registration clerk.\n\n**ISCO-08**: 3252 Clerk, information: health.\n\nA related generic persona of the WHO Digital Adaptation Kit for Immunizations.",
       "dcterms:type": "Requirements: Actor Definitions",
       "schema:sameAs": {
@@ -5689,6 +5693,7 @@
       "@type": "fhir:ActorDefinition",
       "dcterms:identifier": "ActorDefinition/IMMZ.Persona.CommunityHealthWorker",
       "dcterms:title": "Community health worker",
+      "schema:name": "CommunityHealthWorker",
       "dcterms:description": "Community health workers provide health education, referral and follow-up, case management and basic preventive health care and home visiting services to specific communities. They provide support and assistance to clients by reminding them to get their vaccinations, responding to emergencies and reporting births.\n\n**Alternate names**: Community health volunteer, village health worker, volunteer assistant, volunteer health worker, treatment supporter, health promoter.\n\n**ISCO-08**: 3253 Worker, community: health.\n\nA targeted generic persona of the WHO Digital Adaptation Kit for Immunizations.",
       "dcterms:type": "Requirements: Actor Definitions",
       "schema:sameAs": {
@@ -5700,6 +5705,7 @@
       "@type": "fhir:ActorDefinition",
       "dcterms:identifier": "ActorDefinition/IMMZ.Persona.EPIManager",
       "dcterms:title": "EPI Manager",
+      "schema:name": "EPIManager",
       "dcterms:description": "Expanded Programme on Immunization (EPI) managers develop annual and multi-annual plans, immunization communication and mobilization, management of cold chain and vaccine logistics, monitoring, supervision and evaluation of immunization services, and coordination of EPI activities at the national and subnational levels.\n\n**Alternate names**: Programme manager.\n\n**ISCO-08**: 1342 Manager, health service.\n\nA targeted generic persona of the WHO Digital Adaptation Kit for Immunizations.",
       "dcterms:type": "Requirements: Actor Definitions",
       "schema:sameAs": {
@@ -5711,6 +5717,7 @@
       "@type": "fhir:ActorDefinition",
       "dcterms:identifier": "ActorDefinition/IMMZ.Persona.HealthWorker",
       "dcterms:title": "Health worker (HW)",
+      "schema:name": "HealthWorker",
       "dcterms:description": "Health workers facilitate education sessions, administer immunizations, provide counselling when needed, record vaccinations administered, record stock movements and compile, generate, and submit reports.\n\n**Alternate names**: Nurse, registered nurse, practical nurse.\n\n**ISCO-08**: 3221 Nursing associate professional.\n\nA targeted generic persona of the WHO Digital Adaptation Kit for Immunizations.",
       "dcterms:type": "Requirements: Actor Definitions",
       "schema:sameAs": {
@@ -5722,6 +5729,7 @@
       "@type": "fhir:ActorDefinition",
       "dcterms:identifier": "ActorDefinition/IMMZ.Persona.SystemAdministrator",
       "dcterms:title": "System administrator",
+      "schema:name": "SystemAdministrator",
       "dcterms:description": "A systems administrator, or a dedicated electronic immunization registry (EIR) staff, supervises the operation and storage of electronic health records and makes sure the server functions properly to allow clients and staff to communicate with each other, coordinate their actions and take care of essential tasks.\n\n**Alternate names**: IT manager, technical support, EIR staf.\n\n**ISCO-08**: 2522 Administrator, IT systems.\n\nA related generic persona of the WHO Digital Adaptation Kit for Immunizations.",
       "dcterms:type": "Requirements: Actor Definitions",
       "schema:sameAs": {
@@ -5733,6 +5741,7 @@
       "@type": "fhir:CodeSystem",
       "dcterms:identifier": "CodeSystem/IMMZ.C",
       "dcterms:title": "IMMZ.C CodeSystem for Data Elements",
+      "schema:name": "IMMZ_C",
       "dcterms:description": "CodeSystem for IMMZ.C Data Elements",
       "dcterms:type": "Terminology: Code Systems",
       "schema:sameAs": {
@@ -5744,6 +5753,7 @@
       "@type": "fhir:CodeSystem",
       "dcterms:identifier": "CodeSystem/IMMZ.D",
       "dcterms:title": "IMMZ.D CodeSystem for Data Elements",
+      "schema:name": "IMMZ_D",
       "dcterms:description": "CodeSystem for IMMZ.D Data Elements",
       "dcterms:type": "Terminology: Code Systems",
       "schema:sameAs": {
@@ -5755,6 +5765,7 @@
       "@type": "fhir:CodeSystem",
       "dcterms:identifier": "CodeSystem/IMMZ.Ex",
       "dcterms:title": "IMMZ.Ex CodeSystem for Example values for required data elements",
+      "schema:name": "IMMZ_C",
       "dcterms:description": "CodeSystem for IMMZ.Ex Examples",
       "dcterms:type": "Terminology: Code Systems",
       "schema:sameAs": {
@@ -5766,6 +5777,7 @@
       "@type": "fhir:CodeSystem",
       "dcterms:identifier": "CodeSystem/IMMZ.I",
       "dcterms:title": "IMMZ.I CodeSystem for Data Elements",
+      "schema:name": "IMMZ_I",
       "dcterms:description": "CodeSystem for IMMZ.I Data Elements",
       "dcterms:type": "Terminology: Code Systems",
       "schema:sameAs": {
@@ -5777,6 +5789,7 @@
       "@type": "fhir:CodeSystem",
       "dcterms:identifier": "CodeSystem/IMMZ.Z",
       "dcterms:title": "IMMZ.Z CodeSystem for Data Elements",
+      "schema:name": "IMMZ_Z",
       "dcterms:description": "CodeSystem for IMMZ.Z Data Elements",
       "dcterms:type": "Terminology: Code Systems",
       "schema:sameAs": {
@@ -5799,6 +5812,7 @@
       "@type": "fhir:ConceptMap",
       "dcterms:identifier": "ConceptMap/IMMZ.C.ConceptMap",
       "dcterms:title": "ConceptMap to and from IMMZ.C DataElements",
+      "schema:name": "IMMZ_C_ConceptMap",
       "dcterms:description": "Mapping to and from IMMZ.C Data Dictionary to other codesystems.",
       "dcterms:type": "Terminology: Concept Maps",
       "schema:sameAs": {
@@ -5810,6 +5824,7 @@
       "@type": "fhir:ConceptMap",
       "dcterms:identifier": "ConceptMap/IMMZ.D.ConceptMap",
       "dcterms:title": "ConceptMap to and from IMMZ.D DataElements",
+      "schema:name": "IMMZ_D_ConceptMap",
       "dcterms:description": "Mapping to and from IMMZ.D Data Dictionary to other codesystems.",
       "dcterms:type": "Terminology: Concept Maps",
       "schema:sameAs": {
@@ -5821,6 +5836,7 @@
       "@type": "fhir:ConceptMap",
       "dcterms:identifier": "ConceptMap/IMMZ.Z.ConceptMap",
       "dcterms:title": "ConceptMap to and from IMMZ.Z DataElements",
+      "schema:name": "IMMZ_Z_ConceptMap",
       "dcterms:description": "Mapping to and from IMMZ.Z Data Dictionary to other codesystems.",
       "dcterms:type": "Terminology: Concept Maps",
       "schema:sameAs": {
@@ -5832,6 +5848,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZ.AdverseEvent",
       "dcterms:title": "SMART Guidelines Immunizations AdverseEvent",
+      "schema:name": "IMMZAdverseEvent",
       "dcterms:description": "AdverseEvent Profile for the Immunizations SMART Guidelines.  From IMMZ.D17 Report AEFI",
       "dcterms:type": "Structures: Resource Profiles",
       "schema:sameAs": {
@@ -5843,6 +5860,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZ.Caregiver",
       "dcterms:title": "SMART Guidelines Immunizations Caregiver (RelatedPerson)",
+      "schema:name": "IMMZCaregiver",
       "dcterms:description": "Caregiver (RelatedPerson) Profile for the Immunizations SMART Guidelines.  From IMMZ.C Client Registration for IMMZ.C4.Create client record OR IMMZ.C5.3.Update client details.",
       "dcterms:type": "Structures: Resource Profiles",
       "schema:sameAs": {
@@ -5854,6 +5872,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZ.Immunization",
       "dcterms:title": "SMART Guidelines Immunizations Immunization",
+      "schema:name": "IMMZImmunization",
       "dcterms:description": "Immunization Profile for the Immunizations SMART Guidelines.  From IMMZ.D Administer Vaccine",
       "dcterms:type": "Structures: Resource Profiles",
       "schema:sameAs": {
@@ -5865,6 +5884,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZ.Observation",
       "dcterms:title": "SMART Guidelines Immunizations Observation",
+      "schema:name": "IMMZObservation",
       "dcterms:description": "Observation Profile for the Immunizations SMART Guidelines.  From IMMZ.D Administer Vaccine",
       "dcterms:type": "Structures: Resource Profiles",
       "schema:sameAs": {
@@ -5876,6 +5896,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZ.Patient",
       "dcterms:title": "SMART Guidelines Immunizations Patient",
+      "schema:name": "IMMZPatient",
       "dcterms:description": "Patient Profile for the Immunizations SMART Guidelines.  From IMMZ.C Client Registration for IMMZ.C4.Create client record OR IMMZ.C5.3.Update client details.",
       "dcterms:type": "Structures: Resource Profiles",
       "schema:sameAs": {
@@ -5975,6 +5996,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZC4",
       "dcterms:title": "IMMZ.C4.Create client record",
+      "schema:name": "IMMZ_C4_Create_client_record",
       "dcterms:description": "Data elements for the IMMZ.C4.Create client record Data Dictionary Activity.  Identical to IMMZ.C5.3.Update client details.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -5986,6 +6008,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD1",
       "dcterms:title": "IMMZ.D1.Capture or update client history",
+      "schema:name": "IMMZ_D1_Capture_or_update_client_history",
       "dcterms:description": "Data elements for the IMMZ.D1.Capture or update client history Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -5997,6 +6020,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD13",
       "dcterms:title": "IMMZ.D13.Update client record",
+      "schema:name": "IMMZ_D13_Update_client_record",
       "dcterms:description": "Data elements for the IMMZ.D13.Update client record Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6008,6 +6032,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD17",
       "dcterms:title": "IMMZ.D17.Report AEFI",
+      "schema:name": "IMMZ_D17_Report_AEFI",
       "dcterms:description": "Data elements for the IMMZ.D17.Report AEFI Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6019,6 +6044,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD18",
       "dcterms:title": "IMMZ.D18.Determine time for next visit",
+      "schema:name": "IMMZ_D18_Determine_time_for_next_visit",
       "dcterms:description": "Data elements for the IMMZ.D18.Determine time for next visit Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6030,6 +6056,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD2",
       "dcterms:title": "IMMZ.D2.Determine required vaccination(s)",
+      "schema:name": "IMMZ_D2_Determine_required_vaccination_s_",
       "dcterms:description": "Data elements for the IMMZ.D2.Determine required vaccination(s) Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6041,6 +6068,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD20",
       "dcterms:title": "IMMZ.D20.Does client require a verifiable digital certificate",
+      "schema:name": "IMMZ_D20_Does_client_require_a_verifiable_digital_certificate",
       "dcterms:description": "Data elements for the IMMZ.D20.Does client require a verifiable digital certificate Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6052,6 +6080,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD21",
       "dcterms:title": "IMMZ.D21.Generate verifiable digital certificate",
+      "schema:name": "IMMZ_D21_Generate_verifiable_digital_certificate",
       "dcterms:description": "Data elements for the IMMZ.D21.Generate verifiable digital certificate Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6063,6 +6092,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD5",
       "dcterms:title": "IMMZ.D5.Determine vaccine(s) to be administered based on contraindications",
+      "schema:name": "IMMZ_D5_Determine_vaccine_s__to_be_administered_based_on_contraindications",
       "dcterms:description": "Data elements for the IMMZ.D5.Determine vaccine(s) to be administered based on contraindications Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6074,6 +6104,7 @@
       "@type": "fhir:StructureDefinition",
       "dcterms:identifier": "StructureDefinition/IMMZD7",
       "dcterms:title": "IMMZ.D7.Counsel client",
+      "schema:name": "IMMZ_D7_Counsel_client",
       "dcterms:description": "Data elements for the IMMZ.D7.Counsel client Data Dictionary Activity.",
       "dcterms:type": "Structures: Logical Models",
       "schema:sameAs": {
@@ -6085,6 +6116,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.C.DE5",
       "dcterms:title": "IMMZ.C.DE5 ValueSet for Sex",
+      "schema:name": "IMMZ_C_DE5",
       "dcterms:description": "ValueSet for Sex for IMMZ.C.DE5",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6096,6 +6128,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE1",
       "dcterms:title": "IMMZ.D.DE1 ValueSet for Immunization event status",
+      "schema:name": "IMMZ_D_DE1",
       "dcterms:description": "ValueSet for Immunization event status for IMMZ.D.DE1",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6107,6 +6140,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE107",
       "dcterms:title": "IMMZ.D.DE107 ValueSet for Type of reaction",
+      "schema:name": "IMMZ_D_DE107",
       "dcterms:description": "ValueSet for Type of reaction for IMMZ.D.DE107",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6118,6 +6152,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE115",
       "dcterms:title": "IMMZ.D.DE115 ValueSet for Reaction outcome",
+      "schema:name": "IMMZ_D_DE115",
       "dcterms:description": "ValueSet for Reaction outcome for IMMZ.D.DE115",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6129,6 +6164,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE126",
       "dcterms:title": "IMMZ.D.DE126 ValueSet for Disease targeted",
+      "schema:name": "IMMZ_D_DE126",
       "dcterms:description": "ValueSet for Disease targeted for IMMZ.D.DE126",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6140,6 +6176,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE156",
       "dcterms:title": "IMMZ.D.DE156 ValueSet for Immunization recommendation status",
+      "schema:name": "IMMZ_D_DE156",
       "dcterms:description": "ValueSet for Immunization recommendation status for IMMZ.D.DE156",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6151,6 +6188,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE161",
       "dcterms:title": "IMMZ.D.DE161 ValueSet for Potential contraindications",
+      "schema:name": "IMMZ_D_DE161",
       "dcterms:description": "ValueSet for Potential contraindications for IMMZ.D.DE161",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6162,6 +6200,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE18",
       "dcterms:title": "IMMZ.D.DE18 ValueSet for Vaccine brand",
+      "schema:name": "IMMZ_D_DE18",
       "dcterms:description": "ValueSet for Vaccine brand for IMMZ.D.DE18",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6173,6 +6212,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE19",
       "dcterms:title": "IMMZ.D.DE19 ValueSet for Vaccine type",
+      "schema:name": "IMMZ_D_DE19",
       "dcterms:description": "ValueSet for Vaccine type for IMMZ.D.DE19",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6184,6 +6224,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE204",
       "dcterms:title": "IMMZ.D.DE204 ValueSet for HIV status",
+      "schema:name": "IMMZ_D_DE204",
       "dcterms:description": "ValueSet for HIV status for IMMZ.D.DE204",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6195,6 +6236,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE212",
       "dcterms:title": "IMMZ.D.DE212 ValueSet for Type of poliovirus dose",
+      "schema:name": "IMMZ_D_DE212",
       "dcterms:description": "ValueSet for Type of poliovirus dose for IMMZ.D.DE212",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6206,6 +6248,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE216",
       "dcterms:title": "IMMZ.D.DE216 ValueSet for Type of JE dose",
+      "schema:name": "IMMZ_D_DE216",
       "dcterms:description": "ValueSet for Type of JE dose for IMMZ.D.DE216",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6217,6 +6260,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE220",
       "dcterms:title": "IMMZ.D.DE220 ValueSet for Type of TBE dose",
+      "schema:name": "IMMZ_D_DE220",
       "dcterms:description": "ValueSet for Type of TBE dose for IMMZ.D.DE220",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6228,6 +6272,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE225",
       "dcterms:title": "IMMZ.D.DE225 ValueSet for Type of typhoid dose",
+      "schema:name": "IMMZ_D_DE225",
       "dcterms:description": "ValueSet for Type of typhoid dose for IMMZ.D.DE225",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6239,6 +6284,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE229",
       "dcterms:title": "IMMZ.D.DE229 ValueSet for Type of cholera dose",
+      "schema:name": "IMMZ_D_DE229",
       "dcterms:description": "ValueSet for Type of cholera dose for IMMZ.D.DE229",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6250,6 +6296,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE23",
       "dcterms:title": "IMMZ.D.DE23 ValueSet for Vaccine manufacturer",
+      "schema:name": "IMMZ_D_DE23",
       "dcterms:description": "ValueSet for Vaccine manufacturer for IMMZ.D.DE23",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6261,6 +6308,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE232",
       "dcterms:title": "IMMZ.D.DE232 ValueSet for Type of meningococcal dose",
+      "schema:name": "IMMZ_D_DE232",
       "dcterms:description": "ValueSet for Type of meningococcal dose for IMMZ.D.DE232",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6272,6 +6320,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE237",
       "dcterms:title": "IMMZ.D.DE237 ValueSet for Type of hepatitis A dose",
+      "schema:name": "IMMZ_D_DE237",
       "dcterms:description": "ValueSet for Type of hepatitis A dose for IMMZ.D.DE237",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6283,6 +6332,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE241",
       "dcterms:title": "IMMZ.D.DE241 ValueSet for Dengue serostatus",
+      "schema:name": "IMMZ_D_DE241",
       "dcterms:description": "ValueSet for Dengue serostatus for IMMZ.D.DE241",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6294,6 +6344,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE243",
       "dcterms:title": "IMMZ.D.DE243 ValueSet for Type of TB infection test performed",
+      "schema:name": "IMMZ_D_DE243",
       "dcterms:description": "ValueSet for Type of TB infection test performed for IMMZ.D.DE243",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6305,6 +6356,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE246",
       "dcterms:title": "IMMZ.D.DE246 ValueSet for TB infection test result",
+      "schema:name": "IMMZ_D_DE246",
       "dcterms:description": "ValueSet for TB infection test result for IMMZ.D.DE246",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6316,6 +6368,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE25",
       "dcterms:title": "IMMZ.D.DE25 ValueSet for Vaccine market authorization holder",
+      "schema:name": "IMMZ_D_DE25",
       "dcterms:description": "ValueSet for Vaccine market authorization holder for IMMZ.D.DE25",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6327,6 +6380,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE254",
       "dcterms:title": "IMMZ.D.DE254 ValueSet for Type of hepatitis B dose",
+      "schema:name": "IMMZ_D_DE254",
       "dcterms:description": "ValueSet for Type of hepatitis B dose for IMMZ.D.DE254",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6338,6 +6392,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE258",
       "dcterms:title": "IMMZ.D.DE258 ValueSet for Type of dose",
+      "schema:name": "IMMZ_D_DE258",
       "dcterms:description": "ValueSet for Type of dose for IMMZ.D.DE258",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6349,6 +6404,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE5",
       "dcterms:title": "IMMZ.D.DE5 ValueSet for Reason vaccine was not administered",
+      "schema:name": "IMMZ_D_DE5",
       "dcterms:description": "ValueSet for Reason vaccine was not administered for IMMZ.D.DE5",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6360,6 +6416,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE86",
       "dcterms:title": "IMMZ.D.DE86 ValueSet for Client education and counselling on immunization",
+      "schema:name": "IMMZ_D_DE86",
       "dcterms:description": "ValueSet for Client education and counselling on immunization for IMMZ.D.DE86",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6371,6 +6428,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.DE95",
       "dcterms:title": "IMMZ.D.DE95 ValueSet for Reaction manifestation",
+      "schema:name": "IMMZ_D_DE95",
       "dcterms:description": "ValueSet for Reaction manifestation for IMMZ.D.DE95",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6382,6 +6440,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.D.Observation",
       "dcterms:title": "IMMZ.D.Observation ValueSet for Sex",
+      "schema:name": "IMMZ_D_Observation",
       "dcterms:description": "ValueSet for Observation codes for IMMZ.D",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6393,6 +6452,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.I.DE30",
       "dcterms:title": "IMMZ.I.DE30 ValueSet for Disaggregation group",
+      "schema:name": "IMMZ_I_DE30",
       "dcterms:description": "ValueSet for Disaggregation group for IMMZ.I.DE30",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6404,6 +6464,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.I.DE48",
       "dcterms:title": "IMMZ.I.DE48 ValueSet for Closed stock discarded type",
+      "schema:name": "IMMZ_I_DE48",
       "dcterms:description": "ValueSet for Closed stock discarded type for IMMZ.I.DE48",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6415,6 +6476,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE1",
       "dcterms:title": "IMMZ.Z.DE1 ValueSet for BCG vaccines",
+      "schema:name": "IMMZ_Z_DE1",
       "dcterms:description": "ValueSet for BCG vaccines for IMMZ.Z.DE1",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6426,6 +6488,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE10",
       "dcterms:title": "IMMZ.Z.DE10 ValueSet for Meningococcal vaccines",
+      "schema:name": "IMMZ_Z_DE10",
       "dcterms:description": "ValueSet for Meningococcal vaccines for IMMZ.Z.DE10",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6437,6 +6500,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE11",
       "dcterms:title": "IMMZ.Z.DE11 ValueSet for Mumps-containing vaccines",
+      "schema:name": "IMMZ_Z_DE11",
       "dcterms:description": "ValueSet for Mumps-containing vaccines for IMMZ.Z.DE11",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6448,6 +6512,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE12",
       "dcterms:title": "IMMZ.Z.DE12 ValueSet for Pertussis-containing vaccines",
+      "schema:name": "IMMZ_Z_DE12",
       "dcterms:description": "ValueSet for Pertussis-containing vaccines for IMMZ.Z.DE12",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6459,6 +6524,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE13",
       "dcterms:title": "IMMZ.Z.DE13 ValueSet for Pneumococcal vaccines",
+      "schema:name": "IMMZ_Z_DE13",
       "dcterms:description": "ValueSet for Pneumococcal vaccines for IMMZ.Z.DE13",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6470,6 +6536,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE14",
       "dcterms:title": "IMMZ.Z.DE14 ValueSet for Poliovirus-containing vaccines",
+      "schema:name": "IMMZ_Z_DE14",
       "dcterms:description": "ValueSet for Poliovirus-containing vaccines for IMMZ.Z.DE14",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6481,6 +6548,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE15",
       "dcterms:title": "IMMZ.Z.DE15 ValueSet for Rabies vaccines",
+      "schema:name": "IMMZ_Z_DE15",
       "dcterms:description": "ValueSet for Rabies vaccines for IMMZ.Z.DE15",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6492,6 +6560,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE16",
       "dcterms:title": "IMMZ.Z.DE16 ValueSet for Rotavirus vaccines",
+      "schema:name": "IMMZ_Z_DE16",
       "dcterms:description": "ValueSet for Rotavirus vaccines for IMMZ.Z.DE16",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6503,6 +6572,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE17",
       "dcterms:title": "IMMZ.Z.DE17 ValueSet for Rubella-containing vaccines",
+      "schema:name": "IMMZ_Z_DE17",
       "dcterms:description": "ValueSet for Rubella-containing vaccines for IMMZ.Z.DE17",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6514,6 +6584,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE18",
       "dcterms:title": "IMMZ.Z.DE18 ValueSet for Seasonal influenza vaccines",
+      "schema:name": "IMMZ_Z_DE18",
       "dcterms:description": "ValueSet for Seasonal influenza vaccines for IMMZ.Z.DE18",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6525,6 +6596,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE19",
       "dcterms:title": "IMMZ.Z.DE19 ValueSet for Tetanus-containing vaccines",
+      "schema:name": "IMMZ_Z_DE19",
       "dcterms:description": "ValueSet for Tetanus-containing vaccines for IMMZ.Z.DE19",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6536,6 +6608,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE2",
       "dcterms:title": "IMMZ.Z.DE2 ValueSet for Cholera vaccines",
+      "schema:name": "IMMZ_Z_DE2",
       "dcterms:description": "ValueSet for Cholera vaccines for IMMZ.Z.DE2",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6547,6 +6620,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE20",
       "dcterms:title": "IMMZ.Z.DE20 ValueSet for TBE vaccines",
+      "schema:name": "IMMZ_Z_DE20",
       "dcterms:description": "ValueSet for TBE vaccines for IMMZ.Z.DE20",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6558,6 +6632,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE21",
       "dcterms:title": "IMMZ.Z.DE21 ValueSet for Typhoid vaccines",
+      "schema:name": "IMMZ_Z_DE21",
       "dcterms:description": "ValueSet for Typhoid vaccines for IMMZ.Z.DE21",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6569,6 +6644,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE22",
       "dcterms:title": "IMMZ.Z.DE22 ValueSet for Varicella-containing vaccines",
+      "schema:name": "IMMZ_Z_DE22",
       "dcterms:description": "ValueSet for Varicella-containing vaccines for IMMZ.Z.DE22",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6580,6 +6656,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE23",
       "dcterms:title": "IMMZ.Z.DE23 ValueSet for Yellow fever vaccines",
+      "schema:name": "IMMZ_Z_DE23",
       "dcterms:description": "ValueSet for Yellow fever vaccines for IMMZ.Z.DE23",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6591,6 +6668,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE24",
       "dcterms:title": "IMMZ.Z.DE24 ValueSet for DTP-containing vaccines",
+      "schema:name": "IMMZ_Z_DE24",
       "dcterms:description": "ValueSet for DTP-containing vaccines for IMMZ.Z.DE24",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6602,6 +6680,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE25",
       "dcterms:title": "IMMZ.Z.DE25 ValueSet for Dengue vaccines",
+      "schema:name": "IMMZ_Z_DE25",
       "dcterms:description": "ValueSet for Dengue vaccines for IMMZ.Z.DE25",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6613,6 +6692,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE26",
       "dcterms:title": "IMMZ.Z.DE26 ValueSet for COVID-19 vaccines",
+      "schema:name": "IMMZ_Z_DE26",
       "dcterms:description": "ValueSet for COVID-19 vaccines for IMMZ.Z.DE26",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6624,6 +6704,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE27",
       "dcterms:title": "IMMZ.Z.DE27 ValueSet for Malaria vaccines",
+      "schema:name": "IMMZ_Z_DE27",
       "dcterms:description": "ValueSet for Malaria vaccines for IMMZ.Z.DE27",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6635,6 +6716,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE28",
       "dcterms:title": "IMMZ.Z.DE28 ValueSet for Tetanus and diphtheria-containing vaccines",
+      "schema:name": "IMMZ_Z_DE28",
       "dcterms:description": "ValueSet for Tetanus and diphtheria-containing vaccines for IMMZ.Z.DE28",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6646,6 +6728,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE29",
       "dcterms:title": "IMMZ.Z.DE29 ValueSet for Pentavalent vaccines",
+      "schema:name": "IMMZ_Z_DE29",
       "dcterms:description": "ValueSet for Pentavalent vaccines for IMMZ.Z.DE29",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6657,6 +6740,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE3",
       "dcterms:title": "IMMZ.Z.DE3 ValueSet for Diphtheria-containing vaccines",
+      "schema:name": "IMMZ_Z_DE3",
       "dcterms:description": "ValueSet for Diphtheria-containing vaccines for IMMZ.Z.DE3",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6668,6 +6752,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE30",
       "dcterms:title": "IMMZ.Z.DE30 ValueSet for Oral polio vaccines",
+      "schema:name": "IMMZ_Z_DE30",
       "dcterms:description": "ValueSet for Oral polio vaccines for IMMZ.Z.DE30",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6679,6 +6764,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE31",
       "dcterms:title": "IMMZ.Z.DE31 ValueSet for Inactivated polio vaccines",
+      "schema:name": "IMMZ_Z_DE31",
       "dcterms:description": "ValueSet for Inactivated polio vaccines for IMMZ.Z.DE31",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6690,6 +6776,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE32",
       "dcterms:title": "IMMZ.Z.DE32 ValueSet for Measles and rubella-containing vaccines",
+      "schema:name": "IMMZ_Z_DE32",
       "dcterms:description": "ValueSet for Measles and rubella-containing vaccines for IMMZ.Z.DE32",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6701,6 +6788,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE33",
       "dcterms:title": "IMMZ.Z.DE33 ValueSet for Tetanus and diphtheria-containing vaccines (DT)",
+      "schema:name": "IMMZ_Z_DE33",
       "dcterms:description": "ValueSet for Tetanus and diphtheria-containing vaccines (DT) for IMMZ.Z.DE33",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6712,6 +6800,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE34",
       "dcterms:title": "IMMZ.Z.DE34 ValueSet for Tetanus and diphtheria-containing vaccines (Td)",
+      "schema:name": "IMMZ_Z_DE34",
       "dcterms:description": "ValueSet for Tetanus and diphtheria-containing vaccines (Td) for IMMZ.Z.DE34",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6723,6 +6812,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE4",
       "dcterms:title": "IMMZ.Z.DE4 ValueSet for Hib-containing vaccines",
+      "schema:name": "IMMZ_Z_DE4",
       "dcterms:description": "ValueSet for Hib-containing vaccines for IMMZ.Z.DE4",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6734,6 +6824,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE5",
       "dcterms:title": "IMMZ.Z.DE5 ValueSet for Hepatitis A-containing vaccines",
+      "schema:name": "IMMZ_Z_DE5",
       "dcterms:description": "ValueSet for Hepatitis A-containing vaccines for IMMZ.Z.DE5",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6745,6 +6836,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE6",
       "dcterms:title": "IMMZ.Z.DE6 ValueSet for Hepatitis B-containing vaccines",
+      "schema:name": "IMMZ_Z_DE6",
       "dcterms:description": "ValueSet for Hepatitis B-containing vaccines for IMMZ.Z.DE6",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6756,6 +6848,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE7",
       "dcterms:title": "IMMZ.Z.DE7 ValueSet for HPV vaccines",
+      "schema:name": "IMMZ_Z_DE7",
       "dcterms:description": "ValueSet for HPV vaccines for IMMZ.Z.DE7",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6767,6 +6860,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE8",
       "dcterms:title": "IMMZ.Z.DE8 ValueSet for JE vaccines",
+      "schema:name": "IMMZ_Z_DE8",
       "dcterms:description": "ValueSet for JE vaccines for IMMZ.Z.DE8",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6778,6 +6872,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.DE9",
       "dcterms:title": "IMMZ.Z.DE9 ValueSet for Measles-containing vaccines",
+      "schema:name": "IMMZ_Z_DE9",
       "dcterms:description": "ValueSet for Measles-containing vaccines for IMMZ.Z.DE9",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6789,6 +6884,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.LiveAttenuated",
       "dcterms:title": "IMMZ.Z.LiveAttenuated ValueSet for live attenuated vaccines",
+      "schema:name": "IMMZ_Z_LiveAttenuated",
       "dcterms:description": "ValueSet for live attenuated vaccine types for IMMZ.Z.LiveAttenuated",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -6800,6 +6896,7 @@
       "@type": "fhir:ValueSet",
       "dcterms:identifier": "ValueSet/IMMZ.Z.VS",
       "dcterms:title": "IMMZ.Z.VS ValueSet for vaccine types",
+      "schema:name": "IMMZ_Z_VS",
       "dcterms:description": "ValueSet for vaccine types for IMMZ.Z",
       "dcterms:type": "Terminology: Value Sets",
       "schema:sameAs": {
@@ -8197,6 +8294,7 @@
       "@type": "fhir:ImplementationGuide",
       "dcterms:identifier": "ImplementationGuide/smart.who.int.immunizations",
       "dcterms:title": "WHO Immunization Implementation Guide",
+      "schema:name": "Immunizations",
       "dcterms:description": "WHO Immunization Implementaiton Guide",
       "schema:sameAs": {
         "@id": "http://smart.who.int/immunizations/ImplementationGuide/smart.who.int.immunizations"

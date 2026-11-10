@@ -5,10 +5,10 @@
 :root[data-fa-scheme="dark"]{--iga-fg:#e6edf3;--iga-bg:#0d1117;--iga-muted:#9198a1;--iga-line:#3d444d;--iga-soft:#151b23;--iga-link:#6cb6ff;--iga-held:#3fb950;--iga-ref:#9198a1;--iga-err:#ff7b72}
 /* The body's colours, font and margin, and the content's links, are the page layout's (body:has(.fa-page-main)), so a page this file is linked to for the bar alone (an OpenAPI page) keeps its own. */
 /* The thin pages' own header, where publisher-pages has not given them the IG's bar: the bar's look. */
-.iga-top{background:var(--ig-topbar-bg,#1c4b7c);color:#fff}
+.iga-top{background:var(--ig-topbar-bg,#2d4271);color:#fff}
 .iga-top a{color:#fff;text-decoration:none}
 .iga-top .iga-home{font-weight:600}
-.ig-search-top{background:var(--ig-topbar-bg,#1c4b7c);color:#fff}
+.ig-search-top{background:var(--ig-topbar-bg,#2d4271);color:#fff}
 .ig-search-top>.ig-search-home{color:#fff;text-decoration:none;font-weight:600}
 .iga h1{margin:.5rem 0 .25rem}
 .iga-key code,.iga code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em;overflow-wrap:anywhere}
@@ -75,7 +75,7 @@ body>#ig-footer{margin-top:0}
 .iga-only{display:block;margin:.5rem 0}
 .iga-constraints{margin:0;padding-left:1.1rem}
 /* The IG's top bar (build-ig-site.ts IG_TOPBAR_CSS, kept identical by its test): the title on its own line, the menu as dropdowns below it. */
-.ig-topbar{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem 1rem;padding:.5rem 1.5rem;background:var(--ig-topbar-bg,#1c4b7c);color:#fff;font-size:.95rem}
+.ig-topbar{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem 1rem;padding:.5rem 1.5rem;background:var(--ig-topbar-bg,#2d4271);color:#fff;font-size:.95rem}
 .ig-topbar a{color:#fff;text-decoration:none}
 .ig-topbar-home{flex:0 0 100%;font-weight:600}
 body:has(> .fa-glass-handle) .ig-topbar.fa-page-bar{padding-top:2.25rem}
@@ -83,7 +83,7 @@ body:has(> .fa-glass-handle) .ig-topbar.fa-page-bar{padding-top:2.25rem}
 .ig-topbar-group summary{cursor:pointer;list-style:none}
 .ig-topbar-group summary::after{content:" \25BE"}
 .ig-topbar-group ul{position:absolute;z-index:20;margin:.25rem 0 0;padding:.25rem 0;min-width:16rem;list-style:none;background:#fff;border:1px solid #ccc;box-shadow:0 2px 6px rgba(0,0,0,.15)}
-.ig-topbar-group li a{display:block;padding:.25rem .75rem;color:#1c4b7c}
+.ig-topbar-group li a{display:block;padding:.25rem .75rem;color:#2d4271}
 .ig-topbar-group li a:hover{background:#eef3f8}
 .ig-topbar .ig-topbar-group ul > li{margin:0;padding:0}
 .ig-topbar .ig-topbar-group ul > li::before{content:none;display:none}

@@ -22,7 +22,7 @@
     {
       "@type": "schema:MediaObject",
       "schema:contentUrl": {
-        "@id": "https://raw.githubusercontent.com/litlfred/smart-immunizations/17d22993d4d2ff22922bbf156bad57ce760fb3e4/resources/ValueSet/IMMZD18SJELiveRecombinantVaccineVS--48585028.json"
+        "@id": "https://raw.githubusercontent.com/litlfred/smart-immunizations/dece82b9e889c7fc27bdea0a218a3634e9520f91/resources/ValueSet/IMMZD18SJELiveRecombinantVaccineVS.json"
       },
       "schema:encodingFormat": "application/fhir+json",
       "dcterms:source": "local"
@@ -31,7 +31,7 @@
   "prov:wasGeneratedBy": {
     "@type": "prov:Activity",
     "schema:instrument": "ig-publisher 3.0.0 / core 7.0.1",
-    "prov:used": "0232a9cdb96d12620ceb07df3e6f53b9946bdbeb"
+    "prov:used": "fe6609d14c2dcb7eb72788a4c85cfed2f467cc52"
   },
   "dcterms:isPartOf": {
     "@type": "fhir:ImplementationGuide",

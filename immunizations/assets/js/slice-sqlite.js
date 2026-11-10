@@ -46,7 +46,7 @@
  * when there is one, and on the main thread when there is not.
  */
 
-const SQLITE_URL = new URL("./vendor/sqlite-wasm/index.mjs", import.meta.url).href;
+const SQLITE_URL = new URL("https://litlfred.github.io/smart-html-jtd/shared/assets/js/vendor/sqlite-wasm/8600db3cb28ca66b/index.mjs", import.meta.url).href;
 const POOL = "folio-slices";
 
 async function sha256Hex(buf) {

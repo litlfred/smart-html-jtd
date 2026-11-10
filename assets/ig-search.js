@@ -1,13 +1,17 @@
 // The IG site's search (fhir-harness `scripts/ig-search.ts`): the box in the
 // IG's top bar, searching the IG's pages and artefacts from the index the
 // build wrote (`assets/ig-search.json`). The index is fetched the first time
-// the box is focused, never on page load. Every term must match; a match in a
+// the box is focused, never on page load. When it names the artefact index
+// node (`artifacts`: `artifact/index.jsonld`, which the thin artifacts and
+// toc pages draw), the artefacts are read from that node's rows rather than
+// from a copy in the search index. Every term must match; a match in a
 // title outranks one in an identifier, which outranks one in a description,
 // which outranks one in a page's text. Plain ES5, no dependencies.
 (function () {
   "use strict";
   var MAX = 25;
-  var FORMAT = "fhir-harness-ig-search/v1";
+  // v2 may name the artefact index node; v1 holds every entry itself.
+  var FORMATS = ["fhir-harness-ig-search/v1", "fhir-harness-ig-search/v2"];
 
   function norm(s) {
     return String(s || "").toLowerCase();
@@ -40,6 +44,45 @@
       t: e.t, k: e.k, d: e.d, href: new URL(e.h, base).href,
       _t: norm(e.t), _i: norm(e.i), _d: norm(e.d), _x: norm(e.x),
     };
+  }
+
+  // A description as one line of plain text, as the build cut it for v1.
+  function oneLine(s) {
+    var t = String(s || "")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/!?\[([^\]]*)\]\([^)]*\)/g, "$1")
+      .replace(/[#*_`|>~]+/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+    return t.length > 160 ? t.slice(0, 159) + "\u2026" : t;
+  }
+
+  // The artefact entries of an index node (fhir-harness `ig-artifact-jsonld.ts`
+  // `artifactIndexJsonLd`): title, kind, the identifiers (id, name, key,
+  // canonical) and description, each linked to its thin page beside the node.
+  function fromNode(node) {
+    var parts = (node && node["schema:hasPart"]) || [];
+    var out = [];
+    for (var n = 0; n < parts.length; n++) {
+      var p = parts[n];
+      var key = String(p["dcterms:identifier"] || "");
+      var id = key.slice(key.indexOf("/") + 1);
+      var canonical = p["schema:sameAs"] && p["schema:sameAs"]["@id"];
+      var ids = [];
+      [id, p["schema:name"], key, canonical].forEach(function (v) {
+        if (typeof v === "string" && v && ids.indexOf(v) < 0) ids.push(v);
+      });
+      var e = {
+        t: p["dcterms:title"] || id,
+        h: String(p["@id"] || "").split("/").pop().replace(/\.jsonld$/, ".html"),
+        k: String(p["@type"] || "").replace(/^fhir:/, ""),
+      };
+      if (ids.length) e.i = ids.join(" ");
+      var d = oneLine(p["dcterms:description"]);
+      if (d) e.d = d;
+      out.push(e);
+    }
+    return out;
   }
 
   function search(entries, q) {
@@ -83,9 +126,27 @@
           return r.json();
         })
         .then(function (ix) {
-          if (!ix || ix.format !== FORMAT || !Array.isArray(ix.entries)) throw new Error("not an IG search index");
+          if (!ix || FORMATS.indexOf(ix.format) < 0 || !Array.isArray(ix.entries)) throw new Error("not an IG search index");
           var base = new URL(ix.base || "../", indexUrl);
-          entries = ix.entries.map(function (e) { return prep(e, base); });
+          var pages = ix.entries.map(function (e) { return prep(e, base); });
+          if (typeof ix.artifacts !== "string") return pages;
+          // The artefacts, from the index node; the pages stay searchable without it.
+          var nodeUrl = new URL(ix.artifacts, indexUrl);
+          return fetch(nodeUrl.href)
+            .then(function (r) {
+              if (!r.ok) throw new Error(r.status + " " + r.statusText);
+              return r.json();
+            })
+            .then(function (node) {
+              return pages.concat(fromNode(node).map(function (e) { return prep(e, nodeUrl); }));
+            })
+            .catch(function (err) {
+              console.warn("ig-search: the artefact index " + nodeUrl.href + " could not be read, so only pages are searched: " + err.message);
+              return pages;
+            });
+        })
+        .then(function (all) {
+          entries = all;
           if (input.value) render();
         })
         .catch(function (err) {
@@ -169,7 +230,7 @@
   }
 
   // Exposed for the tests, which run the scorer without a page.
-  if (typeof window !== "undefined") window.__igSearch = { search: search, terms: terms, prep: prep };
+  if (typeof window !== "undefined") window.__igSearch = { search: search, terms: terms, prep: prep, fromNode: fromNode };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();
 })();

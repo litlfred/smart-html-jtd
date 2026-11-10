@@ -4102,6 +4102,14 @@ a.fa-tile[data-fa-readonly]:focus-visible {
 [data-fa-pin]:hover [data-fa-pin-control],
 [data-fa-pin-control]:focus-visible,
 [data-fa-pin-control][aria-pressed="true"] { opacity: 1; filter: none; }
+/* Owner, 2026-11-09: "no indication if a bookmark has been selected or
+ * not". Full colour alone is not enough: hovering a block lights every
+ * control. A pressed control also keeps a tinted tile with an accent ring. */
+[data-fa-pin-control][aria-pressed="true"]:not(.bp-bookmark) {
+  border-radius: 5px;
+  background: color-mix(in srgb, var(--link, #0b5cad) 24%, transparent);
+  box-shadow: inset 0 0 0 1.5px var(--link, #0b5cad);
+}
 .fa-glass-kind-avatar { --fa-avatar-size: 2rem; color: var(--fa-glass-accent); }
 .fa-glass-asset-name {
   flex: 1 1 auto;

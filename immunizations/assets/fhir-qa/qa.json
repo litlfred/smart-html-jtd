@@ -7,8 +7,8 @@
   "status": "draft",
   "package-id": "smart.who.int.immunizations",
   "ig-ver": "0.2.0",
-  "date": "Tue, 10 Nov, 2026 17:27:47 +0000",
-  "dateISO8601": "2026-11-10T17:27:47+00:00",
+  "date": "Tue, 10 Nov, 2026 21:27:17 +0000",
+  "dateISO8601": "2026-11-10T21:27:17+00:00",
   "errs": 744,
   "warnings": 1722,
   "hints": 6267,
@@ -17,5 +17,5 @@
   "suppressed-warnings": 100,
   "version": "4.0.1",
   "tool": "6.0.0-snapshot1 (3)",
-  "maxMemory": 4016326704
+  "maxMemory": 4006359800
 }

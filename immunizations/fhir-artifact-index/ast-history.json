@@ -3,6 +3,19 @@
   "repository": "litlfred/smart-immunizations",
   "versions": [
     {
+      "commit": "dece82b9e889c7fc27bdea0a218a3634e9520f91",
+      "date": "2026-11-10T21:35:48+00:00",
+      "src": "fe6609d1",
+      "tags": [
+        "v0.2.0"
+      ]
+    },
+    {
+      "commit": "b18e3e1a6c66ed7844b5e39484edd152f753a54f",
+      "date": "2026-11-10T21:24:00+00:00",
+      "src": "4fb06d9f"
+    },
+    {
       "commit": "17d22993d4d2ff22922bbf156bad57ce760fb3e4",
       "date": "2026-11-10T17:38:52+00:00",
       "src": "0232a9cd"
