@@ -81,6 +81,7 @@ h2{font-size:1.3rem;margin:2.5rem 0 .75rem;border-bottom:1px solid var(--fa-pl-l
 footer{background:var(--bar-bg);color:var(--bar-fg);text-align:center;font-size:.82rem;padding:.75rem 1.5rem}
 footer a{color:inherit}
 .meta{display:block;color:var(--fa-pl-muted);font-size:.8rem;margin-top:.15rem}
+.badge{display:table;margin:.35rem 0 .1rem;padding:.05rem .45rem;border:1px solid currentColor;border-radius:3px;font-size:.75rem;font-weight:600;color:var(--fa-pl-link)}
 .count{font-size:.85rem;font-weight:400;color:var(--fa-pl-muted)}
 .filter{display:flex;gap:.6rem;align-items:center;margin:1rem 0 0;max-width:32rem}
 .filter label{font-weight:600}
@@ -170,6 +171,8 @@ def guideline_row(e):
 def document_row(e):
     title = e.get("title") or e["name"]
     sub = f'<small class="meta">{E(e["subtitle"])}</small>' if e.get("subtitle") else ""
+    if e.get("role") == "reference-architecture":
+        sub = '<span class="badge">Reference architecture for the DTHs</span>' + sub
     links = e.get("links") or []
     main_doc = [link("page", at(e, links[0]["page"]), links[0]["title"], not e["hostedHere"])] if links else [link("page", e["site"], "Site", not e["hostedHere"])]
     parts = [link("page", at(e, l["page"]), l["title"], not e["hostedHere"]) for l in links[1:]]
@@ -229,7 +232,9 @@ def render(cfg, entries=None, updated=None):
     initiative = site.get("initiative", "https://www.who.int/teams/digital-health-and-innovation/smart-guidelines")
     key = lambda e: (e.get("domain") or e.get("title") or e["name"]).lower()
     guides = sorted((e for e in entries if e.get("section") == "guidelines"), key=key)
-    docs = sorted((e for e in entries if e.get("section") == "documents"), key=key)
+    # The DTHs first, then the reference architecture they all build on (smart-ra).
+    docs = sorted((e for e in entries if e.get("section") == "documents"),
+                  key=lambda e: (e.get("role") == "reference-architecture", key(e)))
     founds = sorted((e for e in entries if e.get("section") == "foundations"), key=key)
     nav = ['<a href="#publications">Guidelines</a>']
     if docs:

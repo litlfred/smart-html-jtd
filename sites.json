@@ -59,6 +59,9 @@
           "title": "Digital Adaptation Kit",
           "url": "https://www.who.int/publications/i/item/9789240085138"
         }
+      },
+      "smart-ra": {
+        "role": "reference-architecture"
       }
     }
   }
