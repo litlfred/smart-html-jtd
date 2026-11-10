@@ -12,13 +12,15 @@ dark scheme). It is one self-contained file except for the cover images.
 Rows come from the catalogue scripts/catalog.py builds from the repositories
 (three sections: guidelines, L2 documents such as the DTHs and smart-ra, and
 shared foundations). Without a catalogue it lists only the IGs in sites.json.
-A filter box narrows every section as you type.
+The page wears the IG sites' own chrome: their top bar (menus, search,
+language picker) and their left navbar, grouped as the tables are.
 """
 import argparse
 import datetime
 import html
 import json
 import os
+import re
 import sys
 
 E = html.escape
@@ -33,28 +35,13 @@ ICON = {
 }
 
 CSS = """
-:root{--fa-pl-fg:#1f2328;--fa-pl-bg:#fff;--fa-pl-muted:#59636e;--fa-pl-line:#d1d9e0;--fa-pl-soft:#f6f8fa;--fa-pl-link:#0b5cad;
-  --bar-bg:#1c4b7c;--bar-fg:#fff;--head-bg:#2f6aa3;--head-fg:#fff;--card:#fff;--pdf:#b30b00;--page:#1d6f42;--fhir:#c2410c;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-fa-scheme="light"]){--fa-pl-fg:#e6edf3;--fa-pl-bg:#0d1117;--fa-pl-muted:#9198a1;--fa-pl-line:#3d444d;--fa-pl-soft:#151b23;--fa-pl-link:#6cb6ff;
-  --bar-bg:#163a60;--head-bg:#1f4f7d;--card:#0d1117;--pdf:#ff7b72;--page:#56d364;--fhir:#ffa657;color-scheme:dark}}
-:root[data-fa-scheme="dark"]{--fa-pl-fg:#e6edf3;--fa-pl-bg:#0d1117;--fa-pl-muted:#9198a1;--fa-pl-line:#3d444d;--fa-pl-soft:#151b23;--fa-pl-link:#6cb6ff;
-  --bar-bg:#163a60;--head-bg:#1f4f7d;--card:#0d1117;--pdf:#ff7b72;--page:#56d364;--fhir:#ffa657;color-scheme:dark}
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--fa-pl-soft);color:var(--fa-pl-fg);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--fa-pl-link)}
-.fa-page-bar{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;align-items:center;gap:.25rem 1.25rem;padding:.5rem 1.5rem;background:var(--bar-bg);color:var(--bar-fg);font-size:.95rem}
-.fa-page-bar a{color:inherit;text-decoration:none}
-.fa-page-bar a:hover,.fa-page-bar a:focus-visible{text-decoration:underline}
-.bar-home{font-weight:600;margin-right:auto}
-.masthead{background:var(--fa-pl-bg);border-bottom:1px solid var(--fa-pl-line);padding:1.25rem 1.5rem}
-.masthead .brand{display:flex;align-items:center;gap:.75rem;font-size:1.35rem;font-weight:600;color:var(--bar-bg);line-height:1.2}
-:root[data-fa-scheme="dark"] .masthead .brand{color:var(--fa-pl-link)}
-@media (prefers-color-scheme:dark){:root:not([data-fa-scheme="light"]) .masthead .brand{color:var(--fa-pl-link)}}
-.masthead .brand small{display:block;font-size:.85rem;font-weight:400;color:var(--fa-pl-muted)}
-.brand-mark{flex:none;width:2.5rem;height:2.5rem;border-radius:6px;background:var(--bar-bg);color:#fff;display:grid;place-items:center;font-weight:700;font-size:1.1rem}
-main{max-width:84rem;margin:0 auto;padding:1.5rem 1.5rem 3rem}
-h1{font-size:1.6rem;line-height:1.25;margin:.25rem 0 1rem}
+:root{--head-bg:#2f6aa3;--head-fg:#fff;--card:#fff;--pdf:#b30b00;--page:#1d6f42;--fhir:#c2410c}
+@media (prefers-color-scheme:dark){:root:not([data-fa-scheme="light"]){--head-bg:#1f4f7d;--card:#0d1117;--pdf:#ff7b72;--page:#56d364;--fhir:#ffa657}}
+:root[data-fa-scheme="dark"]{--head-bg:#1f4f7d;--card:#0d1117;--pdf:#ff7b72;--page:#56d364;--fhir:#ffa657}
+.fa-page-main h1{font-size:1.6rem}
+.fa-page-main table.pubs{display:table;width:100%}
+@media (max-width:52rem){.ig-topbar-group{position:static}.ig-topbar-group>ul{left:.5rem;right:.5rem;width:auto;max-width:none}}
+.fa-page-main .pubs th,.fa-page-main .pubs td{border:0}
 h2{font-size:1.3rem;margin:2.5rem 0 .75rem;border-bottom:1px solid var(--fa-pl-line);padding-bottom:.25rem}
 .lede p{margin:.4rem 0;max-width:60rem}
 .updated{color:var(--fa-pl-muted);font-size:.92rem;margin-top:1rem}
@@ -78,17 +65,11 @@ h2{font-size:1.3rem;margin:2.5rem 0 .75rem;border-bottom:1px solid var(--fa-pl-l
 .found p{margin:0 0 .6rem;color:var(--fa-pl-muted);font-size:.92rem}
 .found .links{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem}
 .found .links a{display:inline-flex;gap:.4rem;align-items:flex-start;text-decoration:none}
-footer{background:var(--bar-bg);color:var(--bar-fg);text-align:center;font-size:.82rem;padding:.75rem 1.5rem}
-footer a{color:inherit}
 .meta{display:block;color:var(--fa-pl-muted);font-size:.8rem;margin-top:.15rem}
 .badge{display:table;margin:.35rem 0 .1rem;padding:.05rem .45rem;border:1px solid currentColor;border-radius:3px;font-size:.75rem;font-weight:600;color:var(--fa-pl-link)}
-.count{font-size:.85rem;font-weight:400;color:var(--fa-pl-muted)}
-.filter{display:flex;gap:.6rem;align-items:center;margin:1rem 0 0;max-width:32rem}
-.filter label{font-weight:600}
-.filter input{flex:1;font:inherit;padding:.4rem .6rem;border:1px solid var(--fa-pl-line);border-radius:4px;background:var(--fa-pl-bg);color:var(--fa-pl-fg)}
 .pubs{margin-top:.75rem}
 @media (max-width:52rem){
-  .pubs,.pubs tbody,.pubs tr,.pubs td{display:block;width:100%}
+  .pubs,.pubs tbody,.pubs tr,.pubs td{display:block;width:100%;box-sizing:border-box}
   .pubs thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   .pubs tr{border-top:1px solid var(--fa-pl-line)}
   .pubs tbody tr:first-child{border-top:0}
@@ -99,7 +80,7 @@ footer a{color:inherit}
   .pubs tbody tr:nth-child(even) td{background:var(--fa-pl-soft)}
   .cover{margin:.5rem 0 0}
 }
-@media (max-width:40rem){.fa-page-bar,.masthead,main,footer{padding-left:1rem;padding-right:1rem}h1{font-size:1.35rem}}
+
 """
 
 
@@ -212,38 +193,99 @@ def entries_from_sites(cfg):
     return out
 
 
-TABLE_JS = """
-(function(){var q=document.getElementById("filter");if(!q)return;
-var rows=[].slice.call(document.querySelectorAll("[data-search]"));
-var counts=[].slice.call(document.querySelectorAll("[data-count]"));
-function run(){var v=q.value.trim().toLowerCase();rows.forEach(function(r){r.hidden=!!v&&r.getAttribute("data-search").indexOf(v)<0});
-counts.forEach(function(c){var box=document.getElementById(c.getAttribute("data-count"));var n=box.querySelectorAll("[data-search]:not([hidden])").length;c.textContent=n+(n===1?" entry":" entries")})}
-q.addEventListener("input",run);run()})();
-"""
 
 
-def render(cfg, entries=None, updated=None):
-    entries = entries if entries is not None else entries_from_sites(cfg)
-    site = cfg.get("site", {})
-    title = site.get("title", "SMART Guidelines")
-    subtitle = site.get("subtitle", "Implementation Guide docs builds")
-    updated = updated or datetime.datetime.now(datetime.timezone.utc).strftime("%B %Y")
-    official = site.get("official", "https://smart.who.int/")
-    initiative = site.get("initiative", "https://www.who.int/teams/digital-health-and-innovation/smart-guidelines")
+RAIL_DATA = "rail-landing"
+
+
+def short(e):
+    """The name a guide goes by in the rail and the menus: its health domain,
+    or its title without the handbook series prefix."""
+    t = e.get("short") or e.get("domain") or e.get("title") or e["name"]
+    return re.sub(r"^Digital Transformation Handbook(?::\s*| (?:for|on) (?:the )?)", "", t)
+
+
+def href(e):
+    """A hosted guide by its path on this site; any other by its own site."""
+    return e["site"].rstrip("/").rsplit("/", 1)[-1] + "/" if e["hostedHere"] else e["site"]
+
+
+def rail_data(cfg, groups):
+    """The shared rail data for the landing page, in the shape the IG sites'
+    navbar.js reads (cat-harness-tools `railSharedJson`): the page's own index
+    is the visualiser section, open on arrival, grouped as the tables are."""
+    title = cfg.get("site", {}).get("title", "SMART Guidelines")
+    items = []
+    for label, anchor, es in groups:
+        if not es:
+            continue
+        items.append({"label": label, "icon": "▸", "href": f"@fa-rail-to-root@/#{anchor}"})
+        for e in es:
+            items.append({"label": short(e), "icon": "·", "depth": 1,
+                          "href": ("@fa-rail-to-root@/" if e["hostedHere"] else "") + href(e)})
+    shared = {"instance": title, "homeLabel": title, "links": [],
+              "documentIndex": {"label": "Publications", "icon": "§", "items": items}}
+    return f"(self.FaRailData=self.FaRailData||{{}})[{json.dumps(RAIL_DATA)}]={json.dumps(json.dumps(shared))};\n"
+
+
+def search_index(entries):
+    """Entries for the top bar's search (fhir-harness `ig-search.js` format):
+    one per guide, handbook and foundation. compose.py adds every hosted IG's
+    own pages to it."""
+    out = []
+    for e in entries:
+        kind = {"guidelines": "guideline", "documents": "handbook", "foundations": "foundation"}.get(e.get("section"), "guide")
+        out.append({"t": short(e), "h": href(e), "k": kind,
+                    "i": f'{e["name"]} {e.get("layer", "")}'.strip(),
+                    "d": " · ".join(x for x in [e.get("title"), e.get("subtitle"), e.get("version") and f'v{e["version"]}'] if x)})
+    return {"format": "fhir-harness-ig-search/v1", "base": "../", "entries": out}
+
+
+def topbar(title, groups, official):
+    menus = []
+    for label, anchor, es in groups:
+        if not es:
+            continue
+        lis = "".join(f'<li><a href="{E(href(e))}">{E(short(e))}</a></li>' for e in es)
+        menus.append(f'<details class="ig-topbar-group"><summary>{E(label.removeprefix("SMART "))}</summary><ul><li><a href="#{anchor}">All {E(label.split(" (")[0].removeprefix("SMART ").lower())}</a></li>{lis}</ul></details>')
+    menus.append(f'<details class="ig-topbar-group"><summary>About</summary><ul><li><a href="{E(official)}" rel="noopener">smart.who.int</a></li>'
+                 '<li><a href="https://www.who.int/teams/digital-health-and-innovation/smart-guidelines" rel="noopener">WHO SMART Guidelines</a></li></ul></details>')
+    return (f'<div class="ig-topbar fa-page-bar" role="navigation" aria-label="{E(title)} menu">'
+            f'<a class="ig-topbar-home" href="./index.html">{E(title)}</a>{"".join(menus)}'
+            '<form class="ig-search" role="search" data-ig-search-index="./assets/ig-search.json">'
+            f'<label class="ig-search-label" for="search-input">Search {E(title)}</label>'
+            '<input type="search" id="search-input" class="ig-search-input" placeholder="Search guidelines, handbooks and pages" autocomplete="off" aria-controls="ig-search-results" aria-expanded="false">'
+            '<ul id="ig-search-results" class="ig-search-results" hidden></ul></form>'
+            '<span class="ig-locale-slot" data-fa-slot="locale"></span></div>')
+
+
+def groups_of(guides, docs, founds):
+    """The rail's and the top bar's groups: (label, table anchor, entries)."""
+    return [("SMART Guidelines", "guidelines", guides), ("Handbooks (DTH)", "handbooks", docs), ("Foundations", "foundations", founds)]
+
+
+def sections(entries):
     key = lambda e: (e.get("domain") or e.get("title") or e["name"]).lower()
     guides = sorted((e for e in entries if e.get("section") == "guidelines"), key=key)
     # The DTHs first, then the reference architecture they all build on (smart-ra).
     docs = sorted((e for e in entries if e.get("section") == "documents"),
                   key=lambda e: (e.get("role") == "reference-architecture", key(e)))
     founds = sorted((e for e in entries if e.get("section") == "foundations"), key=key)
-    nav = ['<a href="#publications">Guidelines</a>']
-    if docs:
-        nav.append('<a href="#handbooks">Handbooks</a>')
-    if founds:
-        nav.append('<a href="#foundations">Shared foundations</a>')
+    return guides, docs, founds
+
+
+def render(cfg, entries=None, updated=None):
+    entries = entries if entries is not None else entries_from_sites(cfg)
+    site = cfg.get("site", {})
+    title = site.get("title", "SMART Guidelines")
+    updated = updated or datetime.datetime.now(datetime.timezone.utc).strftime("%B %Y")
+    official = site.get("official", "https://smart.who.int/")
+    initiative = site.get("initiative", "https://www.who.int/teams/digital-health-and-innovation/smart-guidelines")
+    guides, docs, founds = sections(entries)
+    groups = groups_of(guides, docs, founds)
     docs_html = ""
     if docs:
-        docs_html = ('<h2 id="handbooks">Digital Transformation Handbooks (L2) <small class="count" data-count="docs-table"></small></h2>'
+        docs_html = ('<h2 id="handbooks">Digital Transformation Handbooks (L2)</h2>'
                      "<p>L2 documents built on WHO Digital Transformation Handbooks and the DPI-H Reference Architecture, "
                      "with their glossary, ArchiMate and review pages.</p>"
                      '<table class="pubs" id="docs-table"><thead><tr><th scope="col">Handbook</th><th scope="col">Date</th>'
@@ -251,37 +293,44 @@ def render(cfg, entries=None, updated=None):
                      f'<tbody>{"".join(document_row(e) for e in docs)}</tbody></table>')
     found_html = ""
     if founds:
-        found_html = ('<h2 id="foundations">Shared foundations <small class="count" data-count="found-list"></small></h2>'
+        found_html = ('<h2 id="foundations">Shared foundations</h2>'
                       "<p>Implementation Guides every SMART Guideline builds on.</p>"
                       f'<ul class="found" id="found-list">{"".join(foundation(e) for e in founds)}</ul>')
+    meta = json.dumps({"lang": "en", "translationStatus": "", "translationSource": "",
+                       "supportedLocales": site.get("locales", ["ar", "zh", "en", "fr", "ru", "es"]), "availableLocales": []})
+    rail = json.dumps({"data": RAIL_DATA, "here": "/"})
     return f"""<!doctype html>
 <html lang="en">
 <head>
+<script data-folio-saved-scheme>(function(){{var d=document.documentElement,s=null;try{{s=localStorage.getItem("fa-color-scheme")}}catch(e){{}}if(s!=="light"&&s!=="dark"){{s="light";try{{if(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)s="dark"}}catch(e){{}}}}d.setAttribute("data-fa-scheme",s)}})();</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title>
-<meta name="description" content="{E(title)}: {E(subtitle)}">
-<meta name="theme-color" content="#1c4b7c">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231c4b7c'/%3E%3C/svg%3E">
-<script>try{{var s=localStorage.getItem("fa-color-scheme");if(s==="dark"||s==="light")document.documentElement.setAttribute("data-fa-scheme",s)}}catch(e){{}}</script>
+<meta name="description" content="{E(title)}: SMART Guidelines and Digital Transformation Handbooks">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23276749'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./assets/page-layout.css" data-fa-page-layout>
+<script src="./assets/page-layout.js" defer data-fa-page-layout></script>
+<link rel="stylesheet" href="./assets/css/docs-ui.css" data-fa-folio-mount>
+<script src="./assets/js/docs-ui.js" defer data-fa-folio-mount></script>
+<script type="application/json" id="fa-translation-meta">{meta}</script>
+<link rel="stylesheet" href="./assets/css/navbar.css">
+<script src="./assets/navbar/{RAIL_DATA}.js" defer></script>
+<script src="./assets/js/navbar.js" defer></script>
+<script src="./assets/ig-search.js" defer></script>
+<link rel="stylesheet" href="./assets/ig-artifact.css">
+<link rel="stylesheet" href="./assets/ig-pages.css">
 <style>{CSS}</style>
 </head>
-<body>
-<nav class="fa-page-bar" aria-label="Site">
-<a class="bar-home" href="./">{E(title)}</a>
-{"".join(nav)}
-<a href="{E(official)}" rel="noopener">smart.who.int</a>
-</nav>
-<header class="masthead"><div class="brand"><span class="brand-mark" aria-hidden="true">S</span><span>{E(title)}<small>{E(subtitle)}</small></span></div></header>
-<main id="main-content">
+<body><script type="application/json" id="fa-rail" data-fa-root="." data-fa-to-root=".">{rail}</script><nav class="fa-nav" aria-label="folio-assistant" data-fa-rail="pending"><a href="./">{E(title)}</a></nav>
+{topbar(title, groups, official)}
+<main class="ig-main main-content fa-page-main" id="main-content">
 <h1 id="publications">SMART Guideline Publications</h1>
 <div class="lede">
 <p>The tables below list every harnessed SMART Guideline and Digital Transformation Handbook, with links to each Digital Adaptation Kit (L2), its components, and the draft build of its FHIR Implementation Guide (L3). They are built from the repositories themselves each time the site is composed.</p>
 <p>For more information on the WHO SMART Guidelines initiative, <a href="{E(initiative)}" rel="noopener">visit here</a>. The official publications are at <a href="{E(official)}" rel="noopener">smart.who.int</a>.</p>
 </div>
 <p class="updated">Last updated: {E(updated)}</p>
-<div class="filter"><label for="filter">Filter</label><input id="filter" type="search" placeholder="Health domain, title or repository" autocomplete="off"></div>
-<h2 id="guidelines">SMART Guidelines (DAK, L2 and FHIR IG, L3) <small class="count" data-count="guides-table"></small></h2>
+<h2 id="guidelines">SMART Guidelines (DAK, L2 and FHIR IG, L3)</h2>
 <table class="pubs" id="guides-table">
 <thead><tr><th scope="col">Health domain</th><th scope="col">Publication date</th><th scope="col">Digital Adaptation Kit<br>(DAK, L2)</th><th scope="col">DAK components<br>(L2)</th><th scope="col">FHIR Implementation Guide<br>(L3)</th></tr></thead>
 <tbody>
@@ -291,27 +340,38 @@ def render(cfg, entries=None, updated=None):
 {docs_html}
 {found_html}
 <p class="note">These are draft, docs-only builds. The FHIR package, downloads and the IG Publisher build stay with each guide's own release.</p>
+<div id="ig-footer"><div class="ig-footer-band"><p><a href="{E(official)}" rel="noopener external">smart.who.int</a> · <a href="https://github.com/{E(site.get('repo', 'litlfred/smart-html-jtd'))}" rel="noopener external">Source</a></p></div></div>
 </main>
-<footer><a href="{E(official)}" rel="noopener">smart.who.int</a> · <a href="https://github.com/{E(site.get('repo', 'litlfred/smart-html-jtd'))}" rel="noopener">Source</a></footer>
-<script>{TABLE_JS}</script>
 </body>
 </html>
 """
+
+
+def write(cfg, entries, out_dir, updated=None):
+    """index.html, its rail data and its search index, into the site root."""
+    entries = entries if entries is not None else entries_from_sites(cfg)
+    guides, docs, founds = sections(entries)
+    groups = groups_of(guides, docs, founds)
+    os.makedirs(os.path.join(out_dir, "assets", "navbar"), exist_ok=True)
+    with open(os.path.join(out_dir, "index.html"), "w", encoding="utf-8") as fh:
+        fh.write(render(cfg, entries, updated))
+    with open(os.path.join(out_dir, "assets", "navbar", f"{RAIL_DATA}.js"), "w", encoding="utf-8") as fh:
+        fh.write(rail_data(cfg, groups))
+    with open(os.path.join(out_dir, "assets", "ig-search.json"), "w", encoding="utf-8") as fh:
+        json.dump(search_index(entries), fh, ensure_ascii=False)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sites", required=True)
     ap.add_argument("--catalog", help="catalogue from scripts/catalog.py (default: only the IGs in sites.json)")
-    ap.add_argument("--out", required=True)
+    ap.add_argument("--out", required=True, help="the site root to write index.html and its assets into")
     ap.add_argument("--updated", help='date shown as "Last updated" (default: this month)')
     a = ap.parse_args()
     cfg = json.load(open(a.sites, encoding="utf-8"))
     entries = json.load(open(a.catalog, encoding="utf-8"))["entries"] if a.catalog else None
-    os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
-    with open(a.out, "w", encoding="utf-8") as fh:
-        fh.write(render(cfg, entries, a.updated))
-    print(f"wrote {a.out}")
+    write(cfg, entries, a.out, a.updated)
+    print(f"wrote {a.out}/index.html")
     return 0
 
 
